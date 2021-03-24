@@ -8,7 +8,7 @@
 
 ## Purpose
 
->QCfirst is a prototype for a college course enrollment website that allows students and teachers to access a variety of features:
+QCfirst is a prototype for a college course enrollment website that allows students and teachers to access a variety of features:
 
 ### Student Features
 
