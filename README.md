@@ -17,10 +17,18 @@
 ### Ability to Create a Course
 ### Ability to look at Teaching Schedule
 
-## Concept Photos
+## Concept Photos:
+### Home Page:
+![alt text](https://github.com/Rockergamer321/qcfirst/blob/main/Visual%20Designs/Home-Page%20Desktop.png)
+### Sign Up:
+![alt text](https://github.com/Rockergamer321/qcfirst/blob/main/Visual%20Designs/Sign%20Up%20Desktop.png)
+### Log In:
+![alt text](https://github.com/Rockergamer321/qcfirst/blob/main/Visual%20Designs/Login%20Desktop.JPG)
 ### Student Center:
-###
+![alt text](https://github.com/Rockergamer321/qcfirst/blob/main/Visual%20Designs/Student%20Center%20-%20Desktop.png)
 ### Course Search:
-###
-### Settings:
-###
+![alt text](https://github.com/Rockergamer321/qcfirst/blob/main/Visual%20Designs/Course%20Search%20-%20Desktop.png)
+### User Settings:
+![alt text](https://github.com/Rockergamer321/qcfirst/blob/main/Visual%20Designs/User%20Settings%20-%20Desktop.png)
+### Create A Class:
+![alt text](https://github.com/Rockergamer321/qcfirst/blob/main/Visual%20Designs/Create%20A%20Class%20Desktop.png)
