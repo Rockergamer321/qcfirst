@@ -30,6 +30,8 @@
 ![alt text](https://github.com/Rockergamer321/qcfirst/blob/main/Visual%20Designs/Course%20Search%20-%20Desktop.png)
 ### User Settings:
 ![alt text](https://github.com/Rockergamer321/qcfirst/blob/main/Visual%20Designs/User%20Settings%20-%20Desktop.png)
+### Faculty Center:
+![alt text](https://github.com/Rockergamer321/qcfirst/blob/main/Visual%20Designs/Faculty%20Center%20-%20Desktop.jpg)
 ### Create A Class:
 ![alt text](https://github.com/Rockergamer321/qcfirst/blob/main/Visual%20Designs/Create%20A%20Class%20Desktop.png)
 
