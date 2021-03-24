@@ -23,7 +23,7 @@
 ### Sign Up:
 ![alt text](https://github.com/Rockergamer321/qcfirst/blob/main/Visual%20Designs/Sign%20Up%20Desktop.png)
 ### Log In:
-![alt text](https://github.com/Rockergamer321/qcfirst/blob/main/Visual%20Designs/Login%20Desktop.jpg)
+![alt text](https://github.com/Rockergamer321/qcfirst/blob/main/Visual%20Designs/Login%20Desktop.png)
 ### Student Center:
 ![alt text](https://github.com/Rockergamer321/qcfirst/blob/main/Visual%20Designs/Student%20Center%20-%20Desktop.png)
 ### Course Search:
@@ -32,3 +32,5 @@
 ![alt text](https://github.com/Rockergamer321/qcfirst/blob/main/Visual%20Designs/User%20Settings%20-%20Desktop.png)
 ### Create A Class:
 ![alt text](https://github.com/Rockergamer321/qcfirst/blob/main/Visual%20Designs/Create%20A%20Class%20Desktop.png)
+
+
