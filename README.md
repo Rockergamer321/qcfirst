@@ -1,7 +1,8 @@
 # QCFirst
 
 ## Contributors:
-### Anthony Lombardo (Rockergamer321) and Jonathan Dinh (jonathanmdinh)
+### - Anthony Lombardo (Rockergamer321)
+### - Jonathan Dinh (jonathanmdinh)
 
 ## Purpose:
 ### A website for students to search and enroll in courses that professors create.
@@ -14,8 +15,8 @@
 ### *Ability to look at Schedule
 
 ## Professor Features:
-### Ability to Create a Course
-### Ability to look at Teaching Schedule
+### *Ability to Create a Course
+### *Ability to look at Teaching Schedule
 
 ## Concept Photos:
 ### Home Page:
