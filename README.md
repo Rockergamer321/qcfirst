@@ -149,4 +149,4 @@ The User Settings page allows a user to access the information that the system c
 
 ### User Settings Mobile Design
 
-![User Settings Mobile visual design](https://github.com/Rockergamer321/qcfirst/blob/main/Visual%20Designs/User%20Settings%20-%20Tablet.png)
+![User Settings Mobile visual design](https://github.com/Rockergamer321/qcfirst/blob/main/Visual%20Designs/User%20Settings%20-%20Mobile.png)
