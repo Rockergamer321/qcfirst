@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset = utf-8 />
+        <title>Create A Class</title>
+        <link rel="stylesheet" href="styles.css">
+        <script src="script.js"></script>
+    </head>
+
+    <body>
+        <header>
+            <img src="images/qc_logo.jpg" alt="Queens College logo"> <!--QC Logo will appear on every webpage-->
+        </header>
+
+        <div class="createaclass">
+            <h2>Create A Class</h2>
+            <!-- Form -->
+            <form action="#" method="post">
+                <!--Dropdown menu to select a semester-->
+                <div class="dropdown">
+                    <label for="semester-dropdown">Semester</label>
+                    <select name ="semester" id="semester-dropdown">
+                      <option value="summer2021">Summer 2021</option>
+                      <option value="fall2021">Fall 2021</option>
+                      <option value="winter2022">Winter 2022</option>
+                      <option value="spring2022">Spring 2022</option>
+                    </select>
+                </div>
+                <!--form fields for instructor to fill out-->
+                <label for="course name">Course Name</label>
+                <input type='text' Name="Course Name" placeholder="Course Name" required="">
+
+                <label for="department">Department</label>
+                <input type='text' name="department" placeholder="Department" required="">
+                
+                <label for="Instructor">Instructor</label>
+                <input type='text' name="Instructor" placeholder="Instructor" required="">
+
+                <label for="Schedule">Schedule</label>
+                <input type='text' name="Schedule" placeholder="Schedule" required="">
+
+                <label for="Enrollment Deadline">Enrollment Deadline</label>
+                <input type='text' name="Enrollment Deadline" placeholder="Enrollment Deadline" required="">
+
+                <label for="Capacity">Capacity</label>
+                <input type='number' name="Capacity" placeholder="Capacity" required="">
+
+                <label for="Description">Description</label>
+                <input type='text' name="Description" placeholder="Description" required="">
+
+                <input type='submit' class="createaclassbtn" value="SUBMIT">
+            </form>
+            <!-- //Form -->
+        </div>
+    </body>
+</html>
+
+<!--https://learn.zybooks.com/zybook/CUNYCSCI355AbramovSpring2021/chapter/2/section/12?content_resource_id=45024666-->
