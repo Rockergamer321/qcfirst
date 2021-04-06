@@ -2,6 +2,7 @@
 	<head> 
 	    <meta charset = UTF-8 />
 		<title>Student Center</title>
+		<!--Centers Table Text-->
 		<style>
 			td, th{
 				text-align: center;
@@ -9,27 +10,36 @@
 		</style>
 	</head>
 	<body>
+		<!--Page Header-->
 		<div class="topnav">
+			<!--QC Logo-->
 			<a href="Student Center.html" class="logo"> 
-				<img src="images/Logo.png" width=50 alt="QC Logo"/> 
+				<img src="images/Logo.png" width=50 alt="QC Logo"/>
 			</a>
+			<!--Dropdown Navigation Menu Stored in User Icon-->
 			<nav role="navigation" class="nav-menu">
 				<div class="dropdown">
-					<div class="dropdown-toggle"> 
+					<div class="dropdown-toggle">
+						<!--User Photo: https://stock.adobe.com/290580606?tduid=971268d0957d9995b1e6a74288ca7071&as_channel=affiliate&as_campclass=redirect&as_source=arvato&asset_id=290580351-->
 						<img src="images/User.png" width=50 alt="Profile Photo" /> 
 					</div>
+					<!--Links That Direct to Home (Student Center), Settings, and Sign Out (Homepage)-->
 					<nav class="dropdown-list">
 						<a href="studentCenter.html" class="dropdown-link">Home</a>
 						<a href="settings.html" class="dropdown-link">Settings</a>
-						<a href="" class="dropdown-link">Sign Out</a>
+						<a href="index.html" class="dropdown-link">Sign Out</a>
 					</nav>
 				</div>
 			</nav>
 		</div>
-		<h1> Welcome to Student Center</h1>
+		<!--End of Page Header-->
+		<h1> Welcome to Student Center</h1> <!--Page Heading-->
+		<!--Section That Contains Link Options and Course Schedule (Depending on Selected Semester/Term)-->
 		<section class="main-section">
 			<div class="row">
+				<!--Left Column That Displays the Option Links-->
 				<div class="left-side">
+					<!--Links That direct to Course Search, Blackboard, and Degreeworks-->
 					<h2 class="options">Options</h2>
 					<article>
 						<a href="courseSearch.html" class="link"> Course Search <br/></a>
@@ -41,10 +51,12 @@
 						<a href="https://degreeworks.cuny.edu/" class="link"> Degreeworks <br/></a>
 					</article>
 				</div>
+				<!--Right Column That Displays the Course Schedule (Heading, Dropdown List, Table)-->
 				<div class="right-side">
+					<!--Row That Displays the Course Schedule Heading and Dropdown List That Includes Semester Options-->
 					<div class="row">
 						<div class="left-side"> 
-							<h2 class="heading">Courses</h2> 
+							<h2 class="heading">Course Schedule</h2> 
 						</div>
 						<div class="right-side">
 							<div class="select-form">
@@ -58,6 +70,7 @@
 							</div>
 						</div>
 					</div>
+					<!--This is the Schedule Shown on Mobile Devices-->
 					<table class="mobile-schedule" hidden>
 						<tr>
 							<th>Class Name</th>
@@ -85,6 +98,7 @@
 							<td>8:00 PM - 10:50 PM</td>
 						</tr>
 					</table>
+					<!--This is the Schedule That are Shown on Devices Other Than Mobile-->
 					<table class="schedule">
 						<tr>
 							<th>Course Name</th>
@@ -117,18 +131,19 @@
 							<td>8:00 PM - 10:50 PM</td>
 						</tr>
 					</table>
-				</div>
-			</div>
+				</div> <!--End of Right Column-->
+			</div> <!--End of Row-->
 		</section>
+		<!--Section That Displays Payments That are Due (Left Column) and Holds (Right Column)-->
 		<section class="payment-hold-section">
 			<div class="row">
-				
+				<!--Column That Displays Amount due on Payments-->
 				<div class="left-side">
 					<h2>Payment</h2>
 					<p>Amount Due: $3,765.21</p>
 					<a href="" class="button">Pay Now</a>
 				</div>
-				
+				<!--Column That Displays any Account Holds-->
 				<div class="right-side">
 					<h2>Holds</h2>
 					<p>You Currently Have No Holds</p>
