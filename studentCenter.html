@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+	<head> 
+	    <meta charset = UTF-8 />
+		<title>Student Center</title>
+		<style>
+			td, th{
+				text-align: center;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="topnav">
+			<a href="Student Center.html" class="logo"> 
+				<img src="./QCFirst/Logo.png" width=50 alt="QC Logo"/> 
+			</a>
+			<nav role="navigation" class="nav-menu">
+				<div class="dropdown">
+					<div class="dropdown-toggle"> 
+						<img src="./QCFirst/User.png" width=50 alt="Profile Photo" /> 
+					</div>
+					<nav class="dropdown-list">
+						<a href="Student Center.html" class="dropdown-link">Home</a>
+						<a href="Settings.html" class="dropdown-link">Settings</a>
+						<a href="" class="dropdown-link">Sign Out</a>
+					</nav>
+				</div>
+			</nav>
+		</div>
+		<h1> Welcome to Student Center</h1>
+		<section class="main-section">
+			<div class="row">
+				<div class="left-side">
+					<h2 class="options">Options</h2>
+					<article>
+						<a href="Course Search.html" class="link"> Course Search <br/></a>
+					</article>
+					<article>
+						<a href="https://bbhosted.cuny.edu/" class="link"> Blackboard <br/></a>
+					</article>
+					<article>
+						<a href="https://degreeworks.cuny.edu/" class="link"> Degreeworks <br/></a>
+					</article>
+				</div>
+				<div class="right-side">
+					<div class="row">
+						<div class="left-side"> 
+							<h2 class="heading">Courses</h2> 
+						</div>
+						<div class="right-side">
+							<div class="select-form">
+								<label for="select-semester">Select Semester</label>
+								<select id="select-semester" name="select-semester">
+									<option value="">Select one...</option>
+									<option value="spring2021">Spring 2021</option>
+									<option value="fall2020">Fall 2020</option>
+									<option value="spring2020">Spring 2020</option>
+								</select>
+							</div>
+						</div>
+					</div>
+					<table class="mobile-schedule" hidden>
+						<tr>
+							<th>Class Name</th>
+							<th>Class Days</th>
+							<th>Class Time</th>
+						</tr>
+						<tr>
+							<td>CSCI 316</td>
+							<td>Monday, Wednesday</td>
+							<td>1:40 PM - 2:55 PM</td>
+						</tr>
+						<tr>
+							<td>CSCI 331</td>
+							<td>Monday, Wednesday</td>
+							<td>8:00 PM - 9:15 PM</td>
+						</tr>
+						<tr>
+							<td>CSCI 323</td>
+							<td>Tuesday, Thursday</td>
+							<td>6:30 PM - 7:45 PM</td>
+						</tr>
+						<tr>
+							<td>CSCI 355</td>
+							<td>Tuesday</td>
+							<td>8:00 PM - 10:50 PM</td>
+						</tr>
+					</table>
+					<table class="schedule">
+						<tr>
+							<th>Course Name</th>
+							<th>Instructor</th>
+							<th>Course Days</th>
+							<th>Course Time</th>
+						</tr>
+						<tr>
+							<td>CSCI 316</td>
+							<td>Tat Yung Kong</td>
+							<td>Monday, Wednesday</td>
+							<td>1:40 PM - 2:55 PM</td>
+						</tr>
+						<tr>
+							<td>CSCI 331</td>
+							<td>Daniel Leavitt</td>
+							<td>Monday, Wednesday</td>
+							<td>8:00 PM - 9:15 PM</td>
+						</tr>
+						<tr>
+							<td>CSCI 323</td>
+							<td>Paul Cesaretti</td>
+							<td>Tuesday, Thursday</td>
+							<td>6:30 PM - 7:45 PM</td>
+						</tr>
+						<tr>
+							<td>CSCI 355</td>
+							<td>Mark Abramov</td>
+							<td>Tuesday</td>
+							<td>8:00 PM - 10:50 PM</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+		</section>
+		<section class="payment-hold-section">
+			<div class="row">
+				
+				<div class="left-side">
+					<h2>Payment</h2>
+					<p>Amount Due: $3,765.21</p>
+					<a href="" class="button">Pay Now</a>
+				</div>
+				
+				<div class="right-side">
+					<h2>Holds</h2>
+					<p>You Currently Have No Holds</p>
+				</div>
+			</div>
+		</section>
+	</body>
+</html>

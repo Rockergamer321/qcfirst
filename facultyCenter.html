@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+	<head> 
+	    <meta charset = UTF-8 />
+		<title>Faculty Center</title>
+		<style> 
+			td, th{
+				text-align: center;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="topnav">
+			<a href="Faculty Center.html" class="logo">
+				<img src="./QCFirst/Logo.png" width=50 alt="QC Logo"/>
+			</a>
+			<nav role="navigation" class="nav-menu">
+				<div class="dropdown">
+					<div class="dropdown-toggle"> 
+						<img src="./QCFirst/User.png" width=50 alt="Profile Photo" /> 
+					</div>
+					<nav class="dropdown-list">
+						<a href="Faculty Center.html" class="dropdown-link">Home</a>
+						<a href="Settings.html" class="dropdown-link">Settings</a>
+						<a href="" class="dropdown-link">Sign Out</a>
+					</nav>
+				</div>
+			</nav>
+		</div>
+		<h1>Welcome to Faculty Center</h1>
+		<div class="main-section">
+			<div class="row">
+				<div class="left-side">
+					<h2 class="options">Options</h2>
+					<article>
+						<a href="createaclass.html" class="link"> Create a Class <br/></a>
+					</article>
+					<article>
+						<a href="https://bbhosted.cuny.edu/" class="link">Blackboard <br/></a>
+					</article>
+				</div>
+				<div class="right-side">
+					<div class="row">
+						<div class="left-side">
+							<h2 class="heading">Courses</h2>
+						</div>
+						<div class="right-side">
+							<div class="select-form">
+								<label for="select-semester">Select Semester</label>
+								<select id="select-semester" name="select-semester">
+									<option value="">Select one...</option>
+									<option value="spring2021">Spring 2021</option>
+									<option value="fall2020">Fall 2020</option>
+									<option value="spring2020">Spring 2020</option>
+								</select>
+							</div>
+						</div>
+					</div>
+					<table class="schedule">
+						<tr>
+							<th>Class Name</th>
+							<th>Class Days</th>
+							<th>Class Time</th>
+						</tr>
+						<tr>
+							<td>CSCI 331</td>
+							<td>Tuesday, Thursday</td>
+							<td>1:40 PM - 2:55 PM</td>
+						</tr>
+						<tr>
+							<td>CSCI 313</td>
+							<td>Monday, Wednesday</td>
+							<td>1:40 PM - 2:55 PM</td>
+						</tr>
+						<tr>
+							<td>CSCI 313</td>
+							<td>Friday</td>
+							<td>6:30 PM - 9:30 PM</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
