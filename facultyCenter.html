@@ -2,6 +2,7 @@
 	<head> 
 	    <meta charset = UTF-8 />
 		<title>Faculty Center</title>
+		<!--Centers Table Text-->
 		<style> 
 			td, th{
 				text-align: center;
@@ -9,27 +10,36 @@
 		</style>
 	</head>
 	<body>
+		<!--Page Header-->
 		<div class="topnav">
-			<a href="facultyCenter.html" class="logo">
+			<!--QC Logo-->
+			<a href="Student Center.html" class="logo"> 
 				<img src="images/Logo.png" width=50 alt="QC Logo"/>
 			</a>
+			<!--Dropdown Navigation Menu Stored in User Icon-->
 			<nav role="navigation" class="nav-menu">
 				<div class="dropdown">
-					<div class="dropdown-toggle"> 
+					<div class="dropdown-toggle">
+						<!--User Photo: https://stock.adobe.com/290580606?tduid=971268d0957d9995b1e6a74288ca7071&as_channel=affiliate&as_campclass=redirect&as_source=arvato&asset_id=290580351-->
 						<img src="images/User.png" width=50 alt="Profile Photo" /> 
 					</div>
+					<!--Links That Direct to Home (Student Center), Settings, and Sign Out (Homepage)-->
 					<nav class="dropdown-list">
-						<a href="facultyCenter.html" class="dropdown-link">Home</a>
+						<a href="studentCenter.html" class="dropdown-link">Home</a>
 						<a href="settings.html" class="dropdown-link">Settings</a>
-						<a href="" class="dropdown-link">Sign Out</a>
+						<a href="index.html" class="dropdown-link">Sign Out</a>
 					</nav>
 				</div>
 			</nav>
 		</div>
-		<h1>Welcome to Faculty Center</h1>
+		<!--End of Page Header-->
+		<h1>Welcome to Faculty Center</h1> <!--Page Heading-->
+		<!--Section That Contains Link Options and Course Schedule (Depending on Selected Semester/Term)-->
 		<div class="main-section">
 			<div class="row">
+				<!--Left Column That Displays the Option Links-->
 				<div class="left-side">
+					<!--Links That Direct to Create a Class and Blackboard, and Degreeworks-->
 					<h2 class="options">Options</h2>
 					<article>
 						<a href="createaclass.html" class="link"> Create a Class <br/></a>
@@ -38,10 +48,12 @@
 						<a href="https://bbhosted.cuny.edu/" class="link">Blackboard <br/></a>
 					</article>
 				</div>
+				<!--Right Column That Displays the Course Schedule (Heading, Dropdown List, Table)-->
 				<div class="right-side">
+					<!--Row That Displays the Course Schedule Heading and Dropdown List That Includes Semester Options-->
 					<div class="row">
 						<div class="left-side">
-							<h2 class="heading">Courses</h2>
+							<h2 class="heading">Course Schedule</h2>
 						</div>
 						<div class="right-side">
 							<div class="select-form">
@@ -54,7 +66,8 @@
 								</select>
 							</div>
 						</div>
-					</div>
+					</div> <!--End of Row-->
+					<!--Since This Table has Three Columns, This Schedule Will be Shown on all Devices-->
 					<table class="schedule">
 						<tr>
 							<th>Class Name</th>
@@ -77,8 +90,8 @@
 							<td>6:30 PM - 9:30 PM</td>
 						</tr>
 					</table>
-				</div>
-			</div>
-		</div>
+				</div> <!--End of Right Column-->
+			</div> <!--End of Row-->
+		</div> <!--End of Main Section-->
 	</body>
 </html>
