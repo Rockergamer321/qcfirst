@@ -2,6 +2,7 @@
 	<head> 
 		<meta charset = UTF-8 />
 		<title>Course Search</title>
+		<!--Centers Table Text-->
 		<style>
 			td, th{
 				text-align: center; 
@@ -9,24 +10,31 @@
 		</style>
 	</head>
 	<body>
+		<!--Page Header-->
 		<div class="topnav">
+			<!--QC Logo-->
 			<a href="Student Center.html" class="logo"> 
 				<img src="images/Logo.png" width=50 alt="QC Logo"/>
 			</a>
+			<!--Navigation Menu Stored in User Icon-->
 			<nav role="navigation" class="nav-menu">
 				<div class="dropdown">
-					<div class="dropdown-toggle"> 
+					<div class="dropdown-toggle">
+						<!--User Photo: https://stock.adobe.com/290580606?tduid=971268d0957d9995b1e6a74288ca7071&as_channel=affiliate&as_campclass=redirect&as_source=arvato&asset_id=290580351-->
 						<img src="images/User.png" width=50 alt="Profile Photo" /> 
 					</div>
+					<!--Links that direct to Home (Student Center), Settings, and Sign Out (Homepage)-->
 					<nav class="dropdown-list">
-							<a href="studentCenter.html" class="dropdown-link">Home</a>
-							<a href="settings.html" class="dropdown-link">Settings</a>
-						<a href="" class="dropdown-link">Sign Out</a>
+						<a href="studentCenter.html" class="dropdown-link">Home</a>
+						<a href="settings.html" class="dropdown-link">Settings</a>
+						<a href="index.html" class="dropdown-link">Sign Out</a>
 					</nav>
 				</div>
 			</nav>
 		</div>
-		<h1>Course Search</h1>
+		<!--End of Page Header-->
+		<h1>Course Search</h1> <!--Page Heading-->
+		<!--Area Where User Enters and Submits Search Information (Subject/Course & Term/Semester)-->
 		<section class = "Search-Section"> 
 			<div class="form">
 				<form id="subject-form" name="subject-form">
@@ -38,12 +46,14 @@
 				</form>
 			</div>
 		</section>
+		<!--Section where Number of Matching Results are Shown-->
 		<section class="Result-Section">
 			<div class="search-output">
 				<h1>Search Results:</h1>
 				<h2>7 Course(s) Found</h2>
 			</div>
 		</section>
+		<!--Table that Displays Each Matching Course Result (Available and Not Available)-->
 		<table class="Class-Selection">
 			<tr>
 				<th>Course Name</th>
@@ -51,7 +61,7 @@
 				<th>Course Days</th>
 				<th>Course Time</th>
 				<th>Availability</th>
-				<th></th>
+				<th></th> <!--This is for the Enroll Button-->
 			</tr>
 			<tr>
 				<td>CSCI 370: Software Engineering</td>
@@ -110,6 +120,6 @@
 				<td> <a href="" class="enroll-button">Enroll</a> </td>
 			</tr>
 		</table>
-		<button type="button">Next</button>
+		<button type="button">Next</button> <!--Button to Display Next Table of Results-->
 	</body>
 </html>
