@@ -1,31 +1,39 @@
 <!DOCTYPE html>
+<html>
 	<head> 
 		<meta charset = UTF-8 />
 		<title>Settings</title> 
 	</head>
 	<body>
+		<!--Page Header-->
 		<div class="topnav">
-				<a href="Student Center.html" class="logo">
-					<img src="images/Logo.png" width="50" height="50" alt="QC Logo" class="image" />
-				</a>
-				<nav role="navigation" class="nav-menu">
-					<div class="dropdown">
-						<div class="dropdown-toggle"> 
-							<img src="images/User.png" width="50" height="50" alt="User Photo" />
-						</div>
-						<nav class="dropdown-list">
-							<a href="studentCenter.html" class="dropdown-link">Home</a>
-							<a href="settings.html" class="dropdown-link">Settings</a>
-							<a href="" class="dropdown-link">Sign Out</a>
-						</nav>
+			<!--QC Logo-->
+			<a href="Student Center.html" class="logo"> 
+				<img src="images/Logo.png" width=50 alt="QC Logo"/>
+			</a>
+			<!--Dropdown Navigation Menu Stored in User Icon-->
+			<nav role="navigation" class="nav-menu">
+				<div class="dropdown">
+					<div class="dropdown-toggle">
+						<!--User Photo: https://stock.adobe.com/290580606?tduid=971268d0957d9995b1e6a74288ca7071&as_channel=affiliate&as_campclass=redirect&as_source=arvato&asset_id=290580351-->
+						<img src="images/User.png" width=50 alt="Profile Photo" /> 
 					</div>
-				</nav>
-			</div>
+					<!--Links That Direct to Home (Student Center), Settings, and Sign Out (Homepage)-->
+					<nav class="dropdown-list">
+						<a href="studentCenter.html" class="dropdown-link">Home</a>
+						<a href="settings.html" class="dropdown-link">Settings</a>
+						<a href="index.html" class="dropdown-link">Sign Out</a>
+					</nav>
+				</div>
+			</nav>
+		</div> <!--End of Page Header-->
+		<!--Page Heading Containing User Image and "User Settings" Heading-->
 		<div class="heading">
-			<img src="images/User.png" alt="User Photo" class="user-image"/>
+			<img src="images/User.png" alt="User Image" class="user-image"/>
 			<h1>User Settings</h1>
 		</div>
-	   <section class="name-id-section">
+		<!--Section Containing Name (Left Column) and ID of User (Right Column)-->
+		<section class="name-id-section">
 			<div class="row">
 				<div class="left-side">
 					<h2 class="user-info">Name:</h2>
@@ -37,6 +45,7 @@
 				</div>
 			</div>
 		</section>
+		<!--Section Containing Email of User (Left Column) and Button to Change Email of User (Right Column)-->
 		<section class="email-section">
 			<div class="row">
 				<div class="left-side">
@@ -48,6 +57,7 @@
 				</div>
 			</div>
 		</section>
+		<!--Section Containing Phone of User (Left Column) and Button to Change Phone of User (Right Column)-->
 		<section class="phone-section">
 			<div class="row">
 				<div class="left-side">
@@ -59,13 +69,17 @@
 				</div>
 			</div>
 		</section>
+		<!--Section Where User Selects How They Receive Notifications-->
 		<section class="notifications-section">
 			<h1 class="user-info">Notifications</h1>
+			<!--Div That Holds Both Notification Checkboxes-->
 			<div class="check">
+				<!--Checkbox for Email Notifications-->
 				<div class="checkbox-field">
 					<input type="checkbox" id="email-checkbox" name="email-checkbox"/>
 					<label for="email-checkbox">Send Notifications through Email</label>
 				</div>
+				<!--Checkbox for Text Message (SMS) Notifications-->
 				<div class="checkbox-field">
 					<input type="checkbox" id="sms-checkbox" name="sms-checkbox"/>
 					<label for="sms-checkbox">Send Notifications through SMS</label>
