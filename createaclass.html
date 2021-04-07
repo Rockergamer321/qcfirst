@@ -1,15 +1,16 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
         <meta charset = utf-8 />
         <title>Create A Class</title>
-        <link rel="stylesheet" href="styles.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="css/styles.css">
         <script src="script.js"></script>
     </head>
 
     <body>
         <header>
-            <img src="images/qc_logo.jpg" alt="Queens College logo"> <!--QC Logo will appear on every webpage-->
+            <img src="img/qc_logo.jpg" alt="Queens College logo"> <!--QC Logo will appear on every webpage-->
         </header>
 
         <div class="createaclass">
@@ -27,26 +28,26 @@
                     </select>
                 </div>
                 <!--form fields for instructor to fill out-->
-                <label for="course name">Course Name</label>
-                <input type='text' Name="Course Name" placeholder="Course Name" required="">
+                <label for="coursename">Course Name</label>
+                <input type='text' id="coursename" Name="course-name" placeholder="Course Name" required="">
 
                 <label for="department">Department</label>
-                <input type='text' name="department" placeholder="Department" required="">
+                <input type='text' id="department" name="department" placeholder="Department" required="">
                 
-                <label for="Instructor">Instructor</label>
-                <input type='text' name="Instructor" placeholder="Instructor" required="">
+                <label for="instructor">Instructor</label>
+                <input type='text' id="instructor" name="instructor" placeholder="Instructor" required="">
 
-                <label for="Schedule">Schedule</label>
-                <input type='text' name="Schedule" placeholder="Schedule" required="">
+                <label for="schedule">Schedule</label>
+                <input type='text' id="schedule" name="schedule" placeholder="Schedule" required="">
 
-                <label for="Enrollment Deadline">Enrollment Deadline</label>
-                <input type='text' name="Enrollment Deadline" placeholder="Enrollment Deadline" required="">
+                <label for="enrollment-deadline">Enrollment Deadline</label>
+                <input type='text' id="enrollment-deadline" name="enrollment-deadline" placeholder="Enrollment Deadline" required="">
 
-                <label for="Capacity">Capacity</label>
-                <input type='number' name="Capacity" placeholder="Capacity" required="">
+                <label for="capacity">Capacity</label>
+                <input type='number' id="capacity" name="capacity" placeholder="Capacity" required="">
 
-                <label for="Description">Description</label>
-                <input type='text' name="Description" placeholder="Description" required="">
+                <label for="description">Description</label>
+                <textarea id="description" name="Description" placeholder="Description" required="" rows="4" cols="50"></textarea>
 
                 <input type='submit' class="createaclassbtn" value="SUBMIT">
             </form>
@@ -55,4 +56,7 @@
     </body>
 </html>
 
+<!--Sources-->
 <!--https://learn.zybooks.com/zybook/CUNYCSCI355AbramovSpring2021/chapter/2/section/12?content_resource_id=45024666-->
+<!--https://learn.zybooks.com/zybook/CUNYCSCI355AbramovSpring2021/chapter/2/section/11-->
+<!--https://www.w3schools.com/tags/tag_textarea.asp-->
