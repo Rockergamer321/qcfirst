@@ -14,21 +14,18 @@ body {
 /*positions logo to left side*/
 .header-left img {
     float: left;
-    width: 25%
+    width: 25%;
 }
 
 /*Styles the Login / Sign Up links*/
 .header-right a {
     position: relative;
     float: right;
-    top: 50px;
     padding: 20px 50px;
-    border: 1px solid #ccc;
     text-decoration: none;
     color: black;
     text-align: center;
     background-color: #ccc;
-    
 }
 
 /*Styles Login / Sign Up buttons on hover*/
@@ -57,7 +54,7 @@ body {
 /*Styles navigation bar links*/
 .topnav a {
     display: inline-block;
-    padding: 20px 140px;
+    padding: 20px 7%;
     text-decoration: none;
     font-size:1.2em;
     color: black;
@@ -125,29 +122,23 @@ body {
 }
 
 .homepage-details {
-    height: 300px;
+    height: 500px;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: 100px;
-    padding: 30px;
+    grid-template-rows: 300px;
+    padding: 5px;
 }
 
 .homepage-details a {
     float: right;
-    top: 50px;
     padding: 20px 30px;
-    border: 1px solid #ccc;
     text-decoration: none;
-    color: black;
-    text-align: center;
     background-color: rgb(54, 162, 230);
     font-weight: bold;
     font-size: 26px;
     color: white;
-
-    
-
 }
+
 .enroll-info h1,.advisement-info h1 {
     font-size: 38px;
     font-weight: 600;
@@ -156,4 +147,3 @@ body {
 .enroll-info p, .advisement-info p {
     font-size: 28px;
 }
-
