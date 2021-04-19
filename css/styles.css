@@ -14,6 +14,7 @@ body {
 /*positions logo to left side*/
 .header-left img {
     float: left;
+    width: 25%
 }
 
 /*Styles the Login / Sign Up links*/
@@ -56,7 +57,7 @@ body {
 /*Styles navigation bar links*/
 .topnav a {
     display: inline-block;
-    padding: 20px 65px;
+    padding: 20px 140px;
     text-decoration: none;
     font-size:1.2em;
     color: black;
@@ -72,11 +73,87 @@ body {
     display: hidden;
 }
 
-.homepage-details{
-    
+/* Styles slider image*/
+.slide-container {
+    position: relative;
+    width: 100%;
 }
 
-.enroll-info h1 {
-    font-size: 48px;
+.image-container {
+    height: 655px;
+    display: none;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.prev, .next{
+	position: absolute;
+	top: 50%;
+	transform: translate(0, -50%);
+	font-size: 50px;
+	padding: 15px;
+	cursor: pointer;
+	color: #fff;
+	transition: 0.1s;
+	user-select: none;
+}
+
+.prev:hover, .next:hover{
+	color: #00a7ff; /* blue */
+}
+
+.next {
+    right: 0;
+} 
+
+.dotsbox {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+    bottom: 40px;
+    cursor: pointer;
+}
+
+.dot {
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    border: 3px solid #ffff;
+    border-radius: 50%;
+    margin: 0 10px;
+    cursor: pointer;
+}
+
+.homepage-details {
+    height: 300px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 100px;
+    padding: 30px;
+}
+
+.homepage-details a {
+    float: right;
+    top: 50px;
+    padding: 20px 30px;
+    border: 1px solid #ccc;
+    text-decoration: none;
+    color: black;
+    text-align: center;
+    background-color: rgb(54, 162, 230);
+    font-weight: bold;
+    font-size: 26px;
+    color: white;
+
+    
+
+}
+.enroll-info h1,.advisement-info h1 {
+    font-size: 38px;
+    font-weight: 600;
+}
+
+.enroll-info p, .advisement-info p {
+    font-size: 28px;
 }
 
