@@ -58,6 +58,13 @@ header img {
     background-color: lightgrey;
 }
 
+.topnav ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    overflow: hidden;
+}
+
 .topnav li {
     display: inline;
     color: black;
@@ -70,16 +77,14 @@ header img {
     text-decoration: none;
     font-size:1.2em;
     color: black;
-    
 }
 
 .topnav a:hover {
     background-color: rgb(223, 221, 221);
-    color: black;
 }
 
-.fa-fa-bars { /*TODO change to show hamburger menu when screen size < ? */
-    display: hidden;
+.dropdownnav {
+    display: none;
 }
 
 /* Styles slider image*/
@@ -204,3 +209,28 @@ input:focus {
     border: none;
     border: 3px solid rgb(54, 162, 230);
 }
+
+@media screen and (max-width: 818px) {
+    .dropdownnav{
+        display: block;
+    }
+    .menu {
+        display: none;
+    }
+}
+
+/* The "responsive" class is added to the topnav with JavaScript when the user clicks on the icon. 
+This class makes the topnav look good on small screens (display the links vertically instead of horizontally) */
+@media screen and (max-width: 818px) {
+    .topnav.responsive {position: relative;}
+    .topnav.responsive a.hamburger {
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
+    .topnav.responsive a {
+      float: none;
+      display: block;
+      text-align: left;
+    }
+  }
