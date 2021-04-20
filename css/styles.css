@@ -1,6 +1,9 @@
-html {
-    box-sizing: border-box;
-    width: 100%;
+*,
+*:after,
+*:before {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
 }
 
 body {
@@ -10,29 +13,36 @@ body {
     font-family: 'Shippori Mincho', serif;
     font-size: 20px;
     line-height: 1.5;
-    width: 100%;
+    background: #fff;
 }
 
-header {
-    position: relative;;
-    top: 0;
-    width: 100%;
-    margin: 0;
-    height: 200px;
-    left: 0px;
-    margin-left: 0px;
+.header {
+    display: flex;
+    flex-flow: row nowrap;
+    /* padding: 100px 0; */
+    align-items: center;
+}
+
+.header-left {
+    flex: 1 1;
 }
 
 /*positions logo to left side*/
-header img {
-    float: left;
-    width: 25%;
+.header-left img {
+    width: 100%;
+    max-width: 500px;
+}
+
+.header-right {
+    display: flex;
+    width: 100%;
+    justify-content: flex-end;
+    flex: 0 0 100px;
 }
 
 /*Styles the Login / Sign Up links*/
 .header-right a {
     position: relative;
-    float: right;
     padding: 20px 50px;
     text-decoration: none;
     color: black;
@@ -48,9 +58,6 @@ header img {
 
 /*Styles nagivation bar*/
 .topnav {
-    clear: both;
-    border: 1px solid #ccc;
-    border-width: 0 0;
     list-style: none;
     margin: 0;
     padding: 0;
@@ -58,32 +65,46 @@ header img {
     background-color: lightgrey;
 }
 
-.topnav ul {
+.topnav_list {
+    display: flex;
+    flex-flow: row nowrap;
     margin: 0;
     padding: 0;
-    list-style: none;
-    overflow: hidden;
+    flex: 0 0 350px;
 }
 
 .topnav li {
-    display: inline;
+    display: inline-block;
     color: black;
+    flex: 1 1 auto;
+}
+
+.topnav li:not(:last-of-type) { /*not the hamburger menu*/
+    display: none;
 }
 
 /*Styles navigation bar links*/
 .topnav a {
-    display: inline-block;
-    padding: 20px 7%;
+    display: block;
+    padding: 20px 0;
     text-decoration: none;
     font-size:1.2em;
     color: black;
+    
 }
 
 .topnav a:hover {
     background-color: rgb(223, 221, 221);
+    color: black;
 }
 
-.dropdownnav {
+.slider-image {
+    width: 100%;
+    height: auto;
+}
+ /*removes login / sign up buttons */
+.menu-sign-up,
+.menu-login {
     display: none;
 }
 
@@ -94,10 +115,13 @@ header img {
 }
 
 .image-container {
-    height: 655px;
     display: none;
     overflow: hidden;
     flex-shrink: 0;
+}
+
+.slider-image:not(:first-of-type) {
+    display: none;
 }
 
 .prev, .next{
@@ -139,15 +163,22 @@ header img {
 }
 
 .homepage-details {
-    height: 500px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 300px;
-    padding: 5px;
+    display: flex;
+    flex-flow: column wrap;
+}
+
+.enroll-info,
+.advisement-info {
+    flex: 1 1 100%;
+}
+
+.enroll-info-wrap,
+.advisement-info-wrap {
+    padding: 25px 10px
 }
 
 .homepage-details a {
-    float: right;
+    display: inline-block;
     padding: 20px 30px;
     text-decoration: none;
     background-color: rgb(54, 162, 230);
@@ -165,88 +196,44 @@ header img {
     font-size: 28px;
 }
 
-
-/* Login / Sign Up Container / Create a Class*/
-.login-container, .signup-container, .createaclass{
-    border: solid;
-    padding: 50px;
-    margin: 20px;
-}
-
-.login-container h1, .signup-container h1, .createaclass h1 {
-    font-size: 38px;
-    margin: 0;
-}
-
-.login-container input, .signup-container input, .createaclass input {
-    width: 100%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    box-sizing: border-box;
-}
-
-.createaclass textarea {
-    width: 100%;
-
-}
-
-.submitbtn {
-    display: block;
+.align-right {
     text-align: right;
 }
 
-input[type=submit] {
-    display: inline-block;
-    width: 150px;
-    text-decoration: none;
-    background-color: rgb(54, 162, 230);
-    font-weight: bold;
-    font-size: 26px;
-    color: white;
-}
-
-input:focus {
-    border: none;
-    border: 3px solid rgb(54, 162, 230);
-}
-
-@media screen and (max-width: 818px) {
-    .dropdownnav{
+@media all and (min-width: 786px) {
+    .header {
+        padding: 100px 0;
+    }
+    .topnav li:last-of-type {
+        display: none;
+    }
+    .menu-sign-up,
+    .menu-login {
         display: block;
     }
-    .menu {
-        display: none;
-    }
-}
-
-/* The "responsive" class is added to the topnav with JavaScript when the user clicks on the icon. 
-This class makes the topnav look good on small screens (display the links vertically instead of horizontally) */
-@media screen and (max-width: 818px) {
-    .topnav.responsive {position: relative;}
-    .topnav.responsive a.hamburger {
-      position: absolute;
-      right: 0;
-      top: 0;
-    }
-    .topnav.responsive a {
-      float: none;
-      display: block;
-      text-align: left;
-    }
-}
-
-@media screen and (max-width: 500px) {
-    .slide-container {
-        display: none;
-    }
-
     .homepage-details {
-        display: block;
-        float: left;
+        flex-flow: row wrap;
     }
 
-    .homepage-details a {
-        width: 100%;
-        float: left;
+    .enroll-info,
+    .advisement-info {
+        flex: 1 1 50%;
+    }
+    .mobile-menu-button {
+        display: none;
+    }
+    .header-right {
+        flex: 0 0 350px;
+    }
+    .enroll-info-wrap,
+    .advisement-info-wrap {
+        padding: 10px
+    }
+    .topnav li:not(:last-of-type) {
+        display: inline-block;
+    }
+
+    .topnav li:last-of-type {
+        display: none;
     }
 }
