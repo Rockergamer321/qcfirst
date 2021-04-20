@@ -1,5 +1,6 @@
 html {
     box-sizing: border-box;
+    width: 100%;
 }
 
 body {
@@ -9,10 +10,21 @@ body {
     font-family: 'Shippori Mincho', serif;
     font-size: 20px;
     line-height: 1.5;
+    width: 100%;
+}
+
+header {
+    position: relative;;
+    top: 0;
+    width: 100%;
+    margin: 0;
+    height: 200px;
+    left: 0px;
+    margin-left: 0px;
 }
 
 /*positions logo to left side*/
-.header-left img {
+header img {
     float: left;
     width: 25%;
 }
@@ -146,4 +158,45 @@ body {
 
 .enroll-info p, .advisement-info p {
     font-size: 28px;
+}
+
+
+/* Login / Sign Up Container / Create a Class*/
+.login-container, .signup-container, .createaclass{
+    border: solid;
+    padding: 50px;
+    margin: 20px;
+}
+
+.login-container h1, .signup-container h1, .createaclass h1 {
+    font-size: 38px;
+    margin: 0;
+}
+
+.login-container input, .signup-container input, .createaclass input {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+}
+
+.createaclass textarea {
+    width: 100%;
+
+}
+
+input[type=submit] {
+    
+    float: right;
+    width: 150px;
+    text-decoration: none;
+    background-color: rgb(54, 162, 230);
+    font-weight: bold;
+    font-size: 26px;
+    color: white;
+}
+
+input:focus {
+    border: none;
+    border: 3px solid rgb(54, 162, 230);
 }
