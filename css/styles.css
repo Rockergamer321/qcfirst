@@ -185,9 +185,13 @@ header img {
 
 }
 
+.submitbtn {
+    display: block;
+    text-align: right;
+}
+
 input[type=submit] {
-    
-    float: right;
+    display: inline-block;
     width: 150px;
     text-decoration: none;
     background-color: rgb(54, 162, 230);
