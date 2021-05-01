@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser')
 const MongoClient = require('mongodb').MongoClient;
+var path = require('path');
 const app = express();
 
 const connectionString = 'process.env.mongodb+srv://qcfirst:qcfirst@qcfirst.psuax.mongodb.net/qcFirst?retryWrites=true&w=majority'
@@ -25,11 +26,23 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true })
         app.use(bodyParser.urlencoded({ extended: true }))
 
         app.get('/', (req, res) => {
-            res.sendFile(__dirname + '/sign-up.html')
+            res.sendFile(path.join(__dirname, '..', 'student-signup.html'))
         })
 
-        app.post('/users', (req, res) => {
+        app.get('/', (req, res) => {
+          res.sendFile(path.join(__dirname, '..', 'teacher-signup.html'))
+        })
+        
+        app.post('/studentsignup', (req, res) => {
             students.insertOne(req.body)
+              .then(result => {
+                res.redirect('/')
+              })
+              .catch(error => console.error(error))
+        })
+
+        app.post('/teachersignup', (req, res) => {
+            teachers.insertOne(req.body)
               .then(result => {
                 res.redirect('/')
               })

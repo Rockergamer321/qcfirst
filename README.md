@@ -63,11 +63,12 @@ The login page allows users to access a form that logs them into to their accoun
 
 The sign up page allows users to access a form that creates a new account. The login page can also be accessed from this page by clicked "login" at the top-left of the page.
 
-### Sign Up Desktop Design
+### Sign Up Desktop Design (Renamed to Student-signup)
 
 ![Sign Up Desktop visual design](https://github.com/Rockergamer321/qcfirst/blob/main/Visual%20Designs/Sign%20Up%20Desktop.png)
 
 - The login and sign up buttons remained in the same place as the homepage, rather than on top of the border of the form container. This decision was made to keep the positioning of the buttons throughout the pages consistent, rather than have them change from one page to the next.
+- A link to a new html file, teacher-signup was created to help with managing the database tables.
 
 ### Sign Up Tablet Design
 
