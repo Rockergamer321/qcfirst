@@ -7,10 +7,6 @@ const app = express();
 const connectionString = 'process.env.mongodb+srv://qcfirst:qcfirst@qcfirst.psuax.mongodb.net/qcFirst?retryWrites=true&w=majority'
 console.log("Server Running");
 
-app.listen(3000, () => {
-	console.log('App listening on port 3000');
-});
-
 MongoClient.connect(connectionString, { useUnifiedTopology: true })
 
 .then(client => {
@@ -44,6 +40,10 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true })
     })
     .catch(error => console.error(error))
   })
+
+  app.listen(3000, () => {
+    console.log('App listening on port 3000');
+  });
   
 })
 
