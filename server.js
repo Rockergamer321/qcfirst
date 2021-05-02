@@ -9,8 +9,8 @@ console.log("Server Running");
 var port = process.env.PORT || 8080;
 MongoClient.connect(connectionString, { useUnifiedTopology: true })
 
-/*.then(client => {
-  console.log('Connected to Database')
+.then(client => {
+ /* console.log('Connected to Database')
   const db = client.db('qcFirst')
   const students = db.collection('students')
   const teachers = db.collection('teachers')
@@ -20,11 +20,7 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true })
   // Middlewares
   // ======================
   app.use(bodyParser.urlencoded({ extended: true }))
-
-  app.get('/', (req, res) => {
-    res.sendFile(__dirname + "/index.html")
-  })
-
+  
   app.post('/studentsignup', (req, res) => {
     students.insertOne(req.body)
     .then(result => {
@@ -40,11 +36,15 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true })
     })
     .catch(error => console.error(error))
   }) */
+  app.get('/', (req, res) => {
+    res.sendFile(__dirname + "/index.html")
+  })
 
   app.listen(port, function() {
     console.log('Our app is running on http://localhost:' + port);
-});
+  });
 
+})
 
 /* Sources
 https://zellwk.com/blog/crud-express-mongodb/
