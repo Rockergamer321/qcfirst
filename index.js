@@ -5,11 +5,10 @@ var path = require('path');
 const app = express();
 
 const connectionString = 'process.env.mongodb+srv://qcfirst:qcfirst@qcfirst.psuax.mongodb.net/qcFirst?retryWrites=true&w=majority'
-
 console.log("Server Running");
 
-app.listen(process.env.PORT || 3000, function(){
-  console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
+app.listen(3000, () => {
+	console.log('App listening on port 3000');
 });
 
 MongoClient.connect(connectionString, { useUnifiedTopology: true })
