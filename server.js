@@ -9,7 +9,7 @@ console.log("Server Running");
 var port = process.env.PORT || 8080;
 MongoClient.connect(connectionString, { useUnifiedTopology: true })
 
-.then(client => {
+/*.then(client => {
   console.log('Connected to Database')
   const db = client.db('qcFirst')
   const students = db.collection('students')
@@ -39,13 +39,11 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true })
        res.redirect('/')
     })
     .catch(error => console.error(error))
-  })
+  }) */
 
   app.listen(port, function() {
     console.log('Our app is running on http://localhost:' + port);
 });
-  
-})
 
 
 /* Sources
