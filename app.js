@@ -29,11 +29,7 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true })
   app.use(bodyParser.urlencoded({ extended: true }))
 
   app.get('/', (req, res) => {
-    res.sendFile(__dirname + "/student-signup")
-  })
-
-  app.get('/', (req, res) => {
-    res.sendFile(__dirname + "/teacher-signup")
+    res.sendFile(__dirname + "/index.html")
   })
 
   app.post('/studentsignup', (req, res) => {
