@@ -1,7 +1,5 @@
 const express = require('express');
-const bodyParser = require('body-parser')
 const MongoClient = require('mongodb').MongoClient;
-var path = require('path');
 const app = express();
 
 const connectionString = 'process.env.mongodb+srv://qcfirst:qcfirst@qcfirst.psuax.mongodb.net/qcFirst?retryWrites=true&w=majority'
@@ -10,7 +8,7 @@ var port = process.env.PORT || 8080;
 MongoClient.connect(connectionString, { useUnifiedTopology: true })
 
 .then(client => {
- /* console.log('Connected to Database')
+  console.log('Connected to Database')
   const db = client.db('qcFirst')
   const students = db.collection('students')
   const teachers = db.collection('teachers')
@@ -19,8 +17,13 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true })
   // ======================
   // Middlewares
   // ======================
-  app.use(bodyParser.urlencoded({ extended: true }))
-  
+
+  app.use(express.urlencoded({ extended: true }))
+ 
+  // ======================
+  // Routes
+  // ======================
+
   app.post('/studentsignup', (req, res) => {
     students.insertOne(req.body)
     .then(result => {
@@ -35,7 +38,8 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true })
        res.redirect('/')
     })
     .catch(error => console.error(error))
-  }) */
+  }) 
+
   app.get('/', (req, res) => {
     res.sendFile(__dirname + "/index.html")
   })
@@ -43,8 +47,8 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true })
   app.listen(port, function() {
     console.log('Our app is running on http://localhost:' + port);
   });
-
 })
+.catch(console.error)
 
 /* Sources
 https://zellwk.com/blog/crud-express-mongodb/
