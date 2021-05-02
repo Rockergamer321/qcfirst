@@ -8,11 +8,9 @@ const connectionString = 'process.env.mongodb+srv://qcfirst:qcfirst@qcfirst.psua
 
 console.log("Server Running");
 
-let port = process.env.PORT;
-if (port == null || port == "") {
-  port = 3000;
-}
-app.listen(port);
+app.listen(process.env.PORT || 3000, function(){
+  console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
+});
 
 MongoClient.connect(connectionString, { useUnifiedTopology: true })
 
