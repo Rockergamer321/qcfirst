@@ -19,6 +19,8 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true })
   // ======================
 
   app.use(express.urlencoded({ extended: true }))
+  app.use(express.static(__dirname + '/public'))
+  server.use(express.static('./'));
  
   // ======================
   // Routes
