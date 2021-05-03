@@ -1,5 +1,6 @@
 const express = require('express');
 const MongoClient = require('mongodb').MongoClient;
+const {check} = require('express-validator')
 const app = express();
 
 const connectionString = 'process.env.mongodb+srv://qcfirst:qcfirst@qcfirst.psuax.mongodb.net/qcFirst?retryWrites=true&w=majority'
@@ -33,7 +34,18 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true })
     console.log('Running on Port' + port);
   });
 
-  app.post('/studentsignup', (req, res) => {
+  app.post(
+    '/studentsignup',
+      check('confirmPassword').custom(async (confirmPassword, {req}) => {
+        const password = req.body.password
+    
+        // If password and confirm password not same
+        // don't allow to sign up and throw error
+        if(password !== confirmPassword){
+          throw new Error('Passwords must be same')
+        }
+      }),
+    (req, res) => {
     students.insertOne(req.body)
     .then(result => {
       res.redirect('/')
@@ -62,7 +74,7 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true })
   }) 
 
   app.get('/', (req, res) => {
-    res.sendFile(__dirname + "/index.html")
+    res.sendFile(__dirname + "/student-signup.html")
   })
 
   
