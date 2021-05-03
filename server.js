@@ -1,5 +1,6 @@
 const express = require('express');
 const MongoClient = require('mongodb').MongoClient;
+const mongoose = require('mongoose');
 const app = express();
 
 const connectionString = 'process.env.mongodb+srv://qcfirst:qcfirst@qcfirst.psuax.mongodb.net/qcFirst?retryWrites=true&w=majority'
@@ -14,6 +15,8 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true })
   const teachers = db.collection('teachers')
   const classes = db.collection('classes')
 
+  db.students.createIndex( { email: 1 }, { unique: true } )
+  db.teachers.createIndex( { email: 1 }, { unique: true } )
   // ======================
   // Middlewares
   // ======================
@@ -25,6 +28,8 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true })
   // Routes
   // ======================
 
+  //When the form on the student-signup.html page is submitted, a new entry will be submitted
+  //to the student table in the MongoDB database
   app.post('/studentsignup', (req, res) => {
     students.insertOne(req.body)
     .then(result => {
@@ -33,8 +38,20 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true })
     .catch(error => console.error(error))
   })
 
+  //When the form on the teacher-signup.html page is submitted, a new entry will be submitted
+  //to the teacher table in the MongoDB database
   app.post('/teachersignup', (req, res) => {
     teachers.insertOne(req.body)
+    .then(result => {
+       res.redirect('/')
+    })
+    .catch(error => console.error(error))
+  }) 
+
+  //When the form on the createaclass.html page is submitted, a new entry will be submitted
+  //to the classes table in the MongoDB database
+  app.post('/createaclass', (req, res) => {
+    classes.insertOne(req.body)
     .then(result => {
        res.redirect('/')
     })
