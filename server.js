@@ -1,6 +1,7 @@
 const express = require('express');
 const MongoClient = require('mongodb').MongoClient;
 const {check} = require('express-validator')
+const signupTemplet = require('./signup')
 const app = express();
 
 const connectionString = 'process.env.mongodb+srv://qcfirst:qcfirst@qcfirst.psuax.mongodb.net/qcFirst?retryWrites=true&w=majority'
@@ -36,29 +37,38 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true })
 
   app.post(
     '/studentsignup',
-      check('confirmPassword').custom(async (confirmPassword, {req}) => {
-        const password = req.body.password
-    
-        // If password and confirm password not same
-        // don't allow to sign up and throw error
-        if(password !== confirmPassword){
-          throw new Error('Passwords must be same')
-        }
-      }),
+    [
+      // Check validity
+      check("email", "Invalid Email").isEmail(),
+      check("password", "Invalid Password")
+        .isLength({ min: 4 })
+        .custom((value,{req, loc, path}) => {
+          if (value !== req.body.confirmpassword) {
+            // throw error if passwords do not match
+              throw new Error("Passwords don't match");
+          } else {
+              return value;
+          }
+        })
+    ],
     (req, res) => {
-    students.insertOne(req.body)
-    .then(result => {
-      res.redirect('/')
+      const errors = validationResult(req);
+      if(!errors.isEmpty()){
+        return res.send(signupTemplet({errors}))
+      }
+      students.insertOne(req.body)
+      .then(result => {
+      res.redirect("https://qcfirst.herokuapp.com/login.html")
+      })
+      .catch(error => console.error(error))
     })
-    .catch(error => console.error(error))
-  })
 
   //When the form on the teacher-signup.html page is submitted, a new entry will be submitted
   //to the teacher table in the MongoDB database
   app.post('/teachersignup', (req, res) => {
     teachers.insertOne(req.body)
     .then(result => {
-       res.redirect('/')
+       res.redirect('"https://qcfirst.herokuapp.com/login.html"')
     })
     .catch(error => console.error(error))
   }) 
@@ -68,7 +78,7 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true })
   app.post('/createaclass', (req, res) => {
     classes.insertOne(req.body)
     .then(result => {
-       res.redirect('/')
+       res.redirect('/login.html')
     })
     .catch(error => console.error(error))
   }) 
