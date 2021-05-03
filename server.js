@@ -14,8 +14,8 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true })
   const teachers = db.collection('teachers')
   const classes = db.collection('classes')
 
-  db.students.createIndex( { email: 1 }, { unique: true } )
-  db.teachers.createIndex( { email: 1 }, { unique: true } )
+  /*db.students.createIndex( { email: 1 }, { unique: true } )
+  db.teachers.createIndex( { email: 1 }, { unique: true } ) */
   // ======================
   // Middlewares
   // ======================
