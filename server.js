@@ -1,6 +1,5 @@
 const express = require('express');
 const MongoClient = require('mongodb').MongoClient;
-const mongoose = require('mongoose');
 const app = express();
 
 const connectionString = 'process.env.mongodb+srv://qcfirst:qcfirst@qcfirst.psuax.mongodb.net/qcFirst?retryWrites=true&w=majority'
@@ -30,6 +29,10 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true })
 
   //When the form on the student-signup.html page is submitted, a new entry will be submitted
   //to the student table in the MongoDB database
+  app.listen(port, function() {
+    console.log('Running on Port' + port);
+  });
+
   app.post('/studentsignup', (req, res) => {
     students.insertOne(req.body)
     .then(result => {
@@ -62,9 +65,7 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true })
     res.sendFile(__dirname + "/index.html")
   })
 
-  app.listen(port, function() {
-    console.log('Our app is running on http://localhost:' + port);
-  });
+  
 })
 .catch(console.error)
 
