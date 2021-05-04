@@ -30,7 +30,7 @@ app.listen(port, function() {
 });
 
 app.get('/', function(req, res) {
-  res.sendFile(__dirname + "/student-signup.html");
+  res.sendFile(__dirname + "/index.html");
 });
 
 app.use(express.json());
