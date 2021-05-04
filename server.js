@@ -2,8 +2,8 @@
 access the mongoDB database and perform CRUD operations on it. It also includes
 express-validator methods to add constraints to database entries.  */
 
-var express = require('express');
-var mongoose = require('mongoose');
+const express = require('express');
+const mongoose = require('mongoose');
 
 //Connect to MongoDB Atlas
 try {
@@ -30,7 +30,7 @@ app.listen(port, function() {
 });
 
 app.get('/', function(req, res) {
-  res.sendFile(__dirname + "/index.html");
+  res.sendFile(__dirname + "/teacher-signup.html");
 });
 
 app.use(express.json());
@@ -39,30 +39,78 @@ app.use(express.urlencoded({
   extended: true
 }));
 
+var Student = require("./model.js");
 app.post('/studentsignup', function(req, res) {
-  var firstname = req.body.firstname;
-  var lastname = req.body.lastName;
+  var firstname= req.body.firstname;
+  var lastname = req.body.lastname;
   var emailaddress = req.body.emailaddress;
   var password = req.body.password;
 
   var data = {
     "firstname": firstname,
-    "lastname":lastname,
-    "email":emailaddress,
-    "password":password
+    "lastname": lastname,
+    "emailaddress": emailaddress,
+    "password": password
   }
-  db.collection('students').insertOne(data, function(err, collection) {
-    if(err) throw err;
-    console.log("Signup Successful");
+
+  let student = new Student(data);
+  student.save(function(err, doc) {
+    if (err) return console.error(err);
   });
-  return res.redirect("https://qcfirst.herokuapp.com/login.html");
+    return res.redirect("https://qcfirst.herokuapp.com/signup-successful.html");
 })
 
+var Teacher = require("./model.js");
+app.post('/teachersignup', function(req, res) {
+  var firstname= req.body.firstname;
+  var lastname = req.body.lastname;
+  var emailaddress = req.body.emailaddress;
+  var password = req.body.password;
 
+  var data = {
+    "firstname": firstname,
+    "lastname": lastname,
+    "emailaddress": emailaddress,
+    "password": password
+  }
 
+  let teacher = new Teacher(data);
+  teacher.save(function(err, doc) {
+    if (err) return console.error(err);
+  });
+    return res.redirect("https://qcfirst.herokuapp.com/signup-successful.html");
+})
 
+app.post('/createaclass', function(req, res) {
+  var semester = req.body.semester;
+  var coursename = req.body.coursename;
+  var department = req.body.department;
+  var instructor = req.body.instructor;
+  var schedule = req.body.schedule;
+  var enrollmentdeadline = req.body.enrollmentdeadline;
+  var capacity = req.body.capacity;
+  var description = req.body.description;
 
+  var data = {
+    "semester": semester,
+    "coursename": coursename,
+    "department": department,
+    "instructor": instructor,
+    "schedule": schedule,
+    "enrollmentdeadline": enrollmentdeadline,
+    "capacity": capacity,
+    "description": description
+  }
 
+  db.collection('teachers').insertOne(data, function(err, collection) {
+    if(err) throw err;
+    console.log("Course Successfully Created!");
+  });
+  
+  return res.redirect("https://qcfirst.herokuapp.com/createaclass.html");
+})
+
+//ATTEMPT #1 WITHOUT USING MONGOOSE
 //const MongoClient = require('mongodb').MongoClient;
 /*console.log("Server Running");
 var port = process.env.PORT || 8080;

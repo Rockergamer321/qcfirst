@@ -211,7 +211,8 @@ body {
 /* Login / Sign Up Container / Create a Class*/
 .login-container,
 .signup-container,
-.createaclass {
+.createaclass,
+.successful-signup {
   border: solid;
   padding: 50px;
   margin: 20px;
