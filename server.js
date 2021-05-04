@@ -4,6 +4,7 @@ express-validator methods to add constraints to database entries.  */
 
 const express = require('express');
 const mongoose = require('mongoose');
+const passport = require('passport');
 
 //Connect to MongoDB Atlas
 try {
@@ -33,11 +34,21 @@ app.get('/', function(req, res) {
   res.sendFile(__dirname + "/teacher-signup.html");
 });
 
+// ==============
+// MIDDLEWARES 
+// ==============
+
 app.use(express.json());
 app.use(express.static('./'));
 app.use(express.urlencoded({
   extended: true
 }));
+
+app.post('/login', 
+  passport.authenticate('local'),
+  function(req, res) {
+    
+  });
 
 var Student = require("./model.js");
 app.post('/studentsignup', function(req, res) {
@@ -109,75 +120,6 @@ app.post('/createaclass', function(req, res) {
   
   return res.redirect("https://qcfirst.herokuapp.com/createaclass.html");
 })
-
-//ATTEMPT #1 WITHOUT USING MONGOOSE
-//const MongoClient = require('mongodb').MongoClient;
-/*console.log("Server Running");
-var port = process.env.PORT || 8080;
-MongoClient.connect(connectionString, { useUnifiedTopology: true })
-
-.then(client => {
-  console.log('Connected to Database')
-  const db = client.db('qcFirst')
-  const students = db.collection('students')
-  const teachers = db.collection('teachers')
-  const classes = db.collection('classes')
-
-
-  // ======================
-  // Middlewares
-  // ======================
-
-  app.use(express.urlencoded({ extended: true }))
-  app.use(express.static('./'));
- 
-  // ======================
-  // Routes
-  // ======================
-
-  //When the form on the student-signup.html page is submitted, a new entry will be submitted
-  //to the student table in the MongoDB database
-  app.listen(port, function() {
-    console.log('Running on Port' + port);
-  });
-
-  app.post(
-    '/studentsignup',(req, res) => {
-      students.insertOne(req.body)
-      .then(result => {
-      res.redirect("https://qcfirst.herokuapp.com/login.html")
-    })
-      .catch(error => console.error(error))
-  })
-
-  //When the form on the teacher-signup.html page is submitted, a new entry will be submitted
-  //to the teacher table in the MongoDB database
-  app.post('/teachersignup', (req, res) => {
-    teachers.insertOne(req.body)
-    .then(result => {
-       res.redirect('"https://qcfirst.herokuapp.com/login.html"')
-    })
-    .catch(error => console.error(error))
-  }) 
-
-  //When the form on the createaclass.html page is submitted, a new entry will be submitted
-  //to the classes table in the MongoDB database
-  app.post('/createaclass', (req, res) => {
-    classes.insertOne(req.body)
-    .then(result => {
-       res.redirect('/')
-    })
-    .catch(error => console.error(error))
-  }) 
-
-  app.get('/', (req, res) => {
-    res.sendFile(__dirname + "/index.html")
-  })
-
-  
-})
-.catch(console.error)
-*/
 
 /* Sources
 https://zellwk.com/blog/crud-express-mongodb/
