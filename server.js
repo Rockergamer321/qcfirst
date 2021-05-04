@@ -31,7 +31,7 @@ app.listen(port, function() {
 });
 
 app.get('/', function(req, res) {
-  res.sendFile(__dirname + "/teacher-signup.html");
+  res.sendFile(__dirname + "/index.html");
 });
 
 // ==============
