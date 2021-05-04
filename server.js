@@ -39,22 +39,13 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true })
   });
 
   app.post(
-    '/studentsignup', [
-      check('email').custom(async function(value) {
-        var user = await students.find({email:value})
-        return user.length == 0;
-      }).withMessage('Email is already in use')
-    ],
-    (req, res) => {
-        var errors = validationResult(req);
-        if(!errors.isEmpty()) {
-          students.insertOne(req.body)
-          .then(result => {
-          res.redirect("https://qcfirst.herokuapp.com/login.html")
-          })
-        .catch(error => console.error(error))
-        }
+    '/studentsignup',(req, res) => {
+      students.insertOne(req.body)
+      .then(result => {
+      res.redirect("https://qcfirst.herokuapp.com/login.html")
     })
+      .catch(error => console.error(error))
+  })
 
   //When the form on the teacher-signup.html page is submitted, a new entry will be submitted
   //to the teacher table in the MongoDB database
