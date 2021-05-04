@@ -36,6 +36,7 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'index.html'));
 });
 
+
 // ==============
 // MIDDLEWARES 
 // ==============
@@ -46,13 +47,10 @@ app.use(express.urlencoded({
   extended: true
 }));
 
-app.post('/login', 
-  passport.authenticate('local'),
-  function(req, res) {
-    
-  });
+//Login 
 
-var Student = require("./model.js");
+//Student Sign Up
+var Student = require("./js/model.js");
 app.post('/studentsignup', function(req, res) {
   var firstname= req.body.firstname;
   var lastname = req.body.lastname;
@@ -73,7 +71,8 @@ app.post('/studentsignup', function(req, res) {
     return res.redirect("https://qcfirst.herokuapp.com/signup-successful.html");
 })
 
-var Teacher = require("./model.js");
+//Teacher Sign Up
+var Teacher = require("./js/model.js");
 app.post('/teachersignup', function(req, res) {
   var firstname= req.body.firstname;
   var lastname = req.body.lastname;
@@ -94,6 +93,7 @@ app.post('/teachersignup', function(req, res) {
     return res.redirect("https://qcfirst.herokuapp.com/signup-successful.html");
 })
 
+//Create A Class handling: incomplete
 app.post('/createaclass', function(req, res) {
   var semester = req.body.semester;
   var coursename = req.body.coursename;
