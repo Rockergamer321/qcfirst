@@ -1,10 +1,43 @@
 # QCFirst
 
+Link to Website: https://qcfirst.herokuapp.com/
+
 ## Contributors
 
 ### - Anthony Lombardo (Rockergamer321)
 
 ### - Jonathan Dinh (jonathanmdinh)
+
+
+
+### Contributions
+
+Jonathan Dinh
+
+Created and coded
+
+- index.html
+- student-signup.html
+- teacher-signup.html
+- createaclass.html
+- successful-signup.html
+
+Styled previously mentioned HTML files with
+
+- css/styles.css
+
+In server.js:
+
+- installed and saved: express, mongoose, and passport.
+- connected to MongoDB Atlas database using mongose.connect().
+- hosted website on Heroku using app.listen() and a newly created Procfile.
+- added functionality to both student and teacher signup forms, allowing users to be added to the MongoDB database using the given forms.
+  - Added schemas for both user types, ensuring that an email can only exist once in the database.
+- Added functionality to createaclass.html form, allowing a class to be added to the database using the given form.
+
+Created qcFirst database in MongoDB Atlas with collections: students, teachers, and classes.
+
+
 
 ## Purpose
 
@@ -12,16 +45,20 @@ QCfirst is a prototype for a college course enrollment website that allows stude
 
 ### Student Features
 
-- Search for Courses
-- Enroll in Courses
-- Drop Enrolled Courses
-- Pay for Tuition
-- Ability to look at Schedule
+- Ability to sign up as a student.: https://qcfirst.herokuapp.com/student-signup.html
+
+- Search for courses.: https://qcfirst.herokuapp.com/courseSearch.html
+- Enroll in courses.: https://qcfirst.herokuapp.com/courseSearch.html
+- Drop enrolled courses.: 
+- Pay for tuition.: https://qcfirst.herokuapp.com/studentCenter.html
+- Ability to look at schedule.: https://qcfirst.herokuapp.com/studentCenter.html
 
 ### Professor Features
 
-- Ability to Create a Course
-- Ability to look at Teaching Schedule
+- Ability to sign up and login as a teacher.: https://qcfirst.herokuapp.com/teacher-signup.html
+
+- Ability to create a course.: https://qcfirst.herokuapp.com/createaclass.html
+- Ability to look at teaching schedule.: https://jonathanmdinh.github.io/qcfirst/facultyCenter.html
 
 ## Home Page
 
@@ -47,8 +84,6 @@ The login page allows users to access a form that logs them into to their accoun
 
 ![Login Desktop visual design](https://github.com/Rockergamer321/qcfirst/blob/main/Visual%20Designs/Login%20Desktop.png)
 
-- The login and sign up buttons remained in the same place as the homepage, rather than on top of the border of the form container. This decision was made to keep the positioning of the buttons throughout the pages consistent, rather than have them change from one page to the next.
-
 ### Login Tablet Design
 
 ![Login Tablet visual design](https://github.com/Rockergamer321/qcfirst/blob/main/Visual%20Designs/Login%20Tablet.png)
@@ -56,8 +91,6 @@ The login page allows users to access a form that logs them into to their accoun
 ### Login Mobile Design
 
 ![Login Mobile visual design](https://github.com/Rockergamer321/qcfirst/blob/main/Visual%20Designs/Login%20Mobile.png)
-
-- The final design of the mobile login page includes the Queens College logo at the top left. The initial visual design took into account, the lack of space on the screen, which  led to the decision of removing the logo. However, after completing the code for this design, it was concluded that there was enough space for the logo to remain, ultimately improving the design.
 
 ## Sign Up
 
@@ -67,9 +100,6 @@ The sign up page allows users to access a form that creates a new account. The l
 
 ![Sign Up Desktop visual design](https://github.com/Rockergamer321/qcfirst/blob/main/Visual%20Designs/Sign%20Up%20Desktop.png)
 
-- The login and sign up buttons remained in the same place as the homepage, rather than on top of the border of the form container. This decision was made to keep the positioning of the buttons throughout the pages consistent, rather than have them change from one page to the next.
-- A link to a new html file, teacher-signup was created to help with managing the database tables.
-
 ### Sign Up Tablet Design
 
 ![Sign Up Tablet visual design](https://github.com/Rockergamer321/qcfirst/blob/main/Visual%20Designs/Sign%20Up%20Tablet.png)
@@ -77,8 +107,6 @@ The sign up page allows users to access a form that creates a new account. The l
 ### Sign Up Mobile Design
 
 ![Sign Up Mobile visual design](https://github.com/Rockergamer321/qcfirst/blob/main/Visual%20Designs/Sign%20Up%20Mobile.png)
-
-- Similarly to the mobile design for the login page, the Queens College logo was kept in the sign up mobile design, straying from the initial visual designs. 
 
 ## Create A Class
 
@@ -159,3 +187,13 @@ The User Settings page allows a user to access the information that the system c
 ### User Settings Mobile Design
 
 ![User Settings Mobile visual design](https://github.com/Rockergamer321/qcfirst/blob/main/Visual%20Designs/User%20Settings%20-%20Mobile.png)
+
+## Design Differences
+
+- Login / Signup pages: The login and sign up buttons remained in the same place as the homepage, rather than on top of the border of the form container. This decision was made to keep the positioning of the buttons throughout the pages consistent, rather than have them change from one page to the next.
+- student-signup.html: A link to a new html file, teacher-signup was created to help with managing the database tables.
+- teacher-signup.html: Created to help with managing the database tables on signup. 
+- signup-successful.html: Created as a way to tell users that they have successfully signed up. If the signup was not successful, an error will be thrown.
+- login.html: The final design of the mobile login page includes the Queens College logo at the top left. The initial visual design took into account, the lack of space on the screen, which  led to the decision of removing the logo. However, after completing the code for this design, it was concluded that there was enough space for the logo to remain, ultimately improving the design.
+- student-signup.html / teacher-signup.html: Similarly to the mobile design for the login page, the Queens College logo was kept in the sign up mobile design, straying from the initial visual designs. 
+
