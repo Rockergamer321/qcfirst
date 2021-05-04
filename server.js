@@ -1,3 +1,7 @@
+/* This is the server.js page that contains the node.js code that allows the user to 
+access the mongoDB database and perform CRUD operations on it. It also includes
+express-validator methods to add constraints to database entries.  */
+
 const express = require('express');
 const MongoClient = require('mongodb').MongoClient;
 const {check} = require('express-validator')
