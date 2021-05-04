@@ -5,7 +5,6 @@ express-validator methods to add constraints to database entries.  */
 const express = require('express');
 const MongoClient = require('mongodb').MongoClient;
 const {check} = require('express-validator')
-const signupTemplet = require('./signup')
 const app = express();
 
 const connectionString = 'process.env.mongodb+srv://qcfirst:qcfirst@qcfirst.psuax.mongodb.net/qcFirst?retryWrites=true&w=majority'
@@ -40,26 +39,7 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true })
   });
 
   app.post(
-    '/studentsignup',
-    [
-      // Check validity
-      check("email", "Invalid Email").isEmail(),
-      check("password", "Invalid Password")
-        .isLength({ min: 4 })
-        .custom((value,{req, loc, path}) => {
-          if (value !== req.body.confirmpassword) {
-            // throw error if passwords do not match
-              throw new Error("Passwords don't match");
-          } else {
-              return value;
-          }
-        })
-    ],
-    (req, res) => {
-      const errors = validationResult(req);
-      if(!errors.isEmpty()){
-        return res.send(signupTemplet({errors}))
-      }
+    '/studentsignup', (req, res) => {
       students.insertOne(req.body)
       .then(result => {
       res.redirect("https://qcfirst.herokuapp.com/login.html")
