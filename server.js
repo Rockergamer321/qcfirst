@@ -2,13 +2,69 @@
 access the mongoDB database and perform CRUD operations on it. It also includes
 express-validator methods to add constraints to database entries.  */
 
-const express = require('express');
-const MongoClient = require('mongodb').MongoClient;
-const {check} = require('express-validator')
-const app = express();
+var express = require('express');
+var mongoose = require('mongoose');
 
-const connectionString = 'process.env.mongodb+srv://qcfirst:qcfirst@qcfirst.psuax.mongodb.net/qcFirst?retryWrites=true&w=majority'
-console.log("Server Running");
+//Connect to MongoDB Atlas
+try {
+  connectionstring = 'mongodb+srv://qcfirst:qcfirst@qcfirst.psuax.mongodb.net/qcFirst?retryWrites=true&w=majority';
+  mongoose.connect(
+    connectionstring, 
+    { useNewUrlParser: true, useUnifiedTopology: true },
+    () => console.log("Mongoose is connected")
+  );
+} catch (e) {
+  console.log("Failed to connect")
+}
+
+mongoose.Promise = global.Promise;
+var db = mongoose.connection;
+db.on("error", (err) => console.log(`Connection error ${err}`));
+db.once("open", () => console.log("Connected to DB!"));
+
+var app = express();
+
+var port = process.env.PORT || 8080;
+app.listen(port, function() {
+  console.log('Running on Port' + port);
+});
+
+app.get('/', function(req, res) {
+  res.sendFile(__dirname + "/student-signup.html");
+});
+
+app.use(express.json());
+app.use(express.static('./'));
+app.use(express.urlencoded({
+  extended: true
+}));
+
+app.post('/studentsignup', function(req, res) {
+  var firstname = req.body.firstname;
+  var lastname = req.body.lastName;
+  var emailaddress = req.body.emailaddress;
+  var password = req.body.password;
+
+  var data = {
+    "firstname": firstname,
+    "lastname":lastname,
+    "email":emailaddress,
+    "password":password
+  }
+  db.collection('students').insertOne(data, function(err, collection) {
+    if(err) throw err;
+    console.log("Signup Successful");
+  });
+  return res.redirect("https://qcfirst.herokuapp.com/login.html");
+})
+
+
+
+
+
+
+//const MongoClient = require('mongodb').MongoClient;
+/*console.log("Server Running");
 var port = process.env.PORT || 8080;
 MongoClient.connect(connectionString, { useUnifiedTopology: true })
 
@@ -19,8 +75,7 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true })
   const teachers = db.collection('teachers')
   const classes = db.collection('classes')
 
-  /*db.students.createIndex( { email: 1 }, { unique: true } )
-  db.teachers.createIndex( { email: 1 }, { unique: true } ) */
+
   // ======================
   // Middlewares
   // ======================
@@ -74,6 +129,7 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true })
   
 })
 .catch(console.error)
+*/
 
 /* Sources
 https://zellwk.com/blog/crud-express-mongodb/
