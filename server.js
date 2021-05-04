@@ -33,7 +33,7 @@ app.listen(port, function() {
 
 
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'html/', 'index.html'));
+  res.sendFile(path.join(__dirname, 'index.html'));
 });
 
 // ==============
@@ -70,7 +70,7 @@ app.post('/studentsignup', function(req, res) {
   student.save(function(err, doc) {
     if (err) return console.error(err);
   });
-    return res.redirect("https://qcfirst.herokuapp.com/html/signup-successful.html");
+    return res.redirect("https://qcfirst.herokuapp.com/signup-successful.html");
 })
 
 var Teacher = require("./model.js");
@@ -91,7 +91,7 @@ app.post('/teachersignup', function(req, res) {
   teacher.save(function(err, doc) {
     if (err) return console.error(err);
   });
-    return res.redirect("https://qcfirst.herokuapp.com/html/signup-successful.html");
+    return res.redirect("https://qcfirst.herokuapp.com/signup-successful.html");
 })
 
 app.post('/createaclass', function(req, res) {
@@ -120,7 +120,7 @@ app.post('/createaclass', function(req, res) {
     console.log("Course Successfully Created!");
   });
   
-  return res.redirect("https://qcfirst.herokuapp.com/html/createaclass.html");
+  return res.redirect("https://qcfirst.herokuapp.com/createaclass.html");
 })
 
 /* Sources
