@@ -1,35 +1,52 @@
 <!DOCTYPE html>
+<!--
+	Name: Anthony Lombardo
+	Date: 05.04.2021
+	Section: CS355
+
+	  This is the Student Center page for QCFirst. 
+	* It includes an Options sections that provides links to 
+	  the Course Search page, Blackboard, and Degreeworks. 
+	* There's a Courses section that provides the current schedule. 
+	- The section also provides a select form that goes through schedules 
+	  from different semesters as well as a notified schedule that holds 
+	  all of the courses that the student clicked the Notification Bell on 
+	  (This works similarly to the enroll page on CUNYFirst).
+	* The next section gives the student a way to pay for their tuition, 
+	  along with another section that informs the student if they have 
+	  any holds on their accounts.
+-->
 <html lang="en">
 	<head> 
-	  	<meta charset = UTF-8 />
+		<meta charset = UTF-8 />
 		<title>Student Center</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<link rel="stylesheet" href="css/userStyles.css">
-		<link rel="stylesheet" href="css/centerStyles.css">
+		<link rel="stylesheet" href="user-styles.css">
+		<link rel="stylesheet" href="center-styles.css">
 	</head>
 	<body>
 		<!--Page Header-->
 		<div class="topnav">
 			<!--QC Logo-->
-			<a href="https://jonathanmdinh.github.io/qcfirst/studentCenter.html" class="logo"> 
-				<img src="img/qc_logo.jpg" width=50 alt="QC Logo"/> 
+			<a href="qcfirst.herokuapp.com/student-center.html" class="logo"> 
+				<img src="img/qc_logo.jpg" width=120 alt="QC Logo"/> 
 			</a>
 			<!--Dropdown Navigation Menu Stored in User Icon-->
-			<nav role="navigation" class="nav-menu">
+			<nav class="nav-menu">
 				<div class="dropdown-toggle"> 
 					<!--User Photo: https://stock.adobe.com/290580606?tduid=971268d0957d9995b1e6a74288ca7071&as_channel=affiliate&as_campclass=redirect&as_source=arvato&asset_id=290580351-->
 					<img src="img/User.png" width=50 alt="Profile Photo" /> 
 					<!--Links That Direct to Home (Student Center), Settings, and Sign Out (Homepage)-->
 					<nav class="dropdown-list">
-						<a href="https://jonathanmdinh.github.io/qcfirst/facultyCenter.html" class="dropdown-link">Home</a> <br>
-						<a href="https://jonathanmdinh.github.io/qcfirst/settings.html" class="dropdown-link">Settings</a> <br>
-						<a href="https://jonathanmdinh.github.io/qcfirst/index.html" class="dropdown-link">Sign Out</a>
+						<a href="qcfirst.herokuapp.com/student-center.html" class="dropdown-link">Home</a> <br>
+						<a href="qcfirst.herokuapp.com/settings.html" class="dropdown-link">Settings</a> <br>
+						<a href="qcfirst.herokuapp.com/index.html" class="dropdown-link">Sign Out</a>
 					</nav>
 				</div>
 			</nav>
 		</div> <!--End of Page Header-->
 		<h1> Welcome to Student Center</h1> <!--Page Heading-->
-		<h2>For Faculty Center: <a href="https://jonathanmdinh.github.io/qcfirst/facultyCenter.html">Click Here</a></h2>
+		<h2>For Faculty Center: <a href="qcfirst.herokuapp.com/faculty-center.html">Click Here</a></h2>
 		<!--Section That Contains Link Options and Course Schedule (Depending on Selected Semester/Term)-->
 		<section class="main-section">
 			<div class="row">
@@ -38,7 +55,7 @@
 					<h2>Options</h2>
 					<!--Links That direct to Course Search, Blackboard, and Degreeworks-->
 					<div class="container">
-						<a href="courseSearch.html"> Course Search <br/></a>
+						<a href="qcfirst.herokuapp.com/course-search.html"> Course Search <br/></a>
 						<a href="https://bbhosted.cuny.edu/"> Blackboard <br/></a>
 						<a href="https://degreeworks.cuny.edu/"> Degreeworks <br/></a>
 					</div>
@@ -57,68 +74,7 @@
 							<option value="spring2020">Spring 2020</option>
 						</select>
 					</div>
-					<!--This is the Schedule That is Shown on Mobile Devices-->
-					<table class="mobile-schedule" hidden>
-						<tr>
-							<th>Class Name</th>
-							<th>Class Days</th>
-							<th>Class Time</th>
-						</tr>
-						<tr>
-							<td>CSCI 316</td>
-							<td>Monday, Wednesday</td>
-							<td>1:40 PM - 2:55 PM</td>
-						</tr>
-						<tr>
-							<td>CSCI 331</td>
-							<td>Monday, Wednesday</td>
-							<td>8:00 PM - 9:15 PM</td>
-						</tr>
-						<tr>
-							<td>CSCI 323</td>
-							<td>Tuesday, Thursday</td>
-							<td>6:30 PM - 7:45 PM</td>
-						</tr>
-						<tr>
-							<td>CSCI 355</td>
-							<td>Tuesday</td>
-							<td>8:00 PM - 10:50 PM</td>
-						</tr>
-					</table>
-					<!--If Notified Courses is Selected From the Dropdown List, This Schedule is Shown on Mobile Devices-->
-					<table class="mobile-notified-schedule" hidden>
-						<tr>
-							<th></th> <!--This Column Allows User to Remove a Course From This Schedule Table by Clicking on the X Icon-->
-							<th>Course Name</th>
-							<th>Availability</th>
-							<th></th> <!--This Column is for the Enroll Button-->
-						</tr>
-						<tr>
-							<td> <a href="" class="remove-course"> <img class="remove-icon" src="img/x-icon.png" height=20 width=20 alt="Remove Class"/> </a> </td>
-							<td>CSCI 316</td>
-							<td> <img src="img/Red_Circle.png" height=40 width=40 alt="This Class is Currently Unavailable" class="availability-icon"/> </td>
-							<td> <a href="" class="enroll-button">Enroll</a> </td>
-						</tr>
-						<tr>
-							<td> <a href="" class="remove-course"> <img class="remove-icon" src="img/x-icon.png" height=20 width=20 alt="Remove Class"/> </a> </td>
-							<td>CSCI 331</td>
-							<td> <img class="availability-icon" src="img/Green_Circle.png" height=40 width=40 alt="This Class is Currently Available"/> </td>
-							<td> <a href="" class="enroll-button">Enroll</a> </td>
-						</tr>
-						<tr>
-							<td> <a href="" class="remove-course"> <img class="remove-icon" src="img/x-icon.png" height=20 width=20 alt="Remove Class"/> </a> </td>
-							<td>CSCI 323</td>
-							<td> <img src="img/Red_Circle.png" height=40 width=40 alt="This Class is Currently Unavailable" class="availability-icon"/> </td>
-							<td> <a href="" class="enroll-button">Enroll</a> </td>
-						</tr>
-						<tr>
-							<td> <a href="" class="remove-course"> <img class="remove-icon" src="img/x-icon.png" height=20 width=20 alt="Remove Class"/> </a> </td>
-							<td>CSCI 355</td>
-							<td> <img class="availability-icon" src="img/Green_Circle.png" height=40 width=40 alt="This Class is Currently Available"/> </td>
-							<td> <a href="" class="enroll-button">Enroll</a> </td>
-						</tr>
-					</table>
-					<!--This is the Schedule That is Shown on Devices Other Than Mobile-->
+					<!--This is the schedule that will be shown on all devices-->
 					<div class="table">
 						<table class="schedule">
 							<tr>
@@ -153,7 +109,7 @@
 							</tr>
 						</table>
 					</div>
-					<!--If Notified Courses is Selected From the Dropdown List, This is the Schedule That is Shown on Devices Other Than Mobile-->
+					<!--If Notified Courses is Selected From the Dropdown List, This is the Schedule That is Shown-->
 					<table class="notified-schedule" hidden>
 						<tr>
 							<th>Course Name</th>
@@ -208,7 +164,7 @@
 					</table>
 				</div> <!--End of Right Column-->
 			</div> <!--End of Row-->
-		</section> <!--End of main-section
+		</section> <!--End of main-section-->
 		<!--Section That Displays Payments That Are Due (Left Column) and Holds (Right Column)-->
 		<section class="payment-hold-section">
 			<div class="row">
