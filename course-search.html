@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head> 
+		<meta charset = UTF-8 />
+		<title>Course Search</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" href="user-styles.css">
+		<link rel="stylesheet" href="course-styles.css">
+	</head>
+<!--
+	Name: Anthony Lombardo
+	Date: 05.04.2021
+	Section: CS355
+
+	This is the Course Search page for QCFirst. 
+	* The first section includes two search bars where the 
+	  student first types in the Subject/Course Number. 
+	  The student then types the Term/Semester that they 
+	  would like to search for (Might change to a Select form). 
+	* Once the search button is clicked, a section displays 
+	  the number of results that has been returned 
+	* Once the search button is clicked, a table is also returned 
+	  and it displays each course that a student could be enroll in, 
+	  depending if it's available or not, given a symbol 
+	  (Green Circle = Available/Red Circle = Unavailable). 
+	* If the user is viewing this page on a mobile device, the table 
+	  is converted into a section that includes a dropdown list where each 
+	  option provides course information for each result, 
+	  an availability section that tells the user if the class 
+	  is available or not and an enroll button.
+-->
+	<body>
+		<!--Page Header-->
+		<div class="topnav">
+			<!--QC Logo-->
+			<a href="qcfirst.herokuapp.com/student-center.html" class="logo"> 
+				<img src="img/qc_logo.jpg" width=120 alt="QC Logo"/> 
+			</a>
+			<!--Dropdown Navigation Menu Stored in User Icon-->
+			<nav class="nav-menu">
+				<div class="dropdown-toggle"> 
+					<!--User Photo: https://stock.adobe.com/290580606?tduid=971268d0957d9995b1e6a74288ca7071&as_channel=affiliate&as_campclass=redirect&as_source=arvato&asset_id=290580351-->
+					<img src="img/User.png" width=50 alt="Profile Photo" /> 
+					<!--Links That Direct to Home (Student Center), Settings, and Sign Out (Homepage)-->
+					<nav class="dropdown-list">
+						<a href="qcfirst.herokuapp.com/student-center.html" class="dropdown-link">Home</a> <br>
+						<a href="qcfirst.herokuapp.com/settings.html" class="dropdown-link">Settings</a> <br>
+						<a href="qcfirst.herokuapp.com/index.html" class="dropdown-link">Sign Out</a>
+					</nav>
+				</div>
+			</nav>
+		</div> <!--End of Page Header-->
+		<h1>Course Search</h1> <!--Page Heading-->
+		<!--Area Where User Enters and Submits Search Information (Subject/Course & Term/Semester)-->
+		<div class = "Search-Section"> 
+			<div class="form">
+				<form id="subject-form" name="subject-form">
+					<label for="Subject-Course"> Subject/Course</label> <br>
+						<input type="text" name="Subject-Course" id="Subject-Course" placeholder="Enter a Subject or Course"/> <br>
+					<label for="Term-Semester">Term/Semester</label> <br>
+						<input type="text" name="Term-Semester" id="Term-Semester" placeholder="Enter a Term or Semester"/> <br>
+					<input class="button" type="submit" value="Search"/>
+				</form>
+			</div>
+		</div>
+		<!--Section Where Number of Matching Results are Shown-->
+		<section class="Result-Section">
+			<div class="search-output">
+				<div class="search-left"><h2>Search Results:</h2></div>
+				<div class="search-right"><h2>7 Course(s) Found</h2></div>
+			</div>
+		</section>
+		<!--Table That Displays Each Matching Course Result (Regardless if They Are Available or Not Available)-->
+		<div class="Class-Selection">
+			<table>
+				<tr>
+					<th>Course Name</th>
+					<th>Instructor</th>
+					<th>Course Days</th>
+					<th>Course Time</th>
+					<th>Availability</th>
+					<th>Notify Me!</th> <!--This to Notify Student if Course is Available or Not-->
+					<th></th> <!--This is for the Enroll Button-->
+				</tr>
+				<tr>
+					<td>CSCI 370: Software Engineering</td>
+					<td>Andy Abreu</td>
+					<td>Monday, Wednesday</td>
+					<td>6:30 PM - 7:45 PM</td>
+					<td> <img src="QCFirst/Red_Circle.png" height=40 width=40 alt="This Class is Currently Unavailable" class="availability-icon" /> </td>
+					<td> <a href="" class="notification"> <img src="QCFirst/notification-bell.png" alt="Notification Bell" class="notification-bell" width=30 height=30 /> </a> </td>
+					<td> <a href="" class="enroll-button">Enroll</a> </td>
+				</tr>
+				<tr>
+					<td>CSCI 370: Software Engineering</td>
+					<td>Andy Abreu</td>
+					<td>Monday, Wednesday</td>
+					<td>8:00 PM - 9:15 PM</td>
+					<td> <img src="QCFirst/Red_Circle.png" height=40 width=40 alt="This Class is Currently Unavailable" class="availability-icon" /> </td>
+					<td> <a href="" class="notification"> <img src="QCFirst/notification-bell.png" alt="Notification Bell" class="notification-bell" width=30 height=30 /> </a> </td>
+					<td> <a href="" class="enroll-button">Enroll</a> </td>
+				</tr>
+				<tr>
+					<td>CSCI 370: Software Engineering</td>
+					<td>Andy Abreu</td>
+					<td>Friday</td>
+					<td>6:30 PM - 9:20 PM</td>
+					<td> <img src="QCFirst/Red_Circle.png" height=40 width=40 alt="This Class is Currently Unavailable" class="availability-icon" /> </td>
+					<td> <a href="" class="notification"> <img src="QCFirst/notification-bell.png" alt="Notification Bell" class="notification-bell" width=30 height=30 /> </a> </td>
+					<td> <a href="" class="enroll-button">Enroll</a> </td>
+				</tr>
+				<tr>
+					<td>CSCI 370: Software Engineering</td>
+					<td>John Svadlenka</td>
+					<td>Monday, Wednesday</td>
+					<td>3:10 PM - 4:25 PM</td>
+					<td> <img class="availability-icon" src="QCFirst/Green_Circle.png" height=40 width=40 alt="This Class is Currently Available"/> </td>
+					<td> <a href="" class="notification"> <img src="QCFirst/notification-bell.png" alt="Notification Bell" class="notification-bell" width=30 height=30 /> </a> </td>
+					<td> <a href="" class="enroll-button">Enroll</a> </td>
+				</tr>
+				<tr>
+					<td>CSCI 370: Software Engineering</td>
+					<td>John Svadlenka</td>
+					<td>Tuesday, Thursday</td>
+					<td>12:15 PM - 1:30 PM</td>
+					<td> <img class="availability-icon" src="QCFirst/Green_Circle.png" height=40 width=40 alt="This Class is Currently Available"/> </td>
+					<td> <a href="" class="notification"> <img src="QCFirst/notification-bell.png" alt="Notification Bell" class="notification-bell" width=30 height=30 /> </a> </td>
+					<td> <a href="" class="enroll-button">Enroll</a> </td>
+				</tr>
+				<tr>
+					<td>CSCI 370: Software Engineering</td>
+					<td>Bon Sy</td>
+					<td>Tuesday, Thursday</td>
+					<td>10:45 AM - 12:00 PM</td>
+					<td> <img class="availability-icon" src="QCFirst/Green_Circle.png" height=40 width=40 alt="This Class is Currently Available"/> </td>
+					<td> <a href="" class="notification"> <img src="QCFirst/notification-bell.png" alt="Notification Bell" class="notification-bell" width=30 height=30 /> </a> </td>
+					<td> <a href="" class="enroll-button">Enroll</a> </td>
+				</tr>
+				<tr>
+					<td>CSCI 370: Software Engineering</td>
+					<td>Robert Goldberg</td>
+					<td>Monday, Wednesday</td>
+					<td>9:15 AM - 10:30 AM</td>
+					<td> <img class="availability-icon" src="QCFirst/Green_Circle.png" height=40 width=40 alt="This Class is Currently Available"/> </td>
+					<td> <a href="" class="notification"> <img src="QCFirst/notification-bell.png" alt="Notification Bell" class="notification-bell" width=30 height=30 /> </a> </td>
+					<td> <a href="" class="enroll-button">Enroll</a> </td>
+				</tr>
+			</table>
+			<button type="button">Next</button> <!--Button to Display Next Table of Results-->
+		</div> <!--End of Class-Selection-->
+		<!--In Mobile, This Replaces the Class-Selection Section (Result Table)-->
+		<div class = "mobile-selection">
+			<!--Dropdown Menu Containing Course Results-->
+			<form id = "mobile-enroll" name = "mobile-enroll">
+				<label for="courses">Select a Course to Enroll In</label> <br>
+				<p>Example: </p> <br> <p>"Course Name" ("First 2 letters of Day(s)") - "Professor's Last Name" at "Course Time"</p>
+				<select name="courses" id="courses">
+					<option value="CS370-1">CSCI 370 (Mo/We) - Goldberg at 9:15 AM - 10:30 AM</option>
+					<option value="CS370-2">CSCI 370 (Tu/Th) - Sy at 10:45 AM - 12:00 PM</option>
+					<option value="CS370-3">CSCI 370 (Mo/We) - Svadlenka at 3:10 PM - 4:25 PM</option>
+					<option value="CS370-4">CSCI 370 (Tu/Th) - Svadlenka at 12:15 PM - 1:30 PM</option>
+					<option value="CS370-5">CSCI 370 (Mo/We) - Abreu at 6:30 PM - 7:45 PM</option>
+					<option value="CS370-6">CSCI 370 (Mo/We) - Abreu at 8:00 PM - 9:15 PM</option>
+					<option value="CS370-7">CSCI 370 (Fr) - Abreu at 6:30 PM - 9:20 PM</option>
+				</select>
+				<br>
+				<!--This Informs the Student if the Course is Available or Not-->
+				<h3>Availability Status: </h3>
+				<img class="availability-icon" src="QCFirst/Green_Circle.png" height=40 width=40 alt="This Class is Currently Available"/>
+				<!--Submits Given Selection-->
+				<input type="submit" value="Enroll">
+			</form>
+		</div>
+	</body>
+</html>
