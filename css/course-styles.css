@@ -1,0 +1,164 @@
+.Search-Section {
+    background-color: black;
+    margin: 0 auto;
+    max-width: 700px;
+    margin-bottom: 5px;
+}
+.Search-Section label {
+    display: block;
+    margin-bottom: -10px;
+    color: white;
+    text-align: center;
+    font-weight: bold;
+}
+.form {
+    position: relative;
+    padding-left: 10px;
+    padding-right: 10px;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+input[type="text"] {
+    display: block;
+    width: 98%;
+    border: 3px solid #999999;
+}
+.Result-Section {
+    background-color: white;
+    margin: 0 auto;
+    max-width: 450px;
+    margin-bottom: 5px;
+}
+.search-left {
+    float: left;
+    position: relative;
+    padding-left: 10px;
+    padding-right: 10px;
+    width: 50%;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+.search-right {
+    float: left;
+    position: relative;
+    padding-left: 10px;
+    padding-right: 10px;
+    width: 50%;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+.search-output:after {
+    content: "";
+    display: table;
+    clear: left;
+}
+.Class-Selection {
+    background-color: orange;
+    margin-right: 320px;
+    margin-left: 300px;
+}
+table { 
+    table-layout:fixed;
+}
+td { 
+    overflow: hidden; 
+    text-overflow: ellipsis; 
+    word-wrap: break-word;
+}
+th, td {
+    padding-left: 10px;
+}
+.button, .enroll-button {
+    float: right;
+    padding: 0px 5px;
+    margin-right: 5px;
+    background-color: #3898EC;
+    color: white;
+    line-height: inherit;
+    text-decoration: none;
+    cursor: pointer;
+}
+button {
+    margin-top: 5px;
+    float: right;
+    padding: 5px 15px;
+    margin-right: 5px;
+    background-color: black;
+    color: white;
+    line-height: inherit;
+    text-decoration: none;
+    cursor: pointer;
+}
+.mobile-selection {
+    display: none;
+    background-color: orange;
+    position: relative;
+    padding-left: 10px;
+    padding-right: 10px;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+select {
+    display: block;
+    border: 3px solid #999999;
+}
+
+h3 {
+    float: left;
+    margin-top: 5px;
+    margin-bottom: 0;
+    font-size: 22px;
+}
+.mobile-selection img {
+    float: left;
+    position: relative;
+}
+input[type=submit] {
+    padding: 10px 20px;
+    background-color: #3898EC;
+    color: white;
+    line-height: inherit;
+    text-decoration: none;
+    float: right;
+    margin-right: 10px;
+}
+p {
+    margin-top: -13px;
+    margin-bottom: 2px;
+}
+p:last-of-type {
+    font-style: italic;
+} 
+@media screen and (max-width: 1161px) {
+    .Class-Selection {
+        margin-left: 230px;
+        margin-right: 230px;
+    }
+}
+@media screen and (max-width: 996px) {
+   .Class-Selection {
+        margin-left: 150px;
+        margin-right: 150px;
+    }
+}
+@media screen and (max-width: 884px) {
+    .Class-Selection {
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+ @media screen and (max-width: 535px) {
+    .Class-Selection {
+        display: none;
+    }
+    .mobile-selection {
+        display: block;
+    }
+    .search-left, .search-right {
+        width: 100%;
+    }
+    h2 {
+        margin-top: 5px;
+        margin-bottom: 5px;
+    }
+}
