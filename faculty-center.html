@@ -1,29 +1,41 @@
 <!DOCTYPE html>
+<!--
+	Name: Anthony Lombardo
+	Date: 05.04.2021
+	Section: CS355
+
+	  This is the Faculty Center page for QCFirst. 
+	* It includes an Options sections that provides links to 
+	  the Create a Class page and Blackboard. 
+	* There's also a Courses section that provides the current schedule. 
+	- The section also provides a select form that goes through the 
+	  Instructor's teaching schedules from different semesters.
+-->
 <html lang="en">
 	<head> 
-	  	<meta charset = UTF-8 />
+		<meta charset = UTF-8 />
 		<title>Faculty Center</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<link rel="stylesheet" href="css/userStyles.css">
-		<link rel="stylesheet" href="css/centerStyles.css">
+		<link rel="stylesheet" href="user-styles.css">
+		<link rel="stylesheet" href="center-styles.css">
 	</head>
 	<body>
 		<!--Page Header-->
 		<div class="topnav">
 			<!--QC Logo-->
-			<a href="https://jonathanmdinh.github.io/qcfirst/studentCenter.html" class="logo"> 
-				<img src="img/qc_logo.jpg" width=50 alt="QC Logo"/> 
+			<a href="qcfirst.herokuapp.com/student-center.html" class="logo"> 
+				<img src="img/qc_logo.jpg" width=120 alt="QC Logo"/> 
 			</a>
 			<!--Dropdown Navigation Menu Stored in User Icon-->
-			<nav role="navigation" class="nav-menu">
+			<nav class="nav-menu">
 				<div class="dropdown-toggle"> 
 					<!--User Photo: https://stock.adobe.com/290580606?tduid=971268d0957d9995b1e6a74288ca7071&as_channel=affiliate&as_campclass=redirect&as_source=arvato&asset_id=290580351-->
 					<img src="img/User.png" width=50 alt="Profile Photo" /> 
 					<!--Links That Direct to Home (Student Center), Settings, and Sign Out (Homepage)-->
 					<nav class="dropdown-list">
-						<a href="https://jonathanmdinh.github.io/qcfirst/facultyCenter.html" class="dropdown-link">Home</a> <br>
-						<a href="https://jonathanmdinh.github.io/qcfirst/settings.html" class="dropdown-link">Settings</a> <br>
-						<a href="https://jonathanmdinh.github.io/qcfirst/index.html" class="dropdown-link">Sign Out</a>
+						<a href="qcfirst.herokuapp.com/student-center.html" class="dropdown-link">Home</a> <br>
+						<a href="qcfirst.herokuapp.com/settings.html" class="dropdown-link">Settings</a> <br>
+						<a href="qcfirst.herokuapp.com/index.html" class="dropdown-link">Sign Out</a>
 					</nav>
 				</div>
 			</nav>
@@ -36,7 +48,7 @@
 					<h2>Options</h2>
 					<!--Links That Direct to Create a Class and Blackboard-->
 					<div class="container">
-						<a href="createaclass.html" class="link"> Create a Class <br/></a>
+						<a href="qcfirst.herokuapp.com/createaclass.html" class="link"> Create a Class <br/></a>
 						<a href="https://bbhosted.cuny.edu/"> Blackboard <br/></a>
 					</div>
 				</div>
