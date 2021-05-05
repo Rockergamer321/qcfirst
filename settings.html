@@ -1,40 +1,54 @@
 <!DOCTYPE html>
+<!--
+	Name: Anthony Lombardo
+	Date: 05.04.2021
+	Section: CS355
+
+	  This is the Settings page for QCFirst. 
+	* This page displays the following:
+	- User Image
+	- Name,
+	- ID
+	- Phone Number and Email (With a button that is able to change either). 
+	* There's also a section that pushes notifications to the User, in case
+	  a class has recently become available/unavailable
+-->
 <html lang="en">
-	<head> 
-	  	<meta charset = UTF-8 />
+	<head>
+		<meta charset = UTF-8 />
+		<meta name="viewport" content="width=device-width, initial-scale=1"/>
 		<title>Settings</title>
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<link rel="stylesheet" href="css/userStyles.css">
-		<link rel="stylesheet" href="css/settingsStyles.css">
+		<link rel="stylesheet" href="user-styles.css">
+		<link rel="stylesheet" href="settings-styles.css">
 	</head>
 	<body>
 		<!--Page Header-->
 		<div class="topnav">
 			<!--QC Logo-->
-			<a href="https://jonathanmdinh.github.io/qcfirst/studentCenter.html" class="logo"> 
-				<img src="img/qc_logo.jpg" width=50 alt="QC Logo"/> 
+			<a href="qcfirst.herokuapp.com/student-center.html" class="logo"> 
+				<img src="img/qc_logo.jpg" width=120 alt="QC Logo"/> 
 			</a>
 			<!--Dropdown Navigation Menu Stored in User Icon-->
-			<nav role="navigation" class="nav-menu">
+			<nav class="nav-menu">
 				<div class="dropdown-toggle"> 
 					<!--User Photo: https://stock.adobe.com/290580606?tduid=971268d0957d9995b1e6a74288ca7071&as_channel=affiliate&as_campclass=redirect&as_source=arvato&asset_id=290580351-->
 					<img src="img/User.png" width=50 alt="Profile Photo" /> 
 					<!--Links That Direct to Home (Student Center), Settings, and Sign Out (Homepage)-->
 					<nav class="dropdown-list">
-						<a href="https://jonathanmdinh.github.io/qcfirst/studentCenter.html" class="dropdown-link">Home</a> <br>
-						<a href="https://jonathanmdinh.github.io/qcfirst/settings.html" class="dropdown-link">Settings</a> <br>
-						<a href="https://jonathanmdinh.github.io/qcfirst/index.html" class="dropdown-link">Sign Out</a>
+						<a href="qcfirst.herokuapp.com/student-center.html" class="dropdown-link">Home</a> <br>
+						<a href="qcfirst.herokuapp.com/settings.html" class="dropdown-link">Settings</a> <br>
+						<a href="qcfirst.herokuapp.com/index.html" class="dropdown-link">Sign Out</a>
 					</nav>
 				</div>
 			</nav>
 		</div> <!--End of Page Header-->
 		<!--Page Heading Containing User Image and "User Settings" Heading-->
 		<div class="heading">
-			<img src="img/User.png" alt="User Image" class="user-image"/>
+			<img src="./QCFirst/User.png" alt="User Photo" class="user-image"/>
 			<h1>User Settings</h1>
 		</div>
 		<!--Section Containing Name (Left Column) and ID of User (Right Column)-->
-		<section class="name-id-section">
+	   <section class="name-id-section">
 			<div class="row">
 				<div class="left-side">
 					<h2 class="user-info">Name:</h2>
@@ -51,7 +65,7 @@
 			<div class="row">
 				<div class="left-side">
 					<h2 class="user-info">Email:</h2>
-					<p class="user-info">robert.mcfly1985@gmail.com</p>
+					<p class="email-input">robert.mcfly1985@gmail.com</p>
 				</div>
 				<div class="right-side"> 
 					<a href="" class="button">Change Email</a>
