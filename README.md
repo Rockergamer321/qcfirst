@@ -74,19 +74,17 @@ QCfirst is a prototype for a college course enrollment website that allows stude
 ### Student Features
 
 - Ability to sign up as a student.: https://qcfirst.herokuapp.com/student-signup.html
-
-- Search for courses.: https://qcfirst.herokuapp.com/courseSearch.html
-- Enroll in courses.: https://qcfirst.herokuapp.com/courseSearch.html
-- Drop enrolled courses.: 
-- Pay for tuition.: https://qcfirst.herokuapp.com/studentCenter.html
-- Ability to look at schedule.: https://qcfirst.herokuapp.com/studentCenter.html
+- Search for courses.: https://qcfirst.herokuapp.com/course-search.html
+- Enroll in courses.: https://qcfirst.herokuapp.com/course-search.html
+- Drop enrolled courses.: https://qcfirst.herokuapp.com/student-center.html
+- Pay for tuition.: https://qcfirst.herokuapp.com/student-center.html
+- Ability to look at schedule.: https://qcfirst.herokuapp.com/student-center.html
 
 ### Professor Features
 
 - Ability to sign up and login as a teacher.: https://qcfirst.herokuapp.com/teacher-signup.html
-
 - Ability to create a course.: https://qcfirst.herokuapp.com/createaclass.html
-- Ability to look at teaching schedule.: https://jonathanmdinh.github.io/qcfirst/facultyCenter.html
+- Ability to look at teaching schedule.: https://qcfirst.herokuapp.com/faculty-center.html
 
 ## Home Page
 
