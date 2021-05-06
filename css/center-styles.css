@@ -207,6 +207,6 @@ label {
         width: 300px;
     }
     .delete-button{
-        margin-left: 130px;
+        margin-left: 0;
     }
 }
