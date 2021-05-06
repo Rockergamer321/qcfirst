@@ -27,7 +27,7 @@
     display:block;
 }
 body {
-    background-image: url("img/Queens-College.jpg");
+    background-image: url("/img/Queens-College.jpg");
     background-size: cover;
     margin: 0;
 }

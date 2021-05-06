@@ -98,6 +98,17 @@ button {
     overflow: hidden;
     box-sizing: border-box;
 }
+
+.mobile-selection label{
+    float: left;
+    width: 200px;
+    margin-left: 70px;
+}
+
+.mobile-selection img:first-of-type{
+    float: left;
+    left: 25px;
+}
 select {
     display: block;
     border: 3px solid #999999;
