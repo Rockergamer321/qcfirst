@@ -21,8 +21,9 @@
 		<meta charset = UTF-8 />
 		<title>Student Center</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<link rel="stylesheet" href="user-styles.css">
-		<link rel="stylesheet" href="center-styles.css">
+		<link rel="stylesheet" href="css/user-styles.css">
+		<link rel="stylesheet" href="css/center-styles.css">
+		<script src="js/student-script.js"></script>
 	</head>
 	<body>
 		<!--Page Header-->
@@ -78,30 +79,147 @@
 					<div class="table">
 						<table class="schedule">
 							<tr>
+								<th></th> <!--This is the info button for each class-->
 								<th>Course Name</th>
 								<th>Instructor</th>
 								<th>Course Days</th>
 								<th>Course Time</th>
 							</tr>
 							<tr>
+								<td>
+									<img class="info-button" src="img/info-button.png" height=25 width=25 alt="Button to Display Course Information"/>
+									<div class="modal">
+										<div class="modal-content">
+											<header class="modal-header">
+												<span class="close">&times;</span>
+												<h2>Course Info:</h2>
+											</header>
+											<p>Course Name: CSCI 316 - Database Systems</p>
+											<p>Semester: Spring 2021</p>
+											<p>Department: Computer Science</p>
+											<p>Instructor: Tat Yung Kong</p>
+											<p>Description: Principles and Implementation of Programming Languages</p>
+											<p>Available Seats: 3</p>
+											<p>Enrollment Deadline: Already Passed</p>
+											<button class="delete-button" type="button">Drop Class</button>
+										</div>
+									</div>
+									<div class="drop-modal">
+										<div class="drop-warning">
+											<header class="modal-header">
+												<span class="close">&times;</span>
+												<h2>Are You Sure You Want to Drop This Class?</h2>
+											</header>
+											<button type="button" class="yes-button">YES</button>
+											<button type="button" class="no-button">NO</button>
+										</div>
+									</div>
+								</td>
 								<td>CSCI 316</td>
 								<td>Tat Yung Kong</td>
 								<td>Monday, Wednesday</td>
 								<td>1:40 PM - 2:55 PM</td>
 							</tr>
 							<tr>
+								<td>
+									<img class="info-button" src="img/info-button.png" height=25 width=25 alt="Button to Display Course Information"/>
+									<div class="modal">
+										<div class="modal-content">
+											<header class="modal-header">
+												<span class="close">&times;</span>
+												<h2>Course Info:</h2>
+											</header>
+											<p>Course Name: CSCI 331 - Database Systems</p>
+											<p>Semester: Spring 2021</p>
+											<p>Department: Computer Science</p>
+											<p>Instructor: Daniel Leavitt</p>
+											<p>Description: This Course Covers The Theory Behind Database Systems, Including SQL, Transactions, etc.</p>
+											<p>Available Seats: 5</p>
+											<p>Enrollment Deadline: Already Passed</p>
+											<button class="delete-button" type="button">Drop Class</button>
+										</div>
+									</div>
+									<div class="drop-modal">
+										<div class="drop-warning">
+											<header class="modal-header">
+												<span class="close">&times;</span>
+												<h2>Are You Sure You Want to Drop This Class?</h2>
+											</header>
+											<button type="button" class="yes-button">YES</button>
+											<button type="button" class="no-button">NO</button>
+										</div>
+									</div>
+								</td>
 								<td>CSCI 331</td>
 								<td>Daniel Leavitt</td>
 								<td>Monday, Wednesday</td>
 								<td>8:00 PM - 9:15 PM</td>
 							</tr>
 							<tr>
+								<td>
+									<img class="info-button" src="img/info-button.png" height=25 width=25 alt="Button to Display Course Information"/>
+									<div class="modal">
+										<div class="modal-content">
+											<header class="modal-header">
+												<span class="close">&times;</span>
+												<h2>Course Info:</h2>
+											</header>
+											<p>Course Name: CSCI 323 - Design and Analysis of Algorithms</p>
+											<p>Semester: Spring 2021</p>
+											<p>Department: Computer Science</p>
+											<p>Instructor: Paul Cesaretti</p>
+											<p>Description: This Course Covers Advanced Data Structures</p>
+											<p>Available Seats: 8</p>
+											<p>Enrollment Deadline: Already Passed</p>
+											<button class="delete-button" type="button">Drop Class</button>
+										</div>
+									</div>
+									<div class="drop-modal">
+										<div class="drop-warning">
+											<header class="modal-header">
+												<span class="close">&times;</span>
+												<h2>Are You Sure You Want to Drop This Class?</h2>
+											</header>
+											<button type="button" class="yes-button">YES</button>
+											<button type="button" class="no-button">NO</button>
+										</div>
+									</div>
+								</td>
 								<td>CSCI 323</td>
 								<td>Paul Cesaretti</td>
 								<td>Tuesday, Thursday</td>
 								<td>6:30 PM - 7:45 PM</td>
 							</tr>
 							<tr>
+								<td>
+									<img class="info-button" src="img/info-button.png" height=25 width=25 alt="Button to Display Course Information"/>
+									<div class="modal">
+										<div class="modal-content">
+											<header class="modal-header">
+												<span class="close">&times;</span>
+												<h2>Course Info:</h2>
+											</header>
+											<p>Course Name: CSCI 355 - Internet and Web Technologies</p>
+											<p>Semester: Spring 2021</p>
+											<p>Department: Computer Science</p>
+											<p>Instructor: Mark Abramov</p>
+											<p>Description: This Course Covers The Following Topics: HTML, CSS, JavaScript, etc.</p>
+											<p>Available Seats: 0</p>
+											<p>Enrollment Deadline: Already Passed</p>
+											<button class="delete-button" type="button">Drop Class</button>
+										</div>
+									</div>
+									<div class="drop-modal">
+										<div class="drop-warning">
+											<header class="modal-header">
+												<span class="close">&times;</span>
+												<h2>Are You Sure You Want to Drop This Class?</h2>
+											</header>
+											<button type="button" class="yes-button">YES</button>
+											<button type="button" class="no-button">NO</button>
+										</div>
+									</div>
+								</td>
 								<td>CSCI 355</td>
 								<td>Mark Abramov</td>
 								<td>Tuesday</td>
