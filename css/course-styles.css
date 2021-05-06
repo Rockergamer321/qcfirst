@@ -68,6 +68,9 @@ td {
 th, td {
     padding-left: 10px;
 }
+.notification-bell{
+    filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(48deg) brightness(106%) contrast(101%); 
+}
 .button, .enroll-button {
     float: right;
     padding: 0px 5px;
@@ -171,5 +174,9 @@ p:last-of-type {
     h2 {
         margin-top: 5px;
         margin-bottom: 5px;
+    }
+    .notification-bell{
+        width: 30px;
+        height: 30px;
     }
 }

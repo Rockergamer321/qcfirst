@@ -25,9 +25,10 @@
 	  (Green Circle = Available/Red Circle = Unavailable). 
 	* If the user is viewing this page on a mobile device, the table 
 	  is converted into a section that includes a dropdown list where each 
-	  option provides course information for each result, 
+	  option provides course information for each result, a notification bell
+	  gives the user the option to save a course for later (Notified Courses),
 	  an availability section that tells the user if the class 
-	  is available or not and an enroll button.
+	  is available or not, and an enroll button.
 -->
 	<body>
 		<!--Page Header-->
@@ -88,7 +89,7 @@
 					<td>Monday, Wednesday</td>
 					<td>6:30 PM - 7:45 PM</td>
 					<td> <img src="img/Red_Circle.png" height=40 width=40 alt="This Class is Currently Unavailable" class="availability-icon" /> </td>
-					<td> <a href="" class="notification"> <img src="img/notification-bell.png" alt="Notification Bell" class="notification-bell" width=30 height=30 /> </a> </td>
+					<td> <img src="img/notification-bell.png" alt="Notification Bell" class="notification-bell" width=40 height=40 /> </td>
 					<td> <a href="" class="enroll-button">Enroll</a> </td>
 				</tr>
 				<tr>
@@ -97,7 +98,7 @@
 					<td>Monday, Wednesday</td>
 					<td>8:00 PM - 9:15 PM</td>
 					<td> <img src="img/Red_Circle.png" height=40 width=40 alt="This Class is Currently Unavailable" class="availability-icon" /> </td>
-					<td> <a href="" class="notification"> <img src="img/notification-bell.png" alt="Notification Bell" class="notification-bell" width=30 height=30 /> </a> </td>
+					<td> <img src="img/notification-bell.png" alt="Notification Bell" class="notification-bell" width=40 height=40 /> </td>
 					<td> <a href="" class="enroll-button">Enroll</a> </td>
 				</tr>
 				<tr>
@@ -106,7 +107,7 @@
 					<td>Friday</td>
 					<td>6:30 PM - 9:20 PM</td>
 					<td> <img src="img/Red_Circle.png" height=40 width=40 alt="This Class is Currently Unavailable" class="availability-icon" /> </td>
-					<td> <a href="" class="notification"> <img src="img/notification-bell.png" alt="Notification Bell" class="notification-bell" width=30 height=30 /> </a> </td>
+					<td> <img src="img/notification-bell.png" alt="Notification Bell" class="notification-bell" width=40 height=40 /> </td>
 					<td> <a href="" class="enroll-button">Enroll</a> </td>
 				</tr>
 				<tr>
@@ -115,7 +116,7 @@
 					<td>Monday, Wednesday</td>
 					<td>3:10 PM - 4:25 PM</td>
 					<td> <img class="availability-icon" src="img/Green_Circle.png" height=40 width=40 alt="This Class is Currently Available"/> </td>
-					<td> <a href="" class="notification"> <img src="img/notification-bell.png" alt="Notification Bell" class="notification-bell" width=30 height=30 /> </a> </td>
+					<td> <img src="img/notification-bell.png" alt="Notification Bell" class="notification-bell" width=40 height=40 /> </td>
 					<td> <a href="" class="enroll-button">Enroll</a> </td>
 				</tr>
 				<tr>
@@ -124,7 +125,7 @@
 					<td>Tuesday, Thursday</td>
 					<td>12:15 PM - 1:30 PM</td>
 					<td> <img class="availability-icon" src="img/Green_Circle.png" height=40 width=40 alt="This Class is Currently Available"/> </td>
-					<td> <a href="" class="notification"> <img src="img/notification-bell.png" alt="Notification Bell" class="notification-bell" width=30 height=30 /> </a> </td>
+					<td> <img src="img/notification-bell.png" alt="Notification Bell" class="notification-bell" width=40 height=40 /> </td>
 					<td> <a href="" class="enroll-button">Enroll</a> </td>
 				</tr>
 				<tr>
@@ -133,7 +134,7 @@
 					<td>Tuesday, Thursday</td>
 					<td>10:45 AM - 12:00 PM</td>
 					<td> <img class="availability-icon" src="img/Green_Circle.png" height=40 width=40 alt="This Class is Currently Available"/> </td>
-					<td> <a href="" class="notification"> <img src="img/notification-bell.png" alt="Notification Bell" class="notification-bell" width=30 height=30 /> </a> </td>
+					<td> <img src="img/notification-bell.png" alt="Notification Bell" class="notification-bell" width=40 height=40 /> </td>
 					<td> <a href="" class="enroll-button">Enroll</a> </td>
 				</tr>
 				<tr>
@@ -142,7 +143,7 @@
 					<td>Monday, Wednesday</td>
 					<td>9:15 AM - 10:30 AM</td>
 					<td> <img class="availability-icon" src="img/Green_Circle.png" height=40 width=40 alt="This Class is Currently Available"/> </td>
-					<td> <a href="" class="notification"> <img src="img/notification-bell.png" alt="Notification Bell" class="notification-bell" width=30 height=30 /> </a> </td>
+					<td> <img src="img/notification-bell.png" alt="Notification Bell" class="notification-bell" width=40 height=40 /> </td>
 					<td> <a href="" class="enroll-button">Enroll</a> </td>
 				</tr>
 			</table>
@@ -153,9 +154,11 @@
 			<!--Dropdown Menu Containing Course Results-->
 			<form id = "mobile-enroll" name = "mobile-enroll">
 				<label for="courses">Select a Course to Enroll In</label> 
-				<img src="img/notification-bell.png" alt="Notification Bell" class="notification-bell" width=30 height=30 />
+				<img src="img/notification-bell.png" alt="Notification Bell" class="notification-bell" width=40 height=40 />
 				<br>
-				<p>Example: </p> <br> <p>"Course Name" ("First 2 letters of Day(s)") - "Professor's Last Name" at "Course Time"</p>
+				<p>Example: </p> 
+				<br> 
+				<p>"Course Name" ("First 2 letters of Day(s)") - "Professor's Last Name" at "Course Time"</p>
 				<select name="courses" id="courses">
 					<option value="CS370-1">CSCI 370 (Mo/We) - Goldberg at 9:15 AM - 10:30 AM</option>
 					<option value="CS370-2">CSCI 370 (Tu/Th) - Sy at 10:45 AM - 12:00 PM</option>
