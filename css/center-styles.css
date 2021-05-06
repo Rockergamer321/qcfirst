@@ -204,21 +204,22 @@ label {
     right: 5px;
     height: 50px;
 }
-.yes-button{
-    background-color: green;
+
+.drop-modal button{
     color: white;
     line-height: inherit;
     text-decoration: none;
     width: 100%;
+    padding: 10px 0px;
     cursor: pointer;
+    font-size: 20px;
+}
+
+.yes-button{
+    background-color: green;
 }
 .no-button{
     background-color: red;
-    color: white;
-    line-height: inherit;
-    text-decoration: none;
-    width: 100%;
-    cursor: pointer;
 }
 .modal h2, .drop-modal h2{
     margin-top: 0;
