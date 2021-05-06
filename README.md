@@ -6,6 +6,34 @@ Link to Website: https://qcfirst.herokuapp.com/
 
 ### - Anthony Lombardo (Rockergamer321)
 
+
+### Contributions
+
+Anthony Lombardo
+
+Created and coded
+
+- student-center.html
+- faculty-center.html
+- course-search.html
+- settings.html
+
+Styled previously mentioned HTML files with
+
+- css/user-styles.css
+
+student-center.html and faculty-center are also styled with
+
+- css/center-styles.css
+
+course-search.html is also styled with
+
+- css/course-styles.css
+
+settings.html is also styled with
+
+- css/settings-styles.css
+
 ### - Jonathan Dinh (jonathanmdinh)
 
 
@@ -188,12 +216,18 @@ The User Settings page allows a user to access the information that the system c
 
 ![User Settings Mobile visual design](https://github.com/Rockergamer321/qcfirst/blob/main/Visual%20Designs/User%20Settings%20-%20Mobile.png)
 
-## Design Differences
+## Design Differences (Jonathan Dinh)
 
 - Login / Signup pages: The login and sign up buttons remained in the same place as the homepage, rather than on top of the border of the form container. This decision was made to keep the positioning of the buttons throughout the pages consistent, rather than have them change from one page to the next.
 - student-signup.html: A link to a new html file, teacher-signup was created to help with managing the database tables.
 - teacher-signup.html: Created to help with managing the database tables on signup. 
 - signup-successful.html: Created as a way to tell users that they have successfully signed up. If the signup was not successful, an error will be thrown.
 - login.html: The final design of the mobile login page includes the Queens College logo at the top left. The initial visual design took into account, the lack of space on the screen, which  led to the decision of removing the logo. However, after completing the code for this design, it was concluded that there was enough space for the logo to remain, ultimately improving the design.
-- student-signup.html / teacher-signup.html: Similarly to the mobile design for the login page, the Queens College logo was kept in the sign up mobile design, straying from the initial visual designs. 
+- student-signup.html / teacher-signup.html: Similarly to the mobile design for the login page, the Queens College logo was kept in the sign up mobile design, straying from the initial visual designs.
 
+## Design Differences (Anthony Lombardo)
+
+- Student Center Page: This page in its current state is very similar to the initial design. However, there are changes in terms of the Class (or rather the Course) section of the design. Initially, the design used a grid, which explains the open spaces shown. I replaced the grid with a table, in order to not make the schedule appear awkward to users. Also, I added a dropdown list on the top right of the Course section to select between different semesters. I've also included an option (Notified Courses) that shows a table consisting of courses where the student clicked the notification bell on. This table works similarly to the enroll page on CUNYFirst where the student can enroll or remove a course from the table by clicking on the notification bell to unnotify them about that course. The last update I've made to the design was an info button that displays more information about the course, along with a drop course button (In case, the student wants to drop the course in question). Lastly, the mobile design has been updated where the table is able to display more information.
+- Faculty Center Page: Much like the Student Center page, the current state is very similar to the initial design. Also, the changes to the design are very similar to the changes I've made to the Student Center design where I changed out a grid for a table, along with including a dropdown list and an info button that works similarly to the Student Center Page.
+- Course Search Page: For the desktop and tablet design of the Course Search Page, I added a notification button where students can save a course for later and view the course in their notified courses table on the Student Center page. For the mobile design of the Course Search Page, I added the notification bell on the top right of the Select Class section, along with an availability status section that is located on the bottom left. This informs the students is the course that they selected in the dropdown list is available or not. Also, it should come as no surprise that I changed every instance of the word "class" with "course"
+- Settings Page: For the Setting Page, I did not really change anything from the initial design since the design itself was simplistic to begin with. I might remove the notifications section if I do not have enough time to implement that feature to our website, but overall, the current design is the same as the initial design.
