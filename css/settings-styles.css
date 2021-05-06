@@ -140,8 +140,14 @@ input[type="email"], input[type="tel"]{
     label {
         font-size: 22px;
     }
-    .button {
+    button {
         margin-left: 30px;
         text-align: center;
+    }
+    .modal-content{
+        width: 350px;
+    }
+    input[type="email"], input[type="tel"]{
+		width: 70%;
     }
 }
