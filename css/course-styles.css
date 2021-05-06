@@ -104,19 +104,26 @@ button {
 
 .mobile-selection label{
     float: left;
-    width: 200px;
+    width: 250px;
     margin-left: 60px;
 }
 
 .mobile-selection img:first-of-type{
     float: left;
-    left: 25px;
 }
+p {
+    float: none;
+    margin: 0;
+    margin-top: -13px;
+    margin-bottom: 2px;
+}
+p:last-of-type {
+    font-style: italic;
+} 
 select {
     display: block;
     border: 3px solid #999999;
 }
-
 h3 {
     float: left;
     margin-top: 5px;
@@ -136,13 +143,6 @@ input[type=submit] {
     float: right;
     margin-right: 10px;
 }
-p {
-    margin-top: -13px;
-    margin-bottom: 2px;
-}
-p:last-of-type {
-    font-style: italic;
-} 
 @media screen and (max-width: 1161px) {
     .Class-Selection {
         margin-left: 230px;
