@@ -137,8 +137,8 @@ input[type="email"], input[type="tel"]{
     }
 }
 @media screen and (max-width: 448px) {
-    label {
-        font-size: 22px;
+    label, .modal label {
+        font-size: 18px;
     }
     button {
         margin-left: 30px;
