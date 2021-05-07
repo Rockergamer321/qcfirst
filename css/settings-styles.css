@@ -56,6 +56,10 @@ button {
     margin-left: 110px;
     margin-top: 40px;
 }
+.notifications-section h2{
+    font-size: 24px;
+    margin: 0;
+}
 input[type="checkbox"] {
     display: block;
     float: left;
@@ -67,12 +71,12 @@ label {
     display: block;
     float: left;
     position: relative;
-    margin-top: 20px;
+    margin-top: 15px;
     padding-left: 5px;
-    font-size: 30px;
+    font-size: 24px;
 }
 .checkbox-field {
-    margin-left: 100px;
+    margin-left: 150px;
 }
 .email-input {
     word-wrap: break-word;
@@ -102,10 +106,14 @@ label {
 }
 /* The Close Button */
 .close {
+    position: relative;
     color: #aaaaaa;
     float: right;
-    font-size: 28px;
+    font-size: 50px;
+    right: 10px;
+    bottom: 10px;
     font-weight: bold;
+    height: 50px;
 }
   
 .close:hover, .close:focus {
@@ -126,11 +134,11 @@ label {
 input[type="email"], input[type="tel"]{
     margin-top: 10px;
     margin-left: 5px;
-    width: 80%;
+    width: 79%;
 }
 @media screen and (max-width: 563px) {
     .checkbox-field {
-        margin-left: 0px;
+        margin-left: 20px;
     }
     .button {
         margin-left: 60px;
@@ -139,6 +147,9 @@ input[type="email"], input[type="tel"]{
 @media screen and (max-width: 448px) {
     label, .modal label {
         font-size: 18px;
+    }
+    .notifications-section label{
+        margin-top: 20px;
     }
     button {
         margin-left: 30px;
