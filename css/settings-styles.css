@@ -146,7 +146,7 @@ input[type="email"], input[type="tel"]{
 }
 @media screen and (max-width: 448px) {
     label, .modal label {
-        font-size: 18px;
+        font-size: 17px;
     }
     .notifications-section label{
         margin-top: 20px;
