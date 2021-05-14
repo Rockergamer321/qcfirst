@@ -13,20 +13,23 @@
         <meta charset = utf-8 />
         <title>Sign Up</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="css/styles.css">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://bootswatch.com/4/journal/bootstrap.min.css"/>
+        <link rel="stylesheet" href="../css/styles.css">
     </head>
 
     <body>
         <header>
             <div class="header-left">
-                <a href="https://qcfirst.herokuapp.com/"><img src="img/qc_logo.jpg" 
-                    alt="Queens College logo"></a> <!--QC Logo will appear on every webpage-->
+                <a href="../index.html"><img src="img/qc_logo.jpg" alt="Queens College logo"></a> <!--QC Logo will appear on every webpage-->
             </div>
             <div class="header-right">
-                <a class="menu-login" href="https://qcfirst.herokuapp.com/login.html">Login</a> 
-                <a class="menu-sign-up" href="https://qcfirst.herokuapp.com/student-signup.html">Sign Up</a> 
+                <a class="menu-login" href="/login">Login</a> 
+                <a class="menu-sign-up" href="/studentsignup">Sign Up</a> 
             </div>
         </header>
+
+        <%- include ('./partials/messages'); %> 
 
         <form action="/teachersignup" method="post">
             <!--Form fields for user to fill out to sign up-->
@@ -49,11 +52,25 @@
                 </div>
 
                 <div class = "studentbtn">
-                    <a href = "https://qcfirst.herokuapp.com/student-signup.html">
-                        Click Here for Student Sign Up</a>
+                    <a href = "/studentsignup">Click Here for Student Sign Up</a>
                 </div>
             </div>
         </form>
+        <script
+        src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"
+      ></script>
+      <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+        integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+        crossorigin="anonymous"
+      ></script>
+      <script
+        src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+        integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+        crossorigin="anonymous"
+      ></script>
     </body>
 </html>
 

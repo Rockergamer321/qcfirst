@@ -21,15 +21,15 @@
 		<meta charset = UTF-8 />
 		<title>Student Center</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<link rel="stylesheet" href="/css/user-styles.css">
-		<link rel="stylesheet" href="/css/center-styles.css">
-		<script src="/js/center-script.js"></script>
+		<link rel="stylesheet" href="../css/user-styles.css">
+		<link rel="stylesheet" href="../css/center-styles.css">
+		<script src="../js/center-script.js"></script>
 	</head>
 	<body>
 		<!--Page Header-->
 		<div class="topnav">
 			<!--QC Logo-->
-			<a href="student-center.html" class="logo"> 
+			<a href="/studentcenter" class="logo"> 
 				<img src="img/qc_logo.jpg" width=120 alt="QC Logo"/> 
 			</a>
 			<!--Dropdown Navigation Menu Stored in User Icon-->
@@ -39,16 +39,15 @@
 					<img src="img/User.png" width=50 alt="Profile Photo" /> 
 					<!--Links That Direct to Home (Student Center), Settings, and Sign Out (Homepage)-->
 					<nav class="dropdown-list">
-						<a href="student-center.html" class="dropdown-link">Home</a> <br>
-						<a href="settings.html" class="dropdown-link">Settings</a> <br>
-						<a href="index.html" class="dropdown-link">Sign Out</a>
+						<a href="/studentcenter" class="dropdown-link">Home</a> <br>
+						<a href="/settings" class="dropdown-link">Settings</a> <br>
+						<a href="/signout" class="dropdown-link">Sign Out</a>
 					</nav>
 				</div>
 			</nav>
 		</div> <!--End of Page Header-->
-		<h1> Welcome to Student Center</h1> <!--Page Heading-->
-		<h2>For Faculty Center: <a href="faculty-center.html">Click Here</a></h2>
-		<!--Section That Contains Link Options and Course Schedule (Depending on Selected Semester/Term)-->
+		<h1> Welcome to Student Center, <br> <%= name %> </h1> <!--Page Heading-->
+ 		<!--Section That Contains Link Options and Course Schedule (Depending on Selected Semester/Term)-->
 		<section class="main-section">
 			<div class="row">
 				<!--Left Column That Displays the Option Links-->
@@ -56,7 +55,7 @@
 					<h2>Options</h2>
 					<!--Links That direct to Course Search, Blackboard, and Degreeworks-->
 					<div class="container">
-						<a href="course-search.html"> Course Search <br/></a>
+						<a href="/coursesearch"> Course Search <br/></a>
 						<a href="https://bbhosted.cuny.edu/"> Blackboard <br/></a>
 						<a href="https://degreeworks.cuny.edu/"> Degreeworks <br/></a>
 					</div>
@@ -102,14 +101,14 @@
 											<p>Description: Principles and Implementation of Programming Languages</p>
 											<p>Available Seats: 3</p>
 											<p>Enrollment Deadline: Already Passed</p>
-											<button class="delete-button" type="button">Drop Class</button>
+											<button class="delete-button" type="button">Drop Course</button>
 										</div>
 									</div>
 									<div class="drop-modal">
 										<div class="drop-warning">
 											<header class="modal-header">
 												<span class="close">&times;</span>
-												<h2>Are You Sure You Want to Drop This Class?</h2>
+												<h2>Are You Sure You Want to Drop This Course?</h2>
 												<br>
 											</header>
 											<button type="button" class="yes-button">YES</button>
@@ -138,14 +137,14 @@
 											<p>Description: This Course Covers The Theory Behind Database Systems, Including SQL, Transactions, etc.</p>
 											<p>Available Seats: 5</p>
 											<p>Enrollment Deadline: Already Passed</p>
-											<button class="delete-button" type="button">Drop Class</button>
+											<button class="delete-button" type="button">Drop Course</button>
 										</div>
 									</div>
 									<div class="drop-modal">
 										<div class="drop-warning">
 											<header class="modal-header">
 												<span class="close">&times;</span>
-												<h2>Are You Sure You Want to Drop This Class?</h2>
+												<h2>Are You Sure You Want to Drop This Course?</h2>
 											</header>
 											<button type="button" class="yes-button">YES</button>
 											<button type="button" class="no-button">NO</button>
@@ -173,14 +172,14 @@
 											<p>Description: This Course Covers Advanced Data Structures</p>
 											<p>Available Seats: 8</p>
 											<p>Enrollment Deadline: Already Passed</p>
-											<button class="delete-button" type="button">Drop Class</button>
+											<button class="delete-button" type="button">Drop Course</button>
 										</div>
 									</div>
 									<div class="drop-modal">
 										<div class="drop-warning">
 											<header class="modal-header">
 												<span class="close">&times;</span>
-												<h2>Are You Sure You Want to Drop This Class?</h2>
+												<h2>Are You Sure You Want to Drop This Course?</h2>
 											</header>
 											<button type="button" class="yes-button">YES</button>
 											<button type="button" class="no-button">NO</button>
@@ -208,14 +207,14 @@
 											<p>Description: This Course Covers The Following Topics: HTML, CSS, JavaScript, etc.</p>
 											<p>Available Seats: 0</p>
 											<p>Enrollment Deadline: Already Passed</p>
-											<button class="delete-button" type="button">Drop Class</button>
+											<button class="delete-button" type="button">Drop Course</button>
 										</div>
 									</div>
 									<div class="drop-modal">
 										<div class="drop-warning">
 											<header class="modal-header">
 												<span class="close">&times;</span>
-												<h2>Are You Sure You Want to Drop This Class?</h2>
+												<h2>Are You Sure You Want to Drop This Course?</h2>
 											</header>
 											<button type="button" class="yes-button">YES</button>
 											<button type="button" class="no-button">NO</button>

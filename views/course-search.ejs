@@ -4,8 +4,8 @@
 		<meta charset = UTF-8 />
 		<title>Course Search</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<link rel="stylesheet" href="/css/user-styles.css">
-		<link rel="stylesheet" href="/css/course-styles.css">
+		<link rel="stylesheet" href="../css/user-styles.css">
+		<link rel="stylesheet" href="../css/course-styles.css">
 	</head>
 <!--
 	Name: Anthony Lombardo
@@ -34,7 +34,7 @@
 		<!--Page Header-->
 		<div class="topnav">
 			<!--QC Logo-->
-			<a href="student-center.html" class="logo"> 
+			<a href="/studentcenter" class="logo"> 
 				<img src="img/qc_logo.jpg" width=120 alt="QC Logo"/> 
 			</a>
 			<!--Dropdown Navigation Menu Stored in User Icon-->
@@ -44,9 +44,9 @@
 					<img src="img/User.png" width=50 alt="Profile Photo" /> 
 					<!--Links That Direct to Home (Student Center), Settings, and Sign Out (Homepage)-->
 					<nav class="dropdown-list">
-						<a href="student-center.html" class="dropdown-link">Home</a> <br>
-						<a href="settings.html" class="dropdown-link">Settings</a> <br>
-						<a href="index.html" class="dropdown-link">Sign Out</a>
+						<a href="/studentcenter" class="dropdown-link">Home</a> <br>
+						<a href="/settings" class="dropdown-link">Settings</a> <br>
+						<a href="/signout" class="dropdown-link">Sign Out</a>
 					</nav>
 				</div>
 			</nav>
@@ -160,13 +160,13 @@
 				<br> 
 				<p>"Course Name" ("First 2 letters of Day(s)") - "Professor's Last Name" at "Course Time"</p>
 				<select name="courses" id="courses">
-					<option value="CS370-1">CSCI 370 (Mo/We) - Goldberg at 9:15 AM - 10:30 AM</option>
-					<option value="CS370-2">CSCI 370 (Tu/Th) - Sy at 10:45 AM - 12:00 PM</option>
-					<option value="CS370-3">CSCI 370 (Mo/We) - Svadlenka at 3:10 PM - 4:25 PM</option>
-					<option value="CS370-4">CSCI 370 (Tu/Th) - Svadlenka at 12:15 PM - 1:30 PM</option>
-					<option value="CS370-5">CSCI 370 (Mo/We) - Abreu at 6:30 PM - 7:45 PM</option>
-					<option value="CS370-6">CSCI 370 (Mo/We) - Abreu at 8:00 PM - 9:15 PM</option>
-					<option value="CS370-7">CSCI 370 (Fr) - Abreu at 6:30 PM - 9:20 PM</option>
+					<option>CSCI 370 (Mo/We) - Goldberg at 9:15 AM - 10:30 AM</option>
+					<option>CSCI 370 (Tu/Th) - Sy at 10:45 AM - 12:00 PM</option>
+					<option>CSCI 370 (Mo/We) - Svadlenka at 3:10 PM - 4:25 PM</option>
+					<option>CSCI 370 (Tu/Th) - Svadlenka at 12:15 PM - 1:30 PM</option>
+					<option>CSCI 370 (Mo/We) - Abreu at 6:30 PM - 7:45 PM</option>
+					<option>CSCI 370 (Mo/We) - Abreu at 8:00 PM - 9:15 PM</option>
+					<option>CSCI 370 (Fr) - Abreu at 6:30 PM - 9:20 PM</option>
 				</select>
 				<br>
 				<!--This Informs the Student if the Course is Available or Not-->
