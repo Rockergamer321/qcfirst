@@ -1,11 +1,10 @@
 # QCFirst
 
-Link to Website: https://qcfirst.herokuapp.com/
+Link to Website: <https://qcfirst.herokuapp.com/>
 
 ## Contributors
 
 ### - Anthony Lombardo (Rockergamer321)
-
 
 ### Contributions
 
@@ -36,8 +35,6 @@ settings.html is also styled with
 
 ### - Jonathan Dinh (jonathanmdinh)
 
-
-
 ### Contributions
 
 Jonathan Dinh
@@ -65,8 +62,6 @@ In server.js:
 - Added functionality to createaclass.html form, allowing a class to be added to the database using the given form.
 
 Created qcFirst database in MongoDB Atlas with collections: students, teachers, and classes.
-
-
 
 ## Purpose
 
@@ -219,7 +214,7 @@ The User Settings page allows a user to access the information that the system c
 
 - Login / Signup pages: The login and sign up buttons remained in the same place as the homepage, rather than on top of the border of the form container. This decision was made to keep the positioning of the buttons throughout the pages consistent, rather than have them change from one page to the next.
 - student-signup.html: A link to a new html file, teacher-signup was created to help with managing the database tables.
-- teacher-signup.html: Created to help with managing the database tables on signup. 
+- teacher-signup.html: Created to help with managing the database tables on signup.
 - signup-successful.html: Created as a way to tell users that they have successfully signed up. If the signup was not successful, an error will be thrown.
 - login.html: The final design of the mobile login page includes the Queens College logo at the top left. The initial visual design took into account, the lack of space on the screen, which  led to the decision of removing the logo. However, after completing the code for this design, it was concluded that there was enough space for the logo to remain, ultimately improving the design.
 - student-signup.html / teacher-signup.html: Similarly to the mobile design for the login page, the Queens College logo was kept in the sign up mobile design, straying from the initial visual designs.
