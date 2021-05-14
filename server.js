@@ -112,7 +112,6 @@ app.post('/createaclass', function(req, res) {
   var description = req.body.description;
 
   var data = {
-    "courseID": courseID,
     "semester": semester,
     "coursename": coursename,
     "department": department,

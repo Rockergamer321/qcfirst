@@ -22,13 +22,12 @@ const Teacher = mongoose.model('Teacher', TeacherSchema);
 module.exports = Teacher;
 
 const CourseSchema = new Schema ({
-    courseID: {type: Number, unique: true, required: true},
     semester: {type: String, required: true},
-    name: {type: String, required: true},
+    coursename: {type: String, required: true},
     department: {type: String, required: true},
     instructor: {type: String, required: true},
     description: {type: String, required: true},
-    schedule: {type: Number, required: true},
+    schedule: {type: String, required: true},
     capacity: {type: Number, required: true},
     enrollmentdeadline: {type: Date, required: true}
 })
