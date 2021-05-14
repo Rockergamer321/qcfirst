@@ -18,16 +18,16 @@
 		<meta charset = UTF-8 />
 		<meta name="viewport" content="width=device-width, initial-scale=1"/>
 		<title>Settings</title>
-		<link rel="stylesheet" href="css/user-styles.css">
-		<link rel="stylesheet" href="css/settings-styles.css">
-		<script src="js/settings-script.js"></script>
+		<link rel="stylesheet" href="/css/user-styles.css">
+		<link rel="stylesheet" href="/css/settings-styles.css">
+		<script src="/js/settings-script.js"></script>
 	</head>
 	<body>
 		<!--Page Header-->
 		<div class="topnav">
 			<!--QC Logo-->
-			<a href="qcfirst.herokuapp.com/student-center.html" class="logo"> 
-				<img src="img/qc_logo.jpg" width=120 alt="QC Logo"/> 
+			<a href="student-center.html" class="logo"> 
+				<img src="/img/qc_logo.jpg" width=120 alt="QC Logo"/> 
 			</a>
 			<!--Dropdown Navigation Menu Stored in User Icon-->
 			<nav class="nav-menu">
@@ -36,16 +36,16 @@
 					<img src="img/User.png" width=50 alt="Profile Photo" /> 
 					<!--Links That Direct to Home (Student Center), Settings, and Sign Out (Homepage)-->
 					<nav class="dropdown-list">
-						<a href="qcfirst.herokuapp.com/student-center.html" class="dropdown-link">Home</a> <br>
-						<a href="qcfirst.herokuapp.com/settings.html" class="dropdown-link">Settings</a> <br>
-						<a href="qcfirst.herokuapp.com/index.html" class="dropdown-link">Sign Out</a>
+						<a href="student-center.html" class="dropdown-link">Home</a> <br>
+						<a href="settings.html" class="dropdown-link">Settings</a> <br>
+						<a href="index.html" class="dropdown-link">Sign Out</a>
 					</nav>
 				</div>
 			</nav>
 		</div> <!--End of Page Header-->
 		<!--Page Heading Containing User Image and "User Settings" Heading-->
 		<div class="heading">
-			<img src="./QCFirst/User.png" alt="User Photo" class="user-image"/>
+			<img src="/img/User.png" alt="User Photo" class="user-image"/>
 			<h1>User Settings</h1>
 		</div>
 		<!--Section Containing Name (Left Column) and ID of User (Right Column)-->
@@ -115,12 +115,12 @@
 				<!--Checkbox for Email Notifications-->
 				<div class="checkbox-field">
 					<input type="checkbox" id="email-checkbox" name="email-checkbox"/>
-					<label for="email-checkbox">Send Notifications through Email</label>
+					<label for="email-checkbox">Send Notifications Through Email</label>
 				</div>
 				<!--Checkbox for Text Message (SMS) Notifications-->
 				<div class="checkbox-field">
 					<input type="checkbox" id="sms-checkbox" name="sms-checkbox"/>
-					<label for="sms-checkbox">Send Notifications through SMS</label>
+					<label for="sms-checkbox">Send Notifications Through SMS</label>
 				</div>
 			</div>
 		</section>

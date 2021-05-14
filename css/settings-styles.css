@@ -44,7 +44,7 @@ h1:first-of-type {
     overflow: hidden;
     box-sizing: border-box;
 }
-.button {
+button {
     display: inline-block;
     padding: 10px 5px;
     margin-right: 5px;
@@ -55,6 +55,10 @@ h1:first-of-type {
     cursor: pointer;
     margin-left: 110px;
     margin-top: 40px;
+}
+.notifications-section h2{
+    font-size: 24px;
+    margin: 0;
 }
 input[type="checkbox"] {
     display: block;
@@ -67,30 +71,94 @@ label {
     display: block;
     float: left;
     position: relative;
-    margin-top: 10px;
+    margin-top: 15px;
     padding-left: 5px;
-    font-size: 30px;
+    font-size: 24px;
 }
 .checkbox-field {
-    margin-left: 100px;
+    margin-left: 150px;
 }
 .email-input {
     word-wrap: break-word;
 }
+.modal{
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+/* Modal Content */
+.modal-content {
+    background-color: white;
+    margin: auto;
+    padding: 0;
+    outline: 0;
+    height: 90px;
+    width: 500px;
+    border: 1px solid #888;
+}
+/* The Close Button */
+.close {
+    position: relative;
+    color: #aaaaaa;
+    float: right;
+    font-size: 50px;
+    right: 10px;
+    bottom: 10px;
+    font-weight: bold;
+    height: 50px;
+}
+  
+.close:hover, .close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal label {
+    display: block;
+    text-align: center;
+    float: none;
+    color: black;
+    margin-top: 20px;
+    padding-left: 5px;
+    font-size: 25px;
+}
+input[type="email"], input[type="tel"]{
+    margin-top: 10px;
+    margin-left: 5px;
+    width: 79%;
+}
 @media screen and (max-width: 563px) {
     .checkbox-field {
-        margin-left: 0px;
+        margin-left: 20px;
     }
     .button {
         margin-left: 60px;
     }
 }
 @media screen and (max-width: 448px) {
-    label {
-        font-size: 22px;
+    label, .modal label {
+        font-size: 17px;
     }
-    .button {
+    .notifications-section label{
+        margin-top: 20px;
+    }
+    button {
         margin-left: 30px;
         text-align: center;
+    }
+    .modal-content{
+        width: 350px;
+    }
+    input[type="email"], input[type="tel"]{
+		width: 70%;
     }
 }
