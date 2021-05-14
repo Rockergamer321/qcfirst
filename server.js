@@ -100,6 +100,7 @@ app.post('/teachersignup', function(req, res) {
 })
 
 //Create A Class handling: incomplete
+var Course = require("./js/model.js");
 app.post('/createaclass', function(req, res) {
   var semester = req.body.semester;
   var coursename = req.body.coursename;
@@ -111,6 +112,7 @@ app.post('/createaclass', function(req, res) {
   var description = req.body.description;
 
   var data = {
+    "courseID": courseID,
     "semester": semester,
     "coursename": coursename,
     "department": department,
@@ -121,12 +123,11 @@ app.post('/createaclass', function(req, res) {
     "description": description
   }
 
-  db.collection('teachers').insertOne(data, function(err, collection) {
-    if(err) throw err;
-    console.log("Course Successfully Created!");
+  let course = new Course(data);
+  course.save(function(err, doc) {
+    if (err) return console.error(err);
   });
-  
-  return res.redirect("https://qcfirst.herokuapp.com/createaclass.html");
+    return res.redirect("https://qcfirst.herokuapp.com/signup-successful.html");
 })
 
 /* Sources

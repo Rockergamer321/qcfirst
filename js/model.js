@@ -9,7 +9,7 @@ const StudentSchema = new Schema ({
 });
 
 const Student = mongoose.model('Student', StudentSchema);
-module.exports = Student
+module.exports = Student;
 
 const TeacherSchema = new Schema ({
     firstname: {type: String, required: true},
@@ -19,4 +19,19 @@ const TeacherSchema = new Schema ({
 });
 
 const Teacher = mongoose.model('Teacher', TeacherSchema);
-module.exports = Teacher
+module.exports = Teacher;
+
+const CourseSchema = new Schema ({
+    courseID: {type: Number, unique: true, required: true},
+    semester: {type: String, required: true},
+    name: {type: String, required: true},
+    department: {type: String, required: true},
+    instructor: {type: String, required: true},
+    description: {type: String, required: true},
+    schedule: {type: Number, required: true},
+    capacity: {type: Number, required: true},
+    enrollmentdeadline: {type: Date, required: true}
+})
+
+const Course = mongoose.model('Course', CourseSchema);
+module.exports = Course;
