@@ -18,8 +18,9 @@
 		<meta charset = UTF-8 />
 		<meta name="viewport" content="width=device-width, initial-scale=1"/>
 		<title>Settings</title>
-		<link rel="stylesheet" href="user-styles.css">
-		<link rel="stylesheet" href="settings-styles.css">
+		<link rel="stylesheet" href="css/user-styles.css">
+		<link rel="stylesheet" href="css/settings-styles.css">
+		<script src="js/settings-script.js"></script>
 	</head>
 	<body>
 		<!--Page Header-->
@@ -68,7 +69,17 @@
 					<p class="email-input">robert.mcfly1985@gmail.com</p>
 				</div>
 				<div class="right-side"> 
-					<a href="" class="button">Change Email</a>
+					<button class="change-button" type="button">Change Email</button>
+					<div class="modal">
+						<div class="modal-content">
+							<span class="close">&times;</span>
+							<form>
+								<label for="email">Enter New Email:</label>
+								<input type="email" id="email" name="email">
+								<input type="submit">
+							</form>
+						</div>
+					</div>
 				</div>
 			</div>
 		</section>
@@ -80,7 +91,19 @@
 					<p class="user-info">(917) 867-5309</p>
 				</div>
 				<div class="right-side"> 
-					<a href="" class="button">Change Phone</a> 
+					<button class="change-button" type="button">Change Phone</button>
+					<div class="modal">
+						<div class="modal-content">
+							<header class="modal-header">
+								<span class="close">&times;</span>
+							</header>
+							<form>
+								<label for="phone">Enter New Phone Number:</label>
+								<input type="tel" id="phone" name="phone">
+								<input type="submit">
+							</form>
+						</div>
+					</div>
 				</div>
 			</div>
 		</section>
