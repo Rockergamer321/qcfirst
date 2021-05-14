@@ -18,15 +18,15 @@
 		<meta charset = UTF-8 />
 		<meta name="viewport" content="width=device-width, initial-scale=1"/>
 		<title>Settings</title>
-		<link rel="stylesheet" href="/css/user-styles.css">
-		<link rel="stylesheet" href="/css/settings-styles.css">
-		<script src="/js/settings-script.js"></script>
+		<link rel="stylesheet" href="../css/user-styles.css">
+		<link rel="stylesheet" href="../css/settings-styles.css">
+		<script src="../js/settings-script.js"></script>
 	</head>
 	<body>
 		<!--Page Header-->
 		<div class="topnav">
 			<!--QC Logo-->
-			<a href="student-center.html" class="logo"> 
+			<a href="/studentcenter" class="logo"> 
 				<img src="/img/qc_logo.jpg" width=120 alt="QC Logo"/> 
 			</a>
 			<!--Dropdown Navigation Menu Stored in User Icon-->
@@ -36,28 +36,28 @@
 					<img src="img/User.png" width=50 alt="Profile Photo" /> 
 					<!--Links That Direct to Home (Student Center), Settings, and Sign Out (Homepage)-->
 					<nav class="dropdown-list">
-						<a href="student-center.html" class="dropdown-link">Home</a> <br>
-						<a href="settings.html" class="dropdown-link">Settings</a> <br>
-						<a href="index.html" class="dropdown-link">Sign Out</a>
+						<a href="<%= home %>"  class="dropdown-link">Home</a> <br>
+						<a href="/settings" class="dropdown-link">Settings</a> <br>
+						<a href="/signout" class="dropdown-link">Sign Out</a>
 					</nav>
 				</div>
 			</nav>
 		</div> <!--End of Page Header-->
 		<!--Page Heading Containing User Image and "User Settings" Heading-->
 		<div class="heading">
-			<img src="/img/User.png" alt="User Photo" class="user-image"/>
+			<img src="/img/User.png" height=250 width=250 alt="User Photo" class="user-image"/>
 			<h1>User Settings</h1>
 		</div>
 		<!--Section Containing Name (Left Column) and ID of User (Right Column)-->
 	   <section class="name-id-section">
 			<div class="row">
 				<div class="left-side">
-					<h2 class="user-info">Name:</h2>
-					<p class="user-info">Robert McFly</p>
+					<h2>Name:</h2>
+					<p><%= name %> </p>
 				</div>
 				<div class="right-side">
-					<h2 class="user-info">ID:</h2>
-					<p class="user-info">21657625</p>
+					<h2>ID:</h2>
+					<p>21657625</p>
 				</div>
 			</div>
 		</section>
@@ -65,8 +65,8 @@
 		<section class="email-section">
 			<div class="row">
 				<div class="left-side">
-					<h2 class="user-info">Email:</h2>
-					<p class="email-input">robert.mcfly1985@gmail.com</p>
+					<h2>Email:</h2>
+					<p class="email-input"><%= email %> </p>
 				</div>
 				<div class="right-side"> 
 					<button class="change-button" type="button">Change Email</button>
@@ -83,44 +83,15 @@
 				</div>
 			</div>
 		</section>
-		<!--Section Containing Phone of User (Left Column) and Button to Change Phone of User (Right Column)-->
-		<section class="phone-section">
-			<div class="row">
-				<div class="left-side">
-					<h2 class="user-info">Phone:</h2>
-					<p class="user-info">(917) 867-5309</p>
-				</div>
-				<div class="right-side"> 
-					<button class="change-button" type="button">Change Phone</button>
-					<div class="modal">
-						<div class="modal-content">
-							<header class="modal-header">
-								<span class="close">&times;</span>
-							</header>
-							<form>
-								<label for="phone">Enter New Phone Number:</label>
-								<input type="tel" id="phone" name="phone">
-								<input type="submit">
-							</form>
-						</div>
-					</div>
-				</div>
-			</div>
-		</section>
 		<!--Section Where User Selects How They Receive Notifications-->
 		<section class="notifications-section">
-			<h2 class="user-info">Notifications</h2>
+			<h2>Notifications</h2>
 			<!--Div That Holds Both Notification Checkboxes-->
 			<div class="check">
 				<!--Checkbox for Email Notifications-->
 				<div class="checkbox-field">
 					<input type="checkbox" id="email-checkbox" name="email-checkbox"/>
 					<label for="email-checkbox">Send Notifications Through Email</label>
-				</div>
-				<!--Checkbox for Text Message (SMS) Notifications-->
-				<div class="checkbox-field">
-					<input type="checkbox" id="sms-checkbox" name="sms-checkbox"/>
-					<label for="sms-checkbox">Send Notifications Through SMS</label>
 				</div>
 			</div>
 		</section>

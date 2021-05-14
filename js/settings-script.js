@@ -10,16 +10,4 @@ window.onload = function(){
     closeEmail.onclick = function() {
         emailModal.style.display = "none";
     };
-    
-    //Phone Modal
-    var phoneModal = document.getElementsByClassName("modal")[1];
-    var openPhone = document.getElementsByClassName("change-button")[1];
-    var closePhone = document.getElementsByClassName("close")[1];
-    
-    openPhone.onclick = function() {
-        phoneModal.style.display = "block";
-    };
-    closePhone.onclick = function() {
-        phoneModal.style.display = "none";
-    };
 };

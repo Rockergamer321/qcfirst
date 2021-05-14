@@ -16,15 +16,15 @@
 		<meta charset = UTF-8 />
 		<title>Faculty Center</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<link rel="stylesheet" href="/css/user-styles.css">
-		<link rel="stylesheet" href="/css/center-styles.css">
-		<script src="/js/center-script.js"></script>
+		<link rel="stylesheet" href="../css/user-styles.css">
+		<link rel="stylesheet" href="../css/center-styles.css">
+		<script src="../js/center-script.js"></script>
 	</head>
 	<body>
 		<!--Page Header-->
 		<div class="topnav">
 			<!--QC Logo-->
-			<a href="student-center.html" class="logo"> 
+			<a href="/facultycenter" class="logo"> 
 				<img src="img/qc_logo.jpg" width=120 alt="QC Logo"/> 
 			</a>
 			<!--Dropdown Navigation Menu Stored in User Icon-->
@@ -34,14 +34,14 @@
 					<img src="img/User.png" width=50 alt="Profile Photo" /> 
 					<!--Links That Direct to Home (Student Center), Settings, and Sign Out (Homepage)-->
 					<nav class="dropdown-list">
-						<a href="student-center.html" class="dropdown-link">Home</a> <br>
-						<a href="settings.html" class="dropdown-link">Settings</a> <br>
-						<a href="index.html" class="dropdown-link">Sign Out</a>
+						<a href="/facultycenter" class="dropdown-link">Home</a> <br>
+						<a href="/settings" class="dropdown-link">Settings</a> <br>
+						<a href="/signout" class="dropdown-link">Sign Out</a>
 					</nav>
 				</div>
 			</nav>
 		</div> <!--End of Page Header-->
-		<h1>Welcome to Faculty Center</h1> <!--Page Heading-->
+		<h1>Welcome to Faculty Center, <br> <%= name %> </h1> <!--Page Heading-->
 		<section class="main-faculty-section"> <!--Section That Contains Link Options and Course Schedule (Depending on Selected Semester/Term)-->
 			<div class="row">
 				<!--Left Column That Displays the Option Links-->
@@ -49,7 +49,7 @@
 					<h2>Options</h2>
 					<!--Links That Direct to Create a Class and Blackboard-->
 					<div class="container">
-						<a href="createaclass.html" class="link"> Create a Class <br/></a>
+						<a href="/createacourse" class="link"> Create a Course <br/></a>
 						<a href="https://bbhosted.cuny.edu/"> Blackboard <br/></a>
 					</div>
 				</div>
@@ -88,14 +88,14 @@
 											<p>Semester: Spring 2021</p>
 											<p>Department: Computer Science</p>
 											<p>Enrollment Total: 36/40</p>
-											<button class="delete-button" type="button">Remove Class</button>
+											<button class="delete-button" type="button">Remove Course</button>
 										</div>
 									</div>
 									<div class="drop-modal">
 										<div class="drop-warning">
 											<header class="modal-header">
 												<span class="close">&times;</span>
-												<h2>Are You Sure You Want to Remove This Class?</h2>
+												<h2>Are You Sure You Want to Remove This Course?</h2>
 											</header>
 											<button type="button" class="yes-button">YES</button>
 											<button type="button" class="no-button">NO</button>
@@ -119,14 +119,14 @@
 											<p>Semester: Spring 2021</p>
 											<p>Department: Computer Science</p>
 											<p>Enrollment Total: 23/30</p>
-											<button class="delete-button" type="button">Remove Class</button>
+											<button class="delete-button" type="button">Remove Course</button>
 										</div>
 									</div>
 									<div class="drop-modal">
 										<div class="drop-warning">
 											<header class="modal-header">
 												<span class="close">&times;</span>
-												<h2>Are You Sure You Want to Remove This Class?</h2>
+												<h2>Are You Sure You Want to Remove This Course?</h2>
 											</header>
 											<button type="button" class="yes-button">YES</button>
 											<button type="button" class="no-button">NO</button>
@@ -150,14 +150,14 @@
 											<p>Semester: Spring 2021</p>
 											<p>Department: Computer Science</p>
 											<p>Enrollment Total: 28/30</p>
-											<button class="delete-button" type="button">Remove Class</button>
+											<button class="delete-button" type="button">Remove Course</button>
 										</div>
 									</div>
 									<div class="drop-modal">
 										<div class="drop-warning">
 											<header class="modal-header">
 												<span class="close">&times;</span>
-												<h2>Are You Sure You Want to Remove This Class?</h2>
+												<h2>Are You Sure You Want to Remove This Course?</h2>
 											</header>
 											<button type="button" class="yes-button">YES</button>
 											<button type="button" class="no-button">NO</button>

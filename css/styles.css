@@ -223,6 +223,7 @@ body {
 .createaclass h1 {
   font-size: 38px;
   margin: 0;
+  font-family: "Shippori Mincho", serif;
 }
 
 .login-container input,
@@ -232,6 +233,10 @@ body {
   padding: 12px 20px;
   margin: 8px 0;
   box-sizing: border-box;
+}
+
+.createaclass input[type="checkbox"]{
+  width: 3%;
 }
 
 .createaclass textarea {
@@ -251,15 +256,7 @@ input[type="submit"] {
   font-weight: bold;
   font-size: 26px;
   color: white;
-}
-
-.signup-to-login {
-  position: relative;
-  padding: 20px 50px;
-  text-decoration: none;
-  color: rgb(255, 255, 255);
-  text-align: center;
-  background-color: rgb(24, 97, 255);
+  font-family: arial, "Shippori Mincho", serif
 }
 @media all and (min-width: 786px) {
   .header {

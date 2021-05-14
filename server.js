@@ -5,8 +5,12 @@ express-validator methods to add constraints to database entries.  */
 const express = require('express');
 const mongoose = require('mongoose');
 const path = require('path');
-const bcrypt = require("bcrypt");
-const jwt = require('jsonwebtoken');
+const bcrypt = require('bcryptjs');
+const passport = require('passport');
+const flash = require('connect-flash');
+const session = require('express-session');
+const { ensureAuthenticated } = require('./js/authorize');
+const { userRedirect } = require('./js/user-redirect');
 
 //Connect to MongoDB Atlas
 try {
@@ -17,7 +21,7 @@ try {
     () => console.log("Mongoose is connected")
   );
 } catch (e) {
-  console.log("Failed to connect")
+  console.log("Failed to connect");
 }
 
 mongoose.Promise = global.Promise;
@@ -29,13 +33,17 @@ var app = express();
 
 var port = process.env.PORT || 8080;
 app.listen(port, function() {
-  console.log('Running on Port' + port);
+  console.log('Running on Port ' + port);
 });
 
 
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'index.html'));
 });
+
+//Set the view engine to ejs
+app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, './views'));
 
 
 // ==============
@@ -48,67 +56,197 @@ app.use(express.urlencoded({
   extended: true
 }));
 
-//Login 
+// Express session (Required by flash)
+app.use(
+  session({
+    secret: 'secret',
+    resave: true,
+    saveUninitialized: true
+  })
+);
+
+//Passport Middlewares (Responsible for Logging Users in)
+app.use(passport.initialize());
+app.use(passport.session());
+
+//Passport Config:
+require('./js/passport-config')(passport);
+
+//Connect flash (Sends Form Messages)
+app.use(flash());
+
+//Global variables
+app.use(function(req, res, next) {
+  res.locals.success_msg = req.flash('success_msg');
+  res.locals.error_msg = req.flash('error_msg');
+  res.locals.error = req.flash('error');
+  next();
+});
+
+//This loads up the login page
+app.get('/login', (req, res) => {
+  res.render('login');
+});
+
+//This loads up the Student Signup page
+app.get('/studentsignup', (req, res) => {
+  res.render('student-signup');
+});
+//This loads up the Teacher Signup page
+app.get('/teachersignup', (req, res) => {
+  res.render('teacher-signup');
+});
+
+//This loads up the Student Center page
+app.get('/studentcenter', ensureAuthenticated, (req, res) => {
+  res.render('student-center', {
+    name: req.user.firstname + " " + req.user.lastname
+  });
+});
+
+//This loads up the Course Search page
+app.get('/coursesearch', ensureAuthenticated, (req, res) => {
+  res.render('course-search');
+});
+
+//This loads up the Faculty Center page
+app.get('/facultycenter', ensureAuthenticated,(req, res) => {
+  res.render('faculty-center', {
+    name: req.user.firstname + " " + req.user.lastname
+  });
+});
+
+//This loads up the Create a Course page
+app.get('/createacourse', ensureAuthenticated, (req, res) => {
+  res.render('createacourse');
+});
+
+//This Loads up the Settings Page
+app.get('/settings', ensureAuthenticated,(req, res) => {
+  res.render('settings', {
+    home: userRedirect(req.user.role),
+    name: req.user.firstname + " " + req.user.lastname,
+    email: req.user.emailaddress
+  });
+});
 
 //Student Sign Up
-var Student = require("./js/model.js");
+var User = require("./models/users.js");
 app.post('/studentsignup', function(req, res) {
   var firstname= req.body.firstname;
   var lastname = req.body.lastname;
+  var role = "Student";
   var emailaddress = req.body.emailaddress;
   var password = req.body.password;
 
-  req.body.password = bcrypt.hashSync(req.body.password, 10);
+  let errors = [];
+
+  User.findOne({ emailaddress: emailaddress }).then(user => {
+    if (user) {
+      errors.push({ msg: 'Email already exists' });
+      res.render('student-signup', {
+        errors
+      });
+    }
+  });
 
   var data = {
     "firstname": firstname,
     "lastname": lastname,
+    "role": role,
     "emailaddress": emailaddress,
     "password": password
-  }
+  };
 
-  let student = new Student(data);
-  student.save(function(err, doc) {
-    if (err) return console.error(err);
+  let newStudent = new User(data);
+
+  //Hash Password
+  bcrypt.genSalt(10, (err, salt) => {
+    bcrypt.hash(newStudent.password, salt, (err, hash) => {
+      if(err) throw err;
+      newStudent.password = hash; // Set Password to Hash
+      newStudent.save()
+        .then(User => { 
+          req.flash('success_msg', 'You are now registered and can log in');
+          res.redirect("/login"); })
+        .catch(err => console.log(err));
+    });
   });
-    return res.redirect("https://qcfirst.herokuapp.com/signup-successful.html");
-})
+});
 
 //Teacher Sign Up
-var Teacher = require("./js/model.js");
+var User = require("./models/users.js");
 app.post('/teachersignup', function(req, res) {
-
-  req.body.password = bcrypt.hashSync(req.body.password, 10);
-
   var firstname= req.body.firstname;
   var lastname = req.body.lastname;
+  var role = "Faculty";
   var emailaddress = req.body.emailaddress;
   var password = req.body.password;
-  
+
+  let errors = [];
+
+  User.findOne({ emailaddress: emailaddress }).then(user => {
+    if (user) {
+      errors.push({ msg: 'Email already exists' });
+      res.render('teacher-signup', {
+        errors
+      });
+    }
+  });
+
   var data = {
     "firstname": firstname,
     "lastname": lastname,
+    "role": role,
     "emailaddress": emailaddress,
     "password": password
-  }
+  };
 
-  let teacher = new Teacher(data);
-  teacher.save(function(err, doc) {
-    if (err) return console.error(err);
+  let newTeacher = new User(data);
+
+  //Hash Password
+  bcrypt.genSalt(10, (err, salt) => {
+    bcrypt.hash(newTeacher.password, salt, (err, hash) => {
+      if(err) throw err;
+      newTeacher.password = hash; // Set Password to Hash
+      newTeacher.save()
+        .then(User => { 
+          req.flash('success_msg', 'You are now registered and can log in');
+          res.redirect("/login"); })
+        .catch(err => console.log(err));
+    });
   });
-    return res.redirect("https://qcfirst.herokuapp.com/signup-successful.html");
-})
+});
 
-//Create A Class handling: incomplete
-var Course = require("./js/model.js");
-app.post('/createaclass', function(req, res) {
+//Login
+var User = require("./models/users.js");
+app.post('/login',
+  passport.authenticate('local', {
+    failureRedirect: '/login',
+    failureFlash: true
+  }), (req, res) => {
+    res.redirect(userRedirect(req.user.role));
+ });
+
+//Log out / Sign out User
+app.get('/signout', (req, res) => {
+  req.logout();
+  req.flash('success_msg', 'You Are Signed Out');
+  res.redirect('/login');
+});
+
+//Create A Class handling
+var Course = require("./models/courses.js");
+app.post('/createacourse', function(req, res) {
   var semester = req.body.semester;
   var coursename = req.body.coursename;
   var department = req.body.department;
   var instructor = req.body.instructor;
-  var schedule = req.body.schedule;
+  var coursedays = req.body.coursedays;
+  var coursetime = req.body.coursetime;
   var enrollmentdeadline = req.body.enrollmentdeadline;
   var capacity = req.body.capacity;
+  var studentsenrolled = req.body.studentsenrolled;
   var description = req.body.description;
 
   var data = {
@@ -116,18 +254,22 @@ app.post('/createaclass', function(req, res) {
     "coursename": coursename,
     "department": department,
     "instructor": instructor,
-    "schedule": schedule,
+    "coursedays": coursedays,
+    "coursetime": coursetime,
     "enrollmentdeadline": enrollmentdeadline,
     "capacity": capacity,
+    "studentsenrolled": studentsenrolled,
     "description": description
-  }
+  };
 
-  let course = new Course(data);
-  course.save(function(err, doc) {
+  let course = Course(data);
+
+  course.save(function(err) {
     if (err) return console.error(err);
   });
-    return res.redirect("https://qcfirst.herokuapp.com/signup-successful.html");
-})
+  
+  res.redirect("/createacourse");
+});
 
 /* Sources
 https://zellwk.com/blog/crud-express-mongodb/
