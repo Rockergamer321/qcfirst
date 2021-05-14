@@ -99,7 +99,8 @@ app.post('/teachersignup', function(req, res) {
     return res.redirect("https://qcfirst.herokuapp.com/signup-successful.html");
 })
 
-//Create A Class handling: incomplete
+//Create A Class handling
+//TODO create a page to redirect to when coure creation is successful.
 var Course = require("./js/model.js");
 app.post('/createaclass', function(req, res) {
   var semester = req.body.semester;
