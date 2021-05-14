@@ -252,6 +252,15 @@ input[type="submit"] {
   font-size: 26px;
   color: white;
 }
+
+.signup-to-login {
+  position: relative;
+  padding: 20px 50px;
+  text-decoration: none;
+  color: rgb(255, 255, 255);
+  text-align: center;
+  background-color: rgb(24, 97, 255);
+}
 @media all and (min-width: 786px) {
   .header {
     padding: 100px 0;

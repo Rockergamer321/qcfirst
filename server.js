@@ -4,8 +4,9 @@ express-validator methods to add constraints to database entries.  */
 
 const express = require('express');
 const mongoose = require('mongoose');
-const passport = require('passport');
 const path = require('path');
+const bcrypt = require("bcrypt");
+const jwt = require('jsonwebtoken');
 
 //Connect to MongoDB Atlas
 try {
@@ -57,6 +58,8 @@ app.post('/studentsignup', function(req, res) {
   var emailaddress = req.body.emailaddress;
   var password = req.body.password;
 
+  req.body.password = bcrypt.hashSync(req.body.password, 10);
+
   var data = {
     "firstname": firstname,
     "lastname": lastname,
@@ -74,11 +77,14 @@ app.post('/studentsignup', function(req, res) {
 //Teacher Sign Up
 var Teacher = require("./js/model.js");
 app.post('/teachersignup', function(req, res) {
+
+  req.body.password = bcrypt.hashSync(req.body.password, 10);
+
   var firstname= req.body.firstname;
   var lastname = req.body.lastname;
   var emailaddress = req.body.emailaddress;
   var password = req.body.password;
-
+  
   var data = {
     "firstname": firstname,
     "lastname": lastname,

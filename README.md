@@ -28,11 +28,12 @@ Styled previously mentioned HTML files with
 
 In server.js:
 
-- installed and saved: express, mongoose, and passport.
+- installed and saved packages: express, mongoose, and passport.
 - connected to MongoDB Atlas database using mongose.connect().
 - hosted website on Heroku using app.listen() and a newly created Procfile.
+  - This also required the use of the Heroku CLI.
 - added functionality to both student and teacher signup forms, allowing users to be added to the MongoDB database using the given forms.
-  - Added schemas for both user types, ensuring that an email can only exist once in the database.
+  - Added schemas for both user types in model.js, ensuring that an email can only exist once in the database.
 - Added functionality to createaclass.html form, allowing a class to be added to the database using the given form.
 
 Created qcFirst database in MongoDB Atlas with collections: students, teachers, and classes.
