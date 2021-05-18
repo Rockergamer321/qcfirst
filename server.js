@@ -263,14 +263,15 @@ app.post('/createacourse', function(req, res) {
   };
 
   let course = Course(data);
-
-  course.save(function(err) {
-    if (err) return console.error(err);
+  course.save()
+        .then(User => { 
+          req.flash('success_msg', 'Success');
+          res.redirect("/createacourse"); })
+        .catch(err => console.log(err));
+        res.redirect("/createacourse");
   });
-  
-  res.redirect("/createacourse");
-});
 
+  
 /* Sources
 https://zellwk.com/blog/crud-express-mongodb/
 https://stackoverflow.com/questions/18088034/how-to-go-up-using-dirname-in-the-folder-hierarchy

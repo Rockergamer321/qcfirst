@@ -107,7 +107,7 @@ body {
   height: auto;
 }
 /*removes login / sign up buttons */
-.menu-sign-up,
+.menu-signup,
 .menu-login {
   display: none;
 }
@@ -235,7 +235,7 @@ body {
   box-sizing: border-box;
 }
 
-.createaclass input[type="checkbox"]{
+.createaclass input[type="checkbox"] {
   width: 3%;
 }
 
@@ -256,7 +256,7 @@ input[type="submit"] {
   font-weight: bold;
   font-size: 26px;
   color: white;
-  font-family: arial, "Shippori Mincho", serif
+  font-family: arial, "Shippori Mincho", serif;
 }
 @media all and (min-width: 786px) {
   .header {

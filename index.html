@@ -16,6 +16,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" type="text/css" href="css/styles.css">
+        <script src="js/script.js"></script>
     </head>
 
     <body>
@@ -23,17 +24,17 @@
             <div class="header-left">
                 <a href="index.html"><img src="img/qc_logo.jpg" alt="Queens College logo"></a> <!--QC Logo will appear on every webpage-->
             </div>
-            <div class="header-right">
+            <div class="header-right" id="links">
                 <a class="menu-login" href="/login">Login</a> 
-                <a class="menu-sign-up" href="/studentsignup">Sign Up</a> 
-                <a href="javascript:;" class="mobile-menu-button">
+                <a class="menu-signup" href="/studentsignup">Sign Up</a> 
+                <a href="javascript:void(0);" class="mobile-menu-button" onclick="openMenu()">
                     <i class="fa fa-bars"></i>
                 </a>
             </div>
         </header>
 
         <div class="topnav" id="myTopnav">
-            <ul class="topnav_list">
+            <ul class="topnav_list" >
                 <li><a href="https://www.qc.cuny.edu/Academics/Degrees/Pages/default.aspx">Departments</a></li>
                 <li><a href="https://library.qc.cuny.edu/">Libraries</a></li>
                 <li><a href="https://queensknights.com/index.aspx">Athletics</a></li>
