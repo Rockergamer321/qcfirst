@@ -20,6 +20,9 @@ body {
   background: #fff;
 }
 
+li {
+  list-style: none;
+}
 .header {
   display: flex;
   flex-flow: row nowrap;
@@ -69,7 +72,7 @@ body {
   background-color: lightgrey;
 }
 
-.topnav_list {
+.topnav #myLinks {
   display: flex;
   flex-flow: row nowrap;
   margin: 0;
@@ -77,13 +80,13 @@ body {
   flex: 0 0 350px;
 }
 
-.topnav li {
-  display: inline-block;
+.topnav a {
+  display: block;
   color: black;
   flex: 1 1 auto;
 }
 
-.topnav li:not(:last-of-type) {
+.topnav a:not(:last-of-type) {
   /*not the hamburger menu*/
   display: none;
 }
@@ -107,8 +110,7 @@ body {
   height: auto;
 }
 /*removes login / sign up buttons */
-.menu-signup,
-.menu-login {
+.menu-link {
   display: none;
 }
 
@@ -262,11 +264,10 @@ input[type="submit"] {
   .header {
     padding: 100px 0;
   }
-  .topnav li:last-of-type {
+  .topnav a:last-of-type {
     display: none;
   }
-  .menu-sign-up,
-  .menu-login {
+  .menu-link {
     display: block;
   }
   .homepage-details {
@@ -287,11 +288,37 @@ input[type="submit"] {
   .advisement-info-wrap {
     padding: 10px;
   }
-  .topnav li:not(:last-of-type) {
+  .topnav a:not(:last-of-type) {
     display: inline-block;
   }
 
-  .topnav li:last-of-type {
+  .topnav a:last-of-type {
     display: none;
+  }
+}
+
+/* The "responsive" class is added to the topnav with JavaScript when the user clicks on the icon. 
+This class makes the topnav look good on small screens (display the links vertically instead of 
+horizontally) */
+
+@media screen and (max-width: 786px) {
+  .header-right.responsive {
+    position: relative;
+  }
+
+  .header-right.responsive a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+
+  .topnav.responsive {
+    position: relative;
+  }
+
+  .topnav.responsive a {
+    float: bottom;
+    display: block;
+    text-align: left;
   }
 }
