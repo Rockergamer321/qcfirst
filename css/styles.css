@@ -25,7 +25,7 @@ li {
 }
 .header {
   display: flex;
-  flex-flow: row nowrap;
+  flex-flow: row wrap;
   /* padding: 100px 0; */
   align-items: center;
 }
@@ -48,7 +48,8 @@ li {
 }
 
 /*Styles the Login / Sign Up links*/
-.header-right a {
+.menu-link,
+.mobile-menu-button {
   position: relative;
   padding: 20px 50px;
   text-decoration: none;
@@ -58,9 +59,28 @@ li {
 }
 
 /*Styles Login / Sign Up buttons on hover*/
-.header-right a:hover {
+.menu-link:hover {
   background-color: rgb(223, 221, 221);
   color: black;
+}
+
+.header-mobile-menu {
+  flex: 0 0 100%;
+  display: none;
+}
+
+.header-mobile-menu.active {
+  display: block;
+}
+
+.mobile-menu-link {
+  display: block;
+  position: relative;
+  padding: 20px 50px;
+  text-decoration: none;
+  color: black;
+  text-align: center;
+  background-color: #ccc;
 }
 
 /*Styles nagivation bar*/
@@ -72,35 +92,36 @@ li {
   background-color: lightgrey;
 }
 
-.topnav #myLinks {
-  display: flex;
-  flex-flow: row nowrap;
+#myLinks {
+  display: none; /* The menu on mobile should be hidden by default. See media query where it gets displayed on larger screens */
+  flex-flow: column wrap; /*stacks the menu vertically on mobile*/
   margin: 0;
   padding: 0;
   flex: 0 0 350px;
 }
 
-.topnav a {
+#myLinks.active {
+  display: flex;
+}
+
+.nav-link {
   display: block;
   color: black;
   flex: 1 1 auto;
+  padding: 20px 0;
+  text-decoration: none;
+  font-size: 1.2 em;
 }
 
-.topnav a:not(:last-of-type) {
-  /*not the hamburger menu*/
-  display: none;
-}
-
-/*Styles navigation bar links*/
-.topnav a {
+.topnav-hamburger {
   display: block;
+  color: black;
   padding: 20px 0;
   text-decoration: none;
   font-size: 1.2em;
-  color: black;
 }
 
-.topnav a:hover {
+.nav-link:hover {
   background-color: rgb(223, 221, 221);
   color: black;
 }
@@ -264,12 +285,20 @@ input[type="submit"] {
   .header {
     padding: 100px 0;
   }
-  .topnav a:last-of-type {
+
+  #myLinks {
+    display: flex;
+    flex-flow: row nowrap;
+  }
+
+  .topnav-hamburger {
     display: none;
   }
+
   .menu-link {
     display: block;
   }
+
   .homepage-details {
     flex-flow: row wrap;
   }
@@ -290,10 +319,6 @@ input[type="submit"] {
   }
   .topnav a:not(:last-of-type) {
     display: inline-block;
-  }
-
-  .topnav a:last-of-type {
-    display: none;
   }
 }
 
