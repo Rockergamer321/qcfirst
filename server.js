@@ -121,6 +121,17 @@ app.get('/createacourse', ensureAuthenticated, (req, res) => {
   res.render('createacourse');
 });
 
+app.get('/admin', (req, res) => {
+  res.render('admin');
+});
+
+app.get('user-display', (req, res) => {
+  res.render('user-display');
+});
+
+app.get('/course-display', (req, res) => {
+  res.render('course-display');
+});
 //This Loads up the Settings Page
 app.get('/settings', ensureAuthenticated,(req, res) => {
   res.render('settings', {

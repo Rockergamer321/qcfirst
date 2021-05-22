@@ -281,6 +281,28 @@ input[type="submit"] {
   color: white;
   font-family: arial, "Shippori Mincho", serif;
 }
+
+.admin-title {
+  text-align: center;
+}
+
+.admin-menu {
+  width: 100%;
+}
+
+.admin-menu a {
+  background-color: #eee; /* Grey background color */
+  color: black; /* Black text color */
+  display: block; /* Make the links appear below each other */
+  padding: 12px; /* Add some padding */
+  text-decoration: none; /* Remove underline from links */
+  text-align: center;
+}
+
+.admin-menu a:hover {
+  background-color: #ccc; /* Dark grey background on mouse-over */
+}
+
 @media all and (min-width: 786px) {
   .header {
     padding: 100px 0;

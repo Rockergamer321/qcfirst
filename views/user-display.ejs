@@ -10,7 +10,7 @@
 <html lang="en">
     <head>
         <meta charset = utf-8 />
-        <title>Login</title>
+        <title>user-display</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" 
         integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" 
@@ -26,18 +26,29 @@
                 <a href="../index.html"><img src="img/qc_logo.jpg" alt="Queens College logo"></a> 
             </div>
             <div class="admin-title">
-                <h1>Welcome to the Administration Page</h1>
+                <h1>User Database</h1>
             </div>
         </header>
 
         <div class = "admin-menu">
-            <a class = "databaselink" href="/user-display">User Database</a>
-            <a class = "databaselink" href="/user-display">Course Database</a>
-            <a class = "databaselink" href="../index.html">Click Here to Return Home</a>
+            <form action="/" method="POST">
+                <table class="table">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>Name</th>
+                            <th>User ID</th>
+                            <th>Role</th>
+                            <th>Email</th>
+                            <th>Password</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <%- include('table.ejs') %>
+                    </tbody>
+                </table>
+            </form>
         </div>
 
+        <script src="/js/index.js"></script>
     </body>
 </html>
-
-
-        
