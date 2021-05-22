@@ -23,26 +23,111 @@
 
     <body>
         <header>
-            <a href="/facultycenter"><img src="img/qc_logo.jpg" alt="Queens College logo"></a> <!--QC Logo will appear on every webpage-->
+            <a href="/facultycenter"><img class="createcourseimg" src="img/qc_logo.jpg" alt="Queens College logo"></a> <!--QC Logo will appear on every webpage-->
         </header>
+
+        <%- include ('./partials/messages'); %> 
 
         <div class="createaclass">
             <h2>Create A Course</h2>
             <!-- Form -->
-            <form id="createacourse">
+            <form action="/createacourse" method="POST" id="createacourse">
                 <!--Dropdown menu to select a semester-->
                 <div class="dropdown">
                     <label for="semester-dropdown">Semester</label>
                     <select name ="semester" id="semester-dropdown">
-                      <option value="summer2021">Summer 2021</option>
-                      <option value="fall2021">Fall 2021</option>
-                      <option value="winter2022">Winter 2022</option>
-                      <option value="spring2022">Spring 2022</option>
+                      <option value="Summer 2021">Summer 2021</option>
+                      <option value="Fall 2021">Fall 2021</option>
+                      <option value="Winter 2022">Winter 2022</option>
+                      <option value="Spring 2022">Spring 2022</option>
                     </select>
                 </div>
                 <!--form fields for instructor to fill out-->
-                <label for="coursename">Course Name</label>
-                <input type="text" id="coursename" Name="coursename" placeholder="Course Name" required="">
+                <label for="subject"> Subject</label> <br>
+					<select name="subject" id="subject">
+						<option value="" selected="selected">&nbsp; </option>
+						<option value="AACS">AACS - Asian Amer Commun. Std</option>
+						<option value="ACCT">ACCT - Accounting</option>
+						<option value="AFST">AFST - Africana Studies</option>
+						<option value="ANTH">ANTH - Anthropology</option>
+						<option value="ARAB">ARAB - Arabic</option>
+						<option value="ARTH">ARTH - Art History</option>
+						<option value="ARTS">ARTS - Studio Art</option>
+						<option value="ASL">ASL - American Sign Language</option>
+						<option value="ASTR">ASTR - Astronomy</option>
+						<option value="BALA">BALA - Business &amp; Liberal Arts</option>
+						<option value="BIOCH">BIOCH - Bio-Chemistry</option>
+						<option value="BIOL">BIOL - Biology</option>
+						<option value="BUS">BUS - Business</option>
+						<option value="CHEM">CHEM - Chemistry</option>
+						<option value="CHIN">CHIN - Chinese</option>
+						<option value="CLAS">CLAS - Classics</option>
+						<option value="CMAL">CMAL - Clas, Mid East &amp; Asian</option>
+						<option value="CMLIT">CMLIT - Comparative Literature</option>
+						<option value="CO-OP">CO-OP - Cooperative Education</option>
+						<option value="CSCI">CSCI - Computer Science</option>
+						<option value="DANCE">DANCE - Dance</option>
+						<option value="DATA">DATA - Data Analytics</option>
+						<option value="DRAM">DRAM - Drama and Theatre</option>
+						<option value="EAST">EAST - East Asian Studies</option>
+						<option value="ECON">ECON - Economics</option>
+						<option value="ECPCE">ECPCE - Counselor Education</option>
+						<option value="ECPEL">ECPEL - Educ Comm Prog-Leader</option>
+						<option value="ECPSE">ECPSE - Special Education</option>
+						<option value="ECPSP">ECPSP - School Psychology</option>
+						<option value="EECE">EECE - Elem &amp; Early Childhood</option>
+						<option value="ENGL">ENGL - English</option>
+						<option value="ENSCI">ENSCI - Environmental Science</option>
+						<option value="EURO">EURO - European Studies</option>
+						<option value="FNES">FNES - Family, Nut &amp; Exercis</option>
+						<option value="FREN">FREN - French</option>
+						<option value="GEOL">GEOL - Geology</option>
+						<option value="GERM">GERM - German</option>
+						<option value="GREEK">GREEK - Greek</option>
+						<option value="GRKMD">GRKMD - Modern Greek</option>
+						<option value="GRKST">GRKST - Byzan &amp; Mdrn Greek St</option>
+						<option value="HEBRW">HEBRW - Hebrew</option>
+						<option value="HIST">HIST - History</option>
+						<option value="HMNS">HMNS - Honors in Math &amp; Sci</option>
+						<option value="HNRS">HNRS - Honors</option>
+						<option value="HSS">HSS - Honors in Social Science</option>
+						<option value="HTH">HTH - Honors in the Humanities</option>
+						<option value="IRST">IRST - Irish Studies</option>
+						<option value="ITAL">ITAL - Italian</option>
+						<option value="JAZZ">JAZZ - Jazz</option>
+						<option value="JEWST">JEWST - Jewish Studies</option>
+						<option value="JPNS">JPNS - Japanese</option>
+						<option value="KOR">KOR - Korean</option>
+						<option value="LABST">LABST - Labor Studies</option>
+						<option value="LATIN">LATIN - Latin</option>
+						<option value="LBSCI">LBSCI - Library Science</option>
+						<option value="LCD">LCD - Ling &amp; Commun Disorders</option>
+						<option value="LIBR">LIBR - Library</option>
+						<option value="MATH">MATH - Mathematics</option>
+						<option value="MEDST">MEDST - Media Studies</option>
+						<option value="MES">MES - Middle Eastern Studies</option>
+						<option value="MUSIC">MUSIC - Music</option>
+						<option value="PHIL">PHIL - Philosophy</option>
+						<option value="PHYS">PHYS - Physics</option>
+						<option value="PORT">PORT - Portuguese</option>
+						<option value="PSCI">PSCI - Political Science</option>
+						<option value="PSYCH">PSYCH - Psychology</option>
+						<option value="PHOTO">Photography</option>
+						<option value="QNS">QNS - Queens</option>
+						<option value="RLGST">RLGST - Religious Studies</option>
+						<option value="RM">RM - Risk Management</option>
+						<option value="RUSS">RUSS - Russian</option>
+						<option value="SEEK">SEEK - SEEK Academic Program</option>
+						<option value="SEYS">SEYS - Secondary Edu &amp; Youth</option>
+						<option value="SEYSL">SEYSL - Sec Educ: Literacy Edu</option>
+						<option value="SOC">SOC - Sociology</option>
+						<option value="SPAN">SPAN - Spanish</option>
+						<option value="STPER">STPER - Student Personnel</option>
+						<option value="URBST">URBST - Urban Studies</option>
+						<option value="WGS">WGS - Women and Gender Studies</option>
+					</select> <br>
+                <label for="coursenumber">Course Number</label>
+                <input type="number" id="coursenumber" Name="coursenumber" placeholder="Course Number" required="">
 
                 <label for="department">Department</label>
                 <input type="text" id="department" name="department" placeholder="Department" required="">
@@ -87,7 +172,6 @@
             </form>
             <!-- //Form -->
         </div>
-        <script src="../js/coursecreate.js"></script>
         <script
         src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"

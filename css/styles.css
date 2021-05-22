@@ -251,7 +251,7 @@ li {
 
 .login-container input,
 .signup-container input,
-.createaclass input {
+.createaclass input, #subject {
   width: 100%;
   padding: 12px 20px;
   margin: 8px 0;
@@ -259,7 +259,8 @@ li {
 }
 
 .createaclass input[type="checkbox"] {
-  width: 3%;
+  width: 18px;
+  height: 18px;
 }
 
 .createaclass textarea {
@@ -345,5 +346,13 @@ horizontally) */
     float: bottom;
     display: block;
     text-align: left;
+  }
+}
+@media screen and (max-width: 610px) {
+  .createaclass {
+    margin: 10px;
+  }
+  .createcourseimg {
+    width: 350px;
   }
 }
