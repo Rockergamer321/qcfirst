@@ -18,10 +18,17 @@
     overflow: hidden;
     box-sizing: border-box;
 }
-input[type="text"] {
+input[type="number"] {
     display: block;
-    width: 98%;
+    width: 97.5%;
     border: 3px solid #999999;
+}
+
+select  {
+    display: block;
+    width: 99%;
+    border: 3px solid #999999;
+    margin-bottom: 10px;
 }
 .Result-Section {
     background-color: white;
@@ -54,11 +61,12 @@ input[type="text"] {
 }
 .Class-Selection {
     background-color: orange;
-    margin-right: 320px;
-    margin-left: 300px;
+    margin-right: auto;
+    margin-left: auto;
 }
 table { 
-    table-layout:fixed;
+    margin-right: auto;
+    margin-left: auto;
 }
 td { 
     overflow: hidden; 
@@ -68,9 +76,15 @@ td {
 th, td {
     padding-left: 10px;
 }
-.notification-bell{
+.notification-bell, .mobile-notification{
     filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(48deg) brightness(106%) contrast(101%); 
 }
+
+.notified-bell, .mobile-notified{
+    filter: invert(84%) sepia(82%) saturate(563%) hue-rotate(357deg) brightness(105%) contrast(103%);
+}
+
+
 .button, .enroll-button {
     float: right;
     padding: 0px 5px;
@@ -104,8 +118,10 @@ button {
 
 .mobile-selection label{
     float: left;
-    width: 250px;
+    width: 300px;
     margin-left: 50px;
+    font-size: 25px;
+    margin-right: 20px;
 }
 
 .mobile-selection img:first-of-type{
@@ -143,25 +159,8 @@ input[type=submit] {
     float: right;
     margin-right: 10px;
 }
-@media screen and (max-width: 1161px) {
-    .Class-Selection {
-        margin-left: 230px;
-        margin-right: 230px;
-    }
-}
-@media screen and (max-width: 996px) {
-   .Class-Selection {
-        margin-left: 150px;
-        margin-right: 150px;
-    }
-}
-@media screen and (max-width: 884px) {
-    .Class-Selection {
-        margin-left: auto;
-        margin-right: auto;
-    }
-}
- @media screen and (max-width: 535px) {
+
+ @media screen and (max-width: 515px) {
     .Class-Selection {
         display: none;
     }
@@ -175,8 +174,20 @@ input[type=submit] {
         margin-top: 5px;
         margin-bottom: 5px;
     }
-    .notification-bell{
+    .mobile-notification, .mobile-notified{
         width: 30px;
         height: 30px;
     }
+    
+}
+
+@media screen and (max-width: 430px){
+    .mobile-selection label{
+        width: 260px;
+        margin-left: 0px;
+        font-size: 22px;
+        margin-right: 10px;
+        margin-bottom: 10px;
+    }
+    
 }

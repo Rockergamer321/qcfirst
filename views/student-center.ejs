@@ -12,8 +12,7 @@
 	  from different semesters as well as a notified schedule that holds 
 	  all of the courses that the student clicked the Notification Bell on 
 	  (This works similarly to the enroll page on CUNYFirst).
-	* The next section gives the student a way to pay for their tuition, 
-	  along with another section that informs the student if they have 
+	* The next section informs the student if they have 
 	  any holds on their accounts.
 -->
 <html lang="en">
@@ -23,7 +22,6 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link rel="stylesheet" href="../css/user-styles.css">
 		<link rel="stylesheet" href="../css/center-styles.css">
-		<script src="../js/center-script.js"></script>
 	</head>
 	<body>
 		<!--Page Header-->
@@ -36,7 +34,7 @@
 			<nav class="nav-menu">
 				<div class="dropdown-toggle"> 
 					<!--User Photo: https://stock.adobe.com/290580606?tduid=971268d0957d9995b1e6a74288ca7071&as_channel=affiliate&as_campclass=redirect&as_source=arvato&asset_id=290580351-->
-					<img src="img/User.png" width=50 alt="Profile Photo" /> 
+					<img src="img/default-user.png" width=50 alt="Profile Photo" /> 
 					<!--Links That Direct to Home (Student Center), Settings, and Sign Out (Homepage)-->
 					<nav class="dropdown-list">
 						<a href="/studentcenter" class="dropdown-link">Home</a> <br>
@@ -65,17 +63,81 @@
 					<!--Row That Displays the Course Schedule Heading and Dropdown List That Includes Semester Options--> 
 					<div class="left"><h2 class="heading">Courses</h2> </div>
 					<div class="select-form">
-						<label for="select-semester">Select Semester</label>
-						<select id="select-semester" name="select-semester">
-							<option value="">Select one...</option>
-							<option value="notifiedcourses">Notified Courses</option>
-							<option value="spring2021">Spring 2021</option>
-							<option value="fall2020">Fall 2020</option>
-							<option value="spring2020">Spring 2020</option>
-						</select>
+						<form action="/studentcenter" method="POST">
+							<label for="semester">Select Semester</label>
+							<select id="semester" name="semester">
+								<option value="" selected>Select one...</option>
+								<option value="notified">Notified Courses</option>
+								<option value="Summer 2021">Summer 2021</option>
+								<option value="Fall 2021">Fall 2021</option>
+								<option value="Winter 2022">Winter 2022</option>
+								<option value="Spring 2022">Spring 2022</option>
+							</select>
+							<input type="submit" value="Confirm">
+						</form>
 					</div>
-					<!--This is the schedule that will be shown on all devices-->
 					<div class="table">
+					<% if (tableError != null) { %>
+						<!--This informs the Student if they are not notified/enrolled in any classes-->
+						<h2> <%= tableError %> </h2>
+					<% } else if (semester == "notified") { %>
+						<table class="notified-schedule">
+							<tr>
+								<th></th> <!--This is the info button for each class-->
+								<th>Course Name</th>
+								<th>Instructor</th>
+								<th>Availability</th>
+								<th></th> <!--If the Enroll Button is clicked on, the Selected Course goes to the Schedule Table That Matches the Selected Course's Semester-->
+							</tr>
+							<% courseresults.forEach(course => { %>
+								<tr>
+									<td>
+										<img class="info-button" src="img/info-button.png" height=25 width=25 alt="Button to Display Course Information"/>
+										<div class="modal">
+											<div class="modal-content">
+												<header class="modal-header">
+													<span class="closeinfo">&times;</span>
+													<h2>Course Info:</h2>
+												</header>
+												<p>Course Name: <%= course.coursename %> </p>
+												<p>Instructor: <%= course.instructor %></p>
+												<p>Semester: <%= course.semester %> </p>
+												<p>Course Days: <%= course.coursedays %> </p>
+												<p>Course Time: <%= course.coursetime %> </p>
+												<p>Description: <%= course.description %> </p>
+												<p>Available Seats: <%= course.capacity - course.studentsenrolled %></p>
+												<% if(todaysDate < course.enrollmentdeadline) { %>
+												<p>Enrollment Deadline: <%= course.enrollmentdeadline.toLocaleString().split(',')[0] %> </p>
+												<% } else { %>
+												<p>Enrollment Deadline: Passed </p>
+												<% } %>
+												<button class="delete-button" type="button">Unnotify Me</button>
+											</div>
+										</div>
+										<div class="drop-modal">
+											<div class="drop-warning">
+												<header class="modal-header">
+													<span class="closewarning">&times;</span>
+													<h2>Are You Sure You Do Not Want to be Notified?</h2>
+												</header>
+												<button type="button" class="yes-button">YES</button>
+												<button type="button" class="no-button">NO</button>
+											</div>
+										</div>
+									</td>
+									<td><%= course.coursename %></td>
+									<td><%= course.instructor %></td>
+									<% if (course.studentsenrolled < course.capacity) { %>
+									<td> <img class="availability-icon" src="img/Green_Circle.png" height=40 width=40 alt="This Class is Currently Available" /> </td>
+									<td> <a href="" class="enroll-button">Enroll</a> </td>		
+									<% } else { %>
+									<td> <img class="availability-icon" src="img/Red_Circle.png" height=40 width=40 alt="This Class is Currently Unavailable"/> </td>
+									<% } %>
+								</tr>
+								<% }); %>
+						</table>
+					<% } else { %>
+						<!--This is the schedule that will be shown on all devices-->
 						<table class="schedule">
 							<tr>
 								<th></th> <!--This is the info button for each class-->
@@ -84,203 +146,45 @@
 								<th>Course Days</th>
 								<th>Course Time</th>
 							</tr>
+							<% courseresults.forEach(course => { %>
 							<tr>
 								<td>
 									<img class="info-button" src="img/info-button.png" height=25 width=25 alt="Button to Display Course Information"/>
 									<div class="modal">
 										<div class="modal-content">
 											<header class="modal-header">
-												<span class="close">&times;</span>
+												<span class="closeinfo">&times;</span>
 												<h2>Course Info:</h2>
-												<br>
 											</header>
-											<p>Course Name: CSCI 316 - Database Systems</p>
-											<p>Semester: Spring 2021</p>
-											<p>Department: Computer Science</p>
-											<p>Instructor: Tat Yung Kong</p>
-											<p>Description: Principles and Implementation of Programming Languages</p>
-											<p>Available Seats: 3</p>
-											<p>Enrollment Deadline: Already Passed</p>
-											<button class="delete-button" type="button">Drop Course</button>
+											<p>Course Name: <%= course.coursename %></p>
+											<p>Instructor: <%= course.instructor %></p>
+											<p>Course Days: <%= course.coursedays %></p>
+											<p>Course Time: <%= course.coursetime %></p>
+											<p>Semester: <%= course.semester %></p>
+											<p>Description: <%= course.description %></p>
+											<button class="delete-button" type="button">Remove Course</button>
 										</div>
 									</div>
 									<div class="drop-modal">
 										<div class="drop-warning">
 											<header class="modal-header">
-												<span class="close">&times;</span>
-												<h2>Are You Sure You Want to Drop This Course?</h2>
-												<br>
+												<span class="closewarning">&times;</span>
+												<h2>Are You Sure You Want to Remove This Course?</h2>
 											</header>
 											<button type="button" class="yes-button">YES</button>
 											<button type="button" class="no-button">NO</button>
 										</div>
 									</div>
 								</td>
-								<td>CSCI 316</td>
-								<td>Tat Yung Kong</td>
-								<td>Monday, Wednesday</td>
-								<td>1:40 PM - 2:55 PM</td>
+								<td><%= course.coursename %></td>
+								<td><%= course.instructor %></td>
+								<td><%= course.coursedays %></td>
+								<td><%= course.coursetime %></td>
 							</tr>
-							<tr>
-								<td>
-									<img class="info-button" src="img/info-button.png" height=25 width=25 alt="Button to Display Course Information"/>
-									<div class="modal">
-										<div class="modal-content">
-											<header class="modal-header">
-												<span class="close">&times;</span>
-												<h2>Course Info:</h2>
-											</header>
-											<p>Course Name: CSCI 331 - Database Systems</p>
-											<p>Semester: Spring 2021</p>
-											<p>Department: Computer Science</p>
-											<p>Instructor: Daniel Leavitt</p>
-											<p>Description: This Course Covers The Theory Behind Database Systems, Including SQL, Transactions, etc.</p>
-											<p>Available Seats: 5</p>
-											<p>Enrollment Deadline: Already Passed</p>
-											<button class="delete-button" type="button">Drop Course</button>
-										</div>
-									</div>
-									<div class="drop-modal">
-										<div class="drop-warning">
-											<header class="modal-header">
-												<span class="close">&times;</span>
-												<h2>Are You Sure You Want to Drop This Course?</h2>
-											</header>
-											<button type="button" class="yes-button">YES</button>
-											<button type="button" class="no-button">NO</button>
-										</div>
-									</div>
-								</td>
-								<td>CSCI 331</td>
-								<td>Daniel Leavitt</td>
-								<td>Monday, Wednesday</td>
-								<td>8:00 PM - 9:15 PM</td>
-							</tr>
-							<tr>
-								<td>
-									<img class="info-button" src="img/info-button.png" height=25 width=25 alt="Button to Display Course Information"/>
-									<div class="modal">
-										<div class="modal-content">
-											<header class="modal-header">
-												<span class="close">&times;</span>
-												<h2>Course Info:</h2>
-											</header>
-											<p>Course Name: CSCI 323 - Design and Analysis of Algorithms</p>
-											<p>Semester: Spring 2021</p>
-											<p>Department: Computer Science</p>
-											<p>Instructor: Paul Cesaretti</p>
-											<p>Description: This Course Covers Advanced Data Structures</p>
-											<p>Available Seats: 8</p>
-											<p>Enrollment Deadline: Already Passed</p>
-											<button class="delete-button" type="button">Drop Course</button>
-										</div>
-									</div>
-									<div class="drop-modal">
-										<div class="drop-warning">
-											<header class="modal-header">
-												<span class="close">&times;</span>
-												<h2>Are You Sure You Want to Drop This Course?</h2>
-											</header>
-											<button type="button" class="yes-button">YES</button>
-											<button type="button" class="no-button">NO</button>
-										</div>
-									</div>
-								</td>
-								<td>CSCI 323</td>
-								<td>Paul Cesaretti</td>
-								<td>Tuesday, Thursday</td>
-								<td>6:30 PM - 7:45 PM</td>
-							</tr>
-							<tr>
-								<td>
-									<img class="info-button" src="img/info-button.png" height=25 width=25 alt="Button to Display Course Information"/>
-									<div class="modal">
-										<div class="modal-content">
-											<header class="modal-header">
-												<span class="close">&times;</span>
-												<h2>Course Info:</h2>
-											</header>
-											<p>Course Name: CSCI 355 - Internet and Web Technologies</p>
-											<p>Semester: Spring 2021</p>
-											<p>Department: Computer Science</p>
-											<p>Instructor: Mark Abramov</p>
-											<p>Description: This Course Covers The Following Topics: HTML, CSS, JavaScript, etc.</p>
-											<p>Available Seats: 0</p>
-											<p>Enrollment Deadline: Already Passed</p>
-											<button class="delete-button" type="button">Drop Course</button>
-										</div>
-									</div>
-									<div class="drop-modal">
-										<div class="drop-warning">
-											<header class="modal-header">
-												<span class="close">&times;</span>
-												<h2>Are You Sure You Want to Drop This Course?</h2>
-											</header>
-											<button type="button" class="yes-button">YES</button>
-											<button type="button" class="no-button">NO</button>
-										</div>
-									</div>
-								</td>
-								<td>CSCI 355</td>
-								<td>Mark Abramov</td>
-								<td>Tuesday</td>
-								<td>8:00 PM - 10:50 PM</td>
-							</tr>
+						<% }); %> 
 						</table>
-					</div>
-					<!--If Notified Courses is Selected From the Dropdown List, This is the Schedule That is Shown-->
-					<table class="notified-schedule" hidden>
-						<tr>
-							<th>Course Name</th>
-							<th>Instructor</th>
-							<th>Course Days</th>
-							<th>Course Time</th>
-							<th>Semester</th>
-							<th>Availability</th>
-							<th>Unnotify Me</th> <!--If Notification Bell is clicked on, the Selected Course is removed From This Schedule Table-->
-							<th></th> <!--If the Enroll Button is clicked on, the Selected Course goes to the Schedule Table That Matches the Selected Course's Semester-->
-						</tr>
-						<tr>
-							<td>CSCI 316</td>
-							<td>Tat Yung Kong</td>
-							<td>Monday, Wednesday</td>
-							<td>1:40 PM - 2:55 PM</td>
-							<td>Spring 2021</td>
-							<td> <img src="img/Red_Circle.png" height=40 width=40 alt="This Class is Currently Unavailable" class="availability-icon"/> </td>
-							<td> <a href="" class="notification"> <img src="img/notification-bell.png" alt="Notification Bell" class="notification-bell" width=30 height=30 /> </a> </td>
-							<td> <a href="" class="enroll-button">Enroll</a> </td>
-						</tr>
-						<tr>
-							<td>CSCI 331</td>
-							<td>Daniel Leavitt</td>
-							<td>Monday, Wednesday</td>
-							<td>8:00 PM - 9:15 PM</td>
-							<td>Spring 2021</td>
-							<td> <img class="availability-icon" src="img/Green_Circle.png" height=40 width=40 alt="This Class is Currently Available"/> </td>
-							<td> <a href="" class="notification"> <img src="img/notification-bell.png" alt="Notification Bell" class="notification-bell" width=30 height=30 /> </a> </td>
-							<td> <a href="" class="enroll-button">Enroll</a> </td>
-						</tr>
-						<tr>
-							<td>CSCI 323</td>
-							<td>Paul Cesaretti</td>
-							<td>Tuesday, Thursday</td>
-							<td>6:30 PM - 7:45 PM</td>
-							<td>Fall 2021</td>
-							<td> <img src="img/Red_Circle.png" height=40 width=40 alt="This Class is Currently Unavailable" class="availability-icon"/> </td>
-							<td> <a href="" class="notification"> <img src="img/notification-bell.png" alt="Notification Bell" class="notification-bell" width=30 height=30 /> </a> </td>
-							<td> <a href="" class="enroll-button">Enroll</a> </td>
-						</tr>
-						<tr>
-							<td>CSCI 355</td>
-							<td>Mark Abramov</td>
-							<td>Tuesday</td>
-							<td>8:00 PM - 10:50 PM</td>
-							<td>Fall 2021</td>
-							<td> <img class="availability-icon" src="img/Green_Circle.png" height=40 width=40 alt="This Class is Currently Available"/> </td>
-							<td> <a href="" class="notification"> <img src="img/notification-bell.png" alt="Notification Bell" class="notification-bell" width=30 height=30 /> </a> </td>
-							<td> <a href="" class="enroll-button">Enroll</a> </td>
-						</tr>
-					</table>
+					<% } %> 
+					</div>				
 				</div> <!--End of Right Column-->
 			</div> <!--End of Row-->
 		</section> <!--End of main-section-->
@@ -300,5 +204,11 @@
 				</div>
 			</div>
 		</section>
+		<script
+        src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"
+		></script>
+		<script src="../js/center-script.js"></script>
 	</body>
 </html>

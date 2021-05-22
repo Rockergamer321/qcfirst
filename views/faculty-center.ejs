@@ -18,7 +18,6 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link rel="stylesheet" href="../css/user-styles.css">
 		<link rel="stylesheet" href="../css/center-styles.css">
-		<script src="../js/center-script.js"></script>
 	</head>
 	<body>
 		<!--Page Header-->
@@ -31,7 +30,7 @@
 			<nav class="nav-menu">
 				<div class="dropdown-toggle"> 
 					<!--User Photo: https://stock.adobe.com/290580606?tduid=971268d0957d9995b1e6a74288ca7071&as_channel=affiliate&as_campclass=redirect&as_source=arvato&asset_id=290580351-->
-					<img src="img/User.png" width=50 alt="Profile Photo" /> 
+					<img src="img/default-user.png" width=50 alt="Profile Photo" /> 
 					<!--Links That Direct to Home (Student Center), Settings, and Sign Out (Homepage)-->
 					<nav class="dropdown-list">
 						<a href="/facultycenter" class="dropdown-link">Home</a> <br>
@@ -58,16 +57,23 @@
 					<!--Row That Displays the Course Schedule Heading and Dropdown List That Includes Semester Options-->
 					<div class="left"><h2 class="heading">Courses</h2> </div>
 					<div class="select-form">
-						<label for="select-semester">Select Semester</label>
-						<select id="select-semester" name="select-semester">
-							<option value="">Select one...</option>
-							<option value="spring2021">Spring 2021</option>
-							<option value="fall2020">Fall 2020</option>
-							<option value="spring2020">Spring 2020</option>
-						</select>
+						<form action="/facultycenter" method="POST">
+							<label for="semester">Select Semester</label>
+							<select id="semester" name="semester">
+								<option value="">Select one...</option>
+								<option value="Summer 2021">Summer 2021</option>
+								<option value="Fall 2021">Fall 2021</option>
+								<option value="Winter 2022">Winter 2022</option>
+								<option value="Spring 2022">Spring 2022</option>
+							</select>
+							<input type="submit" value="Confirm">
+						</form>
 					</div>
-					<!--Since This Table has Three Columns, This Schedule Will be Shown on all Devices-->
 					<div class="table">
+					<!--Since This Table has Three Columns, This Schedule Will be Shown on all Devices-->
+					<% if (tableError != null) { %>
+						<h2> <%= tableError %> </h2>
+					<% } else { %>
 						<table class="schedule">
 							<tr>
 								<th></th> <!--This is the info button for each class-->
@@ -75,26 +81,27 @@
 								<th>Course Days</th>
 								<th>Course Time</th>
 							</tr>
+							<% courseresults.forEach(course => { %>
 							<tr>
 								<td>
 									<img class="info-button" src="img/info-button.png" height=25 width=25 alt="Button to Display Course Information"/>
 									<div class="modal">
 										<div class="modal-content">
 											<header class="modal-header">
-												<span class="close">&times;</span>
+												<span class="closeinfo">&times;</span>
 												<h2>Course Info:</h2>
 											</header>
-											<p>Course Name: CSCI 331 - Database Systems</p>
-											<p>Semester: Spring 2021</p>
-											<p>Department: Computer Science</p>
-											<p>Enrollment Total: 36/40</p>
+											<p>Course Name: <%= course.coursename %> </p>
+											<p>Semester: <%= course.semester %> </p>
+											<p>Department: <%= course.department %> </p>
+											<p>Enrollment Total: <%= course.studentsenrolled %>/<%= course.capacity %></p>
 											<button class="delete-button" type="button">Remove Course</button>
 										</div>
 									</div>
 									<div class="drop-modal">
 										<div class="drop-warning">
 											<header class="modal-header">
-												<span class="close">&times;</span>
+												<span class="closewarning">&times;</span>
 												<h2>Are You Sure You Want to Remove This Course?</h2>
 											</header>
 											<button type="button" class="yes-button">YES</button>
@@ -102,76 +109,22 @@
 										</div>
 									</div>
 								</td>
-								<td>CSCI 331</td>
-								<td>Tuesday, Thursday</td>
-								<td>1:40 PM - 2:55 PM</td>
+								<td><%= course.coursename %></td>
+								<td><%= course.coursedays %></td>
+								<td><%= course.coursetime %></td>
 							</tr>
-							<tr>
-								<td>
-									<img class="info-button" src="img/info-button.png" height=25 width=25 alt="Button to Display Course Information"/>
-									<div class="modal">
-										<div class="modal-content">
-											<header class="modal-header">
-												<span class="close">&times;</span>
-												<h2>Course Info:</h2>
-											</header>
-											<p>Course Name: CSCI 313 - Data Structures</p>
-											<p>Semester: Spring 2021</p>
-											<p>Department: Computer Science</p>
-											<p>Enrollment Total: 23/30</p>
-											<button class="delete-button" type="button">Remove Course</button>
-										</div>
-									</div>
-									<div class="drop-modal">
-										<div class="drop-warning">
-											<header class="modal-header">
-												<span class="close">&times;</span>
-												<h2>Are You Sure You Want to Remove This Course?</h2>
-											</header>
-											<button type="button" class="yes-button">YES</button>
-											<button type="button" class="no-button">NO</button>
-										</div>
-									</div>
-								</td>
-								<td>CSCI 313</td>
-								<td>Monday, Wednesday</td>
-								<td>1:40 PM - 2:55 PM</td>
-							</tr>
-							<tr>
-								<td>
-									<img class="info-button" src="img/info-button.png" height=25 width=25 alt="Button to Display Course Information"/>
-									<div class="modal">
-										<div class="modal-content">
-											<header class="modal-header">
-												<span class="close">&times;</span>
-												<h2>Course Info:</h2>
-											</header>
-											<p>Course Name: CSCI 313 - Data Structures</p>
-											<p>Semester: Spring 2021</p>
-											<p>Department: Computer Science</p>
-											<p>Enrollment Total: 28/30</p>
-											<button class="delete-button" type="button">Remove Course</button>
-										</div>
-									</div>
-									<div class="drop-modal">
-										<div class="drop-warning">
-											<header class="modal-header">
-												<span class="close">&times;</span>
-												<h2>Are You Sure You Want to Remove This Course?</h2>
-											</header>
-											<button type="button" class="yes-button">YES</button>
-											<button type="button" class="no-button">NO</button>
-										</div>
-									</div>
-								</td>
-								<td>CSCI 313</td>
-								<td>Friday</td>
-								<td>6:30 PM - 9:30 PM</td>
-							</tr>
+							<% }); %> 
 						</table>
 					</div> <!--End of Table-->
+					<% } %> 
 				</div> <!--End of Right Column-->
 			</div> <!--End of Row-->
 		</section> <!--End of Main Section-->
+		<script
+        src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"
+		></script>
+		<script src="../js/center-script.js"></script>
 	</body>
 </html>
