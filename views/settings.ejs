@@ -33,7 +33,7 @@
 			<nav class="nav-menu">
 				<div class="dropdown-toggle"> 
 					<!--User Photo: https://stock.adobe.com/290580606?tduid=971268d0957d9995b1e6a74288ca7071&as_channel=affiliate&as_campclass=redirect&as_source=arvato&asset_id=290580351-->
-					<img src="img/User.png" width=50 alt="Profile Photo" /> 
+					<img src="img/default-user.png" width=50 alt="Profile Photo" /> 
 					<!--Links That Direct to Home (Student Center), Settings, and Sign Out (Homepage)-->
 					<nav class="dropdown-list">
 						<a href="<%= home %>"  class="dropdown-link">Home</a> <br>
@@ -45,7 +45,7 @@
 		</div> <!--End of Page Header-->
 		<!--Page Heading Containing User Image and "User Settings" Heading-->
 		<div class="heading">
-			<img src="/img/User.png" height=250 width=250 alt="User Photo" class="user-image"/>
+			<img src="/img/default-user.png" height=250 width=250 alt="User Photo" class="user-image"/>
 			<h1>User Settings</h1>
 		</div>
 		<!--Section Containing Name (Left Column) and ID of User (Right Column)-->
@@ -57,7 +57,7 @@
 				</div>
 				<div class="right-side">
 					<h2>ID:</h2>
-					<p>21657625</p>
+					<p><%= userid %></p>
 				</div>
 			</div>
 		</section>
@@ -73,25 +73,13 @@
 					<div class="modal">
 						<div class="modal-content">
 							<span class="close">&times;</span>
-							<form>
+							<form action="/settings" method="POST">
 								<label for="email">Enter New Email:</label>
 								<input type="email" id="email" name="email">
 								<input type="submit">
 							</form>
 						</div>
 					</div>
-				</div>
-			</div>
-		</section>
-		<!--Section Where User Selects How They Receive Notifications-->
-		<section class="notifications-section">
-			<h2>Notifications</h2>
-			<!--Div That Holds Both Notification Checkboxes-->
-			<div class="check">
-				<!--Checkbox for Email Notifications-->
-				<div class="checkbox-field">
-					<input type="checkbox" id="email-checkbox" name="email-checkbox"/>
-					<label for="email-checkbox">Send Notifications Through Email</label>
 				</div>
 			</div>
 		</section>
