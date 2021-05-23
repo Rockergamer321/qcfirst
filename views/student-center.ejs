@@ -83,6 +83,7 @@
 					<% } else if (semester == "notified") { %>
 						<table class="notified-schedule">
 							<tr>
+								<th></th>
 								<th></th> <!--This is the info button for each class-->
 								<th>Course Name</th>
 								<th>Instructor</th>
@@ -91,6 +92,7 @@
 							</tr>
 							<% courseresults.forEach(course => { %>
 								<tr>
+									<td><form method="post" id="<%= course.coursename %>|<%= course.instructor %>|<%= course.coursedays %>|<%= course.coursetime %>|<%=course.semester %>"><input type="hidden" name="course" value="<%= course.coursename %>|<%= course.instructor %>|<%= course.coursedays %>|<%= course.coursetime %>|<%=course.semester %>"></form></td>
 									<td>
 										<img class="info-button" src="img/info-button.png" height=25 width=25 alt="Button to Display Course Information"/>
 										<div class="modal">
@@ -120,7 +122,7 @@
 													<span class="closewarning">&times;</span>
 													<h2>Are You Sure You Do Not Want to be Notified?</h2>
 												</header>
-												<button type="button" class="yes-button">YES</button>
+												<button type="submit" form="<%= course.coursename %>|<%= course.instructor %>|<%= course.coursedays %>|<%= course.coursetime %>|<%=course.semester %>" formaction="/removenotification" class="yes-button">YES</button>
 												<button type="button" class="no-button">NO</button>
 											</div>
 										</div>
@@ -128,10 +130,14 @@
 									<td><%= course.coursename %></td>
 									<td><%= course.instructor %></td>
 									<% if (course.studentsenrolled < course.capacity) { %>
-									<td> <img class="availability-icon" src="img/Green_Circle.png" height=40 width=40 alt="This Class is Currently Available" /> </td>
-									<td> <a href="" class="enroll-button">Enroll</a> </td>		
+										<td> <img class="availability-icon" src="img/Green_Circle.png" height=40 width=40 alt="This Class is Currently Available" /> </td>
 									<% } else { %>
-									<td> <img class="availability-icon" src="img/Red_Circle.png" height=40 width=40 alt="This Class is Currently Unavailable"/> </td>
+										<td> <img class="availability-icon" src="img/Red_Circle.png" height=40 width=40 alt="This Class is Currently Unavailable"/> </td>
+									<% } %>
+									<% if(todaysDate < course.enrollmentdeadline && course.studentsenrolled < course.capacity) { %>
+										<td> <button type="submit" form="<%= course.coursename %>|<%= course.instructor %>|<%= course.coursedays %>|<%= course.coursetime %>|<%=course.semester %>" formaction="/notifiedenrollment" class="enroll-button">Enroll</a> </td>		
+									<% } else { %>
+										<td></td>
 									<% } %>
 								</tr>
 								<% }); %>
@@ -140,6 +146,7 @@
 						<!--This is the schedule that will be shown on all devices-->
 						<table class="schedule">
 							<tr>
+								<th></th>
 								<th></th> <!--This is the info button for each class-->
 								<th>Course Name</th>
 								<th>Instructor</th>
@@ -148,6 +155,7 @@
 							</tr>
 							<% courseresults.forEach(course => { %>
 							<tr>
+								<td><form method="post" id="<%= course.coursename %>|<%= course.instructor %>|<%= course.coursedays %>|<%= course.coursetime %>|<%=course.semester %>"><input type="hidden" name="course" value="<%= course.coursename %>|<%= course.instructor %>|<%= course.coursedays %>|<%= course.coursetime %>|<%=course.semester %>|<%= course.studentroster%>"></form></td>
 								<td>
 									<img class="info-button" src="img/info-button.png" height=25 width=25 alt="Button to Display Course Information"/>
 									<div class="modal">
@@ -171,7 +179,7 @@
 												<span class="closewarning">&times;</span>
 												<h2>Are You Sure You Want to Remove This Course?</h2>
 											</header>
-											<button type="button" class="yes-button">YES</button>
+											<button type="submit" form="<%= course.coursename %>|<%= course.instructor %>|<%= course.coursedays %>|<%= course.coursetime %>|<%=course.semester %>" formaction="/dropcourse" class="yes-button">YES</button>
 											<button type="button" class="no-button">NO</button>
 										</div>
 									</div>

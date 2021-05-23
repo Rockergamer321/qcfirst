@@ -13,6 +13,7 @@ const CourseSchema = new Schema (
 		enrollmentdeadline: {type: Date, required: true},
 		capacity: {type: Number, required: true},
 		studentsenrolled: {type: Number, required: true},
+		studentroster: {type: String},
 		description: {type: String, required: true}
 	}
 );

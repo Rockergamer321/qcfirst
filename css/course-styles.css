@@ -1,3 +1,6 @@
+.course-error{
+    background-color: lightblue;
+}
 .Search-Section {
     background-color: black;
     margin: 0 auto;
@@ -23,7 +26,6 @@ input[type="number"] {
     width: 97.5%;
     border: 3px solid #999999;
 }
-
 select  {
     display: block;
     width: 99%;
@@ -83,7 +85,6 @@ th, td {
 .notified-bell, .mobile-notified{
     filter: invert(84%) sepia(82%) saturate(563%) hue-rotate(357deg) brightness(105%) contrast(103%);
 }
-
 
 .button, .enroll-button {
     float: right;

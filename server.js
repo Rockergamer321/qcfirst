@@ -9,7 +9,7 @@ const bcrypt = require('bcryptjs');
 const passport = require('passport');
 const flash = require('connect-flash');
 const session = require('express-session');
-const { userRedirect, ensureAuthenticated, timeString, idGenerator } = require('./js/user-functions');
+const { userRedirect, ensureAuthenticated, timeString, idGenerator, timeConflict } = require('./js/user-functions');
 
 //Connect to MongoDB Atlas
 try {
@@ -197,35 +197,10 @@ app.get('/signout', (req, res) => {
   res.redirect('/login');
 });
 
-// =================
-//    Admin Handling
-//==================
 //This loads the Admin page
 app.get('/admincenter', (req, res) => {
   res.render('admin');
 });
-
-//This loads the User Database page
-app.get("/userdisplay", function (req, res) {
-  User.find({}, function (err, allUsers) {
-    if (err) {
-      console.log(err);
-    } else {
-      res.render("user-display", { allusers: allUsers })
-    }
-  })
-})
-
-//This loads the Course Database page
-app.get("/coursedisplay", function (req, res) {
-  Course.find({}, function (err, allCourses) {
-    if (err) {
-      console.log(err);
-    } else {
-      res.render("course-display", { allcourses: allCourses })
-    }
-  })
-})
 
 //This loads up the Student Center page
 app.get('/studentcenter', ensureAuthenticated, (req, res) => {
@@ -278,19 +253,19 @@ app.post('/coursesearch', function(req, res) {
   course = req.body.subject + " " + req.body.course;
   Course.find({"coursename": {$regex: course}, "semester": req.body.semester}, function(err, allCourses){
     if(err) console.log(err);
-    else{
-      if(allCourses.length < 1){
-        courseError = "No results were found.\nPlease try again";
-      }
-      var mobileInstructor = [];
-      for(i=0; i<allCourses.length; i++){
-        var instructorLast = allCourses[i].instructor;
-        instructorLast = instructorLast.split(" ");
-        instructorLast = instructorLast[1];
-        mobileInstructor[i] = instructorLast;
-      }
-      res.render("course-search", {courseresults: allCourses, courseError: courseError, courseCount: allCourses.length, mobileInstructor: mobileInstructor});
+    if(allCourses.length < 1){
+      courseError = "No results were found.\nPlease try again";
     }
+    let today = new Date();
+    var mobileInstructor = [];
+    for(i=0; i<allCourses.length; i++){
+      var instructorLast = allCourses[i].instructor;
+      instructorLast = instructorLast.split(" ");
+      instructorLast = instructorLast[1];
+      mobileInstructor[i] = instructorLast;
+    }
+
+    res.render("course-search", {courseresults: allCourses, courseError: courseError, courseCount: allCourses.length, mobileInstructor: mobileInstructor, todaysDate: today});
   });
 });
 
@@ -314,6 +289,30 @@ app.post("/facultycenter", function(req, res){
       res.render("faculty-center", {name: req.user.name, courseresults: allCourses, tableError: tableError});
     }
   });
+});
+
+app.post("/dropfacultycourse", function(req, res){
+  var course = req.body.course;
+  course = course.split("|");
+  var coursename = course[0];
+  var instructor = course[1];
+  var coursedays = course[2];
+  var coursetime = course[3];
+  var semester = course[4];
+  
+  Course.findOneAndRemove({"coursename": coursename, "instructor": instructor, "coursedays": coursedays, "coursetime": coursetime, "semester": semester}, function(err, allCourses){
+    if(err) console.log(err);
+    console.log("Course Removed Successfully");
+  });
+  Enrollment.remove({"semester": semester, "coursename": coursename, "instructor": instructor, "coursedays": coursedays, "coursetime": coursetime}, function(err, allCourses){
+    if(err) console.log(err);
+    console.log("Drops Every Student Enrolled in Course");
+  });
+  Notification.remove({"semester": semester, "coursename": coursename, "instructor": instructor, "coursedays": coursedays, "coursetime": coursetime}, function(err, allCourses){
+    if(err) console.log(err);
+    console.log("Drops Every Student who is Notified");
+  });
+  res.render("faculty-center", {name: req.user.name, tableError: "Removed Course Successfully"});
 });
 
 //This loads up the Create a Course page
@@ -354,6 +353,7 @@ app.post('/createacourse', function(req, res) {
   var enrollmentdeadline = req.body.enrollmentdeadline;
   var capacity = req.body.capacity;
   var studentsenrolled = 0;
+  var studentroster = "";
   var description = req.body.description;
 
   var data = {
@@ -367,6 +367,7 @@ app.post('/createacourse', function(req, res) {
     "enrollmentdeadline": enrollmentdeadline,
     "capacity": capacity,
     "studentsenrolled": studentsenrolled,
+    "studentroster": studentroster,
     "description": description
   };
 
@@ -405,8 +406,9 @@ app.post('/enrollment', function(req, res) {
   var instructor = course[1];
   var coursedays = course[2];
   var coursetime = course[3];
+  var semester = course[4];
 
-  Course.find({"coursename": coursename, "instructor": instructor, "coursedays": coursedays, "coursetime": coursetime}, function(err, allCourses){
+  Course.find({"semester": semester, "coursename": coursename, "instructor": instructor, "coursedays": coursedays, "coursetime": coursetime}, function(err, allCourses){
     if(err) console.log(err);
     else{
       var semester = allCourses[0].semester;
@@ -416,6 +418,9 @@ app.post('/enrollment', function(req, res) {
       var coursedays = allCourses[0].coursedays;
       var coursetime = allCourses[0].coursetime;
       var description = allCourses[0].description;
+      var studentroster = allCourses[0].studentroster;
+      if(studentroster == ""){ studentroster = req.user.name + " (" + req.user.email + ")"; }
+      else{ studentroster += ", " + req.user.name + " (" + req.user.email + ")"; }
       var name = req.user.name;
       var email = req.user.email;
 
@@ -429,42 +434,224 @@ app.post('/enrollment', function(req, res) {
           });
         }
         else{
-          //Increases Students enrolled by 1
-          Course.findOneAndUpdate({"semester": semester, "coursename": coursename, "instructor": instructor, "coursedays": coursedays, "coursetime": coursetime}, {$inc: {"studentsenrolled": 1}}, {new: true}, function(err, response){
+          Enrollment.findOne({"semester": semester, "coursename": coursename, "studentname": name, "studentemail": email}, function(err, course){
             if(err) console.log(err);
-            console.log(response);
+            if(course != null){
+              courseError = "You are already enrolled in that type of course";
+              res.render('course-search', {
+                courseError
+              });
+            }
+            else{
+              var daysRegex = coursedays.replace(/, /, "|");
+              Enrollment.find({"semester": semester, "coursedays": {$regex: daysRegex}, "studentname": name, "studentemail": email}, function(err, courses){
+                if(err) console.log(err);
+                var conflict = false;
+                for(i=0; i<courses.length; i++){
+                  if(timeConflict(coursetime, courses[i].coursetime) && conflict == false){
+                    conflict = true;
+                  }
+                }
+                if(conflict){
+                  courseError = "This course conflicts with an enrolled course";
+                  res.render('course-search', {
+                      courseError
+                  });
+                }
+                else{
+                  //Increases Students enrolled by 1
+                   Course.findOneAndUpdate({"semester": semester, "coursename": coursename, "instructor": instructor, "coursedays": coursedays, "coursetime": coursetime}, {$inc: {"studentsenrolled": 1}}, {new: true}, function(err, response){
+                    if(err) console.log(err);
+                  });
+                  //Update Student Roster in Courses Table
+                  Course.findOneAndUpdate({"semester": semester, "coursename": coursename, "instructor": instructor, "coursedays": coursedays, "coursetime": coursetime}, {$set: {"studentroster": studentroster}}, {new: true}, function(err, response){
+                    if(err) console.log(err);
+                  });
+                  //Update Student Roster in Enrollment Table
+                  Enrollment.updateMany({"semester": semester, "coursename": coursename, "instructor": instructor, "coursedays": coursedays, "coursetime": coursetime}, {$set: {"studentroster": studentroster}}, {new: true}, function(err, response){
+                    if(err) console.log(err);
+                  });
+                  var data = {
+                    "semester": semester,
+                    "coursename": coursename,
+                    "department": department,
+                    "instructor": instructor,
+                    "coursedays": coursedays,
+                    "coursetime": coursetime,
+                    "description": description,
+                    "studentroster": studentroster,
+                    "studentname": name,
+                    "studentemail": email
+                  };
+                  let enrollment = Enrollment(data);
+                  enrollment.save().then(Enrollment => { 
+                    courseError = "Enrolled Successfully";
+                    res.render("course-search", {courseError: courseError}); 
+                  }).catch(err => console.log(err));
+                }
+              });
+            }
           });
-
-          var data = {
-            "semester": semester,
-            "coursename": coursename,
-            "department": department,
-            "instructor": instructor,
-            "coursedays": coursedays,
-            "coursetime": coursetime,
-            "description": description,
-            "studentname": name,
-            "studentemail": email
-          };
-          let enrollment = Enrollment(data);
-          enrollment.save().then(Enrollment => { 
-              courseError = "Enrolled Successfully";
-              res.render("course-search", {courseError: courseError}); }).catch(err => console.log(err));
         }
       });
     }
   });
 });
 
+app.post('/notifiedenrollment', function(req, res) {
+  var course = req.body.course;
+  course = course.split("|");
+  var coursename = course[0];
+  var instructor = course[1];
+  var coursedays = course[2];
+  var coursetime = course[3];
+  var semester = course[4];
+
+  Course.find({"semester": semester, "coursename": coursename, "instructor": instructor, "coursedays": coursedays, "coursetime": coursetime}, function(err, allCourses){
+    if(err) console.log(err);
+    else{
+      var semester = allCourses[0].semester;
+      var coursename = allCourses[0].coursename;
+      var department = allCourses[0].department;
+      var instructor = allCourses[0].instructor;
+      var coursedays = allCourses[0].coursedays;
+      var coursetime = allCourses[0].coursetime;
+      var description = allCourses[0].description;
+      var studentroster = allCourses[0].studentroster;
+      if(studentroster == ""){ studentroster = req.user.name + " (" + req.user.email + ")"; }
+      else{ studentroster += ", " + req.user.name + " (" + req.user.email + ")"; }
+      var name = req.user.name;
+      var email = req.user.email;
+
+      let tableError;
+      //Checks if Student is already enrolled in the selected course
+      Enrollment.findOne({"semester": semester, "coursename": coursename, "instructor": instructor, "coursedays": coursedays, "coursetime": coursetime, "studentname": name, "studentemail": email}).then(enroll => {
+        if (enroll) {
+          tableError = "You are already enrolled in that course";
+          res.render('student-center', {
+            tableError: tableError,
+            name: req.user.name
+          });
+        }
+        else{
+          Enrollment.findOne({"semester": semester, "coursename": coursename, "studentname": name, "studentemail": email}, function(err, course){
+            if(err) console.log(err);
+            if(course != null){
+              tableError = "You are already enrolled in that type of course";
+              res.render('student-center', {
+                tableError: tableError,
+                name: req.user.name
+              });
+            }
+            else{
+              var daysRegex = coursedays.replace(/, /, "|");
+              Enrollment.find({"semester": semester, "coursedays": {$regex: daysRegex}, "studentname": name, "studentemail": email}, function(err, courses){
+                if(err) console.log(err);
+                var conflict = false;
+                for(i=0; i<courses.length; i++){
+                  if(timeConflict(coursetime, courses[i].coursetime) && conflict == false){
+                    conflict = true;
+                  }
+                }
+                if(conflict){
+                  tableError = "This course conflicts with an enrolled course";
+                  res.render('student-center', {
+                      tableError: tableError,
+                      name: req.user.name
+                  });
+                }
+                else{
+                  //Increases Students enrolled by 1
+                   Course.findOneAndUpdate({"semester": semester, "coursename": coursename, "instructor": instructor, "coursedays": coursedays, "coursetime": coursetime}, {$inc: {"studentsenrolled": 1}}, {new: true}, function(err, response){
+                    if(err) console.log(err);
+                  });
+                  //Update Student Roster in Courses Table
+                  Course.findOneAndUpdate({"semester": semester, "coursename": coursename, "instructor": instructor, "coursedays": coursedays, "coursetime": coursetime}, {$set: {"studentroster": studentroster}}, {new: true}, function(err, response){
+                    if(err) console.log(err);
+                  });
+                  //Update Student Roster in Enrollment Table
+                  Enrollment.updateMany({"semester": semester, "coursename": coursename, "instructor": instructor, "coursedays": coursedays, "coursetime": coursetime}, {$set: {"studentroster": studentroster}}, {new: true}, function(err, response){
+                    if(err) console.log(err);
+                  });
+                  Notification.findOneAndRemove({"semester": semester, "coursename": coursename, "instructor": instructor, "coursedays": coursedays, "coursetime": coursetime, "studentname": name, "studentemail": email}, function(err, res){
+                    if(err) console.log(err);
+                  });
+                  var data = {
+                    "semester": semester,
+                    "coursename": coursename,
+                    "department": department,
+                    "instructor": instructor,
+                    "coursedays": coursedays,
+                    "coursetime": coursetime,
+                    "description": description,
+                    "studentroster": studentroster,
+                    "studentname": name,
+                    "studentemail": email
+                  };
+                  let enrollment = Enrollment(data);
+                  enrollment.save().then(Enrollment => { 
+                    tableError = "Enrolled Successfully";
+                    res.render("student-center", {tableError: tableError, name: req.user.name}); 
+                  }).catch(err => console.log(err));
+                }
+              });
+            }
+          });
+        }
+      });
+    }
+  });
+});
+
+app.post('/dropcourse', function(req, res) {
+  var course = req.body.course;
+  course = course.split("|");
+  var coursename = course[0];
+  var instructor = course[1];
+  var coursedays = course[2];
+  var coursetime = course[3];
+  var semester = course[4];
+  var studentroster = course[5];
+  studentroster = studentroster.split(", ");
+  if(studentroster.length == 1){
+    studentroster = "";
+  }
+  else{
+    var target = req.user.name + " (" + req.user.email + ")";
+    var index = studentroster.indexOf(target);
+    if(index > -1){
+      studentroster.splice(index, 1);
+    }
+    if(studentroster.length == 1) studentroster = studentroster[0];
+    else studentroster.join(", ");
+  }
+  Course.findOneAndUpdate({"semester": semester, "coursename": coursename, "instructor": instructor, "coursedays": coursedays, "coursetime": coursetime}, {$set: {"studentroster": studentroster}, $inc: {"studentsenrolled": -1}}, {new: true}, function(err, response){
+    if(err) console.log(err);
+  });
+  //Update Student Roster in Enrollment Table
+  Enrollment.updateMany({"semester": semester, "coursename": coursename, "instructor": instructor, "coursedays": coursedays, "coursetime": coursetime}, {$set: {"studentroster": studentroster}}, {new: true}, function(err, response){
+    if(err) console.log(err);
+  });
+  //Remove course from enrollment table
+  Enrollment.findOneAndRemove({"semester": semester, "coursename": coursename, "instructor": instructor, "coursedays": coursedays, "coursetime": coursetime, "studentname": req.user.name, "studentemail": req.user.email}, function(err, allCourses){
+    if(err) console.log(err);
+      console.log("Course Removed Successfully");
+      res.render("student-center", {name: req.user.name, tableError: "Removed Enrolled Course Successfully"});
+    });
+});
+
 //When Notification Button is Clicked, Course is added to Notification Table
 var Notification = require("./models/notifications.js");
 app.post('/addnotification', function(req, res) {
-  var coursename = req.body.coursename;
-  var instructor = req.body.instructor;
-  var coursedays = req.body.coursedays;
-  var coursetime = req.body.coursetime;
+  var course = req.body.course;
+  course = course.split("|");
+  var coursename = course[0];
+  var instructor = course[1];
+  var coursedays = course[2];
+  var coursetime = course[3];
+  var semester = course[4];
 
-  Course.find({"coursename": coursename, "instructor": instructor, "coursedays": coursedays, "coursetime": coursetime}, function(err, allCourses){
+  Course.find({"semester": semester, "coursename": coursename, "instructor": instructor, "coursedays": coursedays, "coursetime": coursetime}, function(err, allCourses){
     if(err) console.log(err);
     else{
       var semester = allCourses[0].semester;
@@ -483,7 +670,7 @@ app.post('/addnotification', function(req, res) {
       let courseError;
       //Checks if Student is already notified for that course
       Notification.findOne({"semester": semester, "coursename": coursename, "instructor": instructor, "coursedays": coursedays, "coursetime": coursetime, "studentname": name, "studentemail": email}).then(enroll => {
-        if (enroll) {
+          if(enroll != undefined){
           courseError = "You are already notified for that course";
           console.log("You are already notified for that course");
           res.render('course-search', {
@@ -491,24 +678,35 @@ app.post('/addnotification', function(req, res) {
           });
         }
         else{
-          var data = {
-            "semester": semester,
-            "coursename": coursename,
-            "department": department,
-            "instructor": instructor,
-            "coursedays": coursedays,
-            "coursetime": coursetime,
-            "description": description,
-            "capacity": capacity,
-            "studentsenrolled": studentsenrolled,
-            "enrollmentdeadline": enrollmentdeadline,
-            "studentname": name,
-            "studentemail": email
-          };
-          let notification = Notification(data);
-          notification.save().then(notified => { 
-              req.flash('success_msg', 'We\'ll Remind You\'');
-              res.redirect("/coursesearch"); }).catch(err => console.log(err));
+          Enrollment.findOne({"semester": semester, "coursename": coursename, "instructor": instructor, "coursedays": coursedays, "coursetime": coursetime, "studentname": name, "studentemail": email}).then(enroll => {
+              if(enroll != undefined){
+                courseError = "Why do you want notifications in a course you're enrolled in?";
+                res.render('course-search', {
+                  courseError: courseError
+                });
+              }
+              else{
+                var data = {
+                  "semester": semester,
+                  "coursename": coursename,
+                  "department": department,
+                  "instructor": instructor,
+                  "coursedays": coursedays,
+                  "coursetime": coursetime,
+                  "description": description,
+                  "capacity": capacity,
+                  "studentsenrolled": studentsenrolled,
+                  "enrollmentdeadline": enrollmentdeadline,
+                  "studentname": name,
+                  "studentemail": email
+                };
+                let notification = Notification(data);
+                notification.save().then(notified => { 
+                  courseError = "We\'ll\ Remind You";
+                  res.render("course-search", {courseError: courseError});
+                }).catch(err => console.log(err));
+              }
+            });
         }
       });
     }
@@ -517,14 +715,19 @@ app.post('/addnotification', function(req, res) {
 
 //When Notification Button is Clicked, Course is added to Notification Table
 app.post('/removenotification', function(req, res) {
-  var coursename = req.body.coursename;
-  var instructor = req.body.instructor;
-  var coursedays = req.body.coursedays;
-  var coursetime = req.body.coursetime;
-  Notification.findOneAndRemove({"coursename": coursename, "instructor": instructor, "coursedays": coursedays, "coursetime": coursetime, "studentname": req.user.name, "studentemail": req.user.email}, function(err, allCourses){
+  var course = req.body.course;
+  course = course.split("|");
+  var coursename = course[0];
+  var instructor = course[1];
+  var coursedays = course[2];
+  var coursetime = course[3];
+  var semester = course[4];
+
+  Notification.findOneAndRemove({"semester": semester, "coursename": coursename, "instructor": instructor, "coursedays": coursedays, "coursetime": coursetime, "studentname": req.user.name, "studentemail": req.user.email}, function(err, allCourses){
     if(err) console.log(err);
     console.log("Course Removed Successfully");
   });
+  res.render("student-center", {name: req.user.name, tableError: "Removed Notified Course Successfully"});
 });
 
 /* Sources
