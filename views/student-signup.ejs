@@ -23,12 +23,18 @@
             <div class="header-left">
                 <a href="../index.html"><img src="img/qc_logo.jpg" alt="Queens College logo"></a> <!--QC Logo will appear on every webpage-->
             </div>
-            <div class="header-right">
-                <a class="menu-login" href="/login">Login</a> 
-                <a class="menu-sign-up" href="/studentsignup">Sign Up</a> 
-            </div>
         </header>
 
+        <div class="topnav" id="myTopnav">
+            <a href="javascript:void(0);" class="topnav-hamburger icon"> <!--used to open and close the topnav on small screens-->
+                <i class="fa fa-bars"></i>
+            </a>
+            <div id="myLinks">
+                <a class="nav-link" href="/login">Login</a> 
+                <a class="nav-link" href="/studentsignup">Sign Up - Student</a>
+                <a class="nav-link" href="/teachersignup">Sign Up - Teacher</a>
+            </div>
+        </div>
         <%- include ('./partials/messages'); %> 
 
         <form action="/studentsignup" method="post">
@@ -50,10 +56,6 @@
                 <div class = "submitbtn">
                     <input type="submit" class="signupbtn" value="SIGN UP">
                 </div>
-
-                <div class = "teacherbtn">
-                    <a href = "/teachersignup">Click Here for Teacher Sign Up</a>
-                </div>
             </div>
         </form>
         <script
@@ -73,6 +75,6 @@
       ></script>
     </body>
 </html>
-
+<script src="js/script.js"></script>
 <!--Sources-->
 <!--https://learn.zybooks.com/zybook/CUNYCSCI355AbramovSpring2021/chapter/2/section/11-->
