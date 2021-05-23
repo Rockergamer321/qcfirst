@@ -1,4 +1,11 @@
+h1{
+    margin-top: 10px;
+    margin-bottom: 0px;
+    padding-bottom: 20px;
+    background-color: lightblue;
+}
 .course-error{
+    margin-top: 0px;
     background-color: lightblue;
 }
 .Search-Section {
