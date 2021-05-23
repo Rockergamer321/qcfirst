@@ -1,3 +1,7 @@
+h1{
+    margin-top: 10px;
+    background-color: lightblue;
+}
 .main-section {
     background-color: orange;
     margin: 0 auto;
