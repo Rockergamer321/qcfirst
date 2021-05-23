@@ -107,10 +107,6 @@ label {
     margin-top: 10px;
 }
 
-.table > .notified-schedule{
-    padding-left: 40px;
-}
-
 .container {
     width: 100%;
     text-align: center;
@@ -166,7 +162,7 @@ label {
 }
 
 .roster-modal table{
-    margin-left: 140px;
+    margin-left: 50px;
     margin-top: 10px;
     margin-bottom: 10px;
 }
