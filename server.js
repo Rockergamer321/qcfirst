@@ -354,6 +354,7 @@ app.post('/createacourse', function(req, res) {
   var enrollmentdeadline = req.body.enrollmentdeadline;
   var capacity = req.body.capacity;
   var studentsenrolled = 0;
+  var studentroster = "";
   var description = req.body.description;
 
   var data = {
@@ -367,6 +368,7 @@ app.post('/createacourse', function(req, res) {
     "enrollmentdeadline": enrollmentdeadline,
     "capacity": capacity,
     "studentsenrolled": studentsenrolled,
+    "studentroster": studentroster,
     "description": description
   };
 
