@@ -284,6 +284,11 @@ input[type="submit"] {
   font-family: arial, "Shippori Mincho", serif;
 }
 
+/* =====================
+    Admin Handling
+   =====================
+*/
+
 .admin-title {
   text-align: center;
 }

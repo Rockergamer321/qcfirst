@@ -25,11 +25,18 @@
                 <!--QC Logo will appear on every webpage-->
                 <a href="../index.html"><img src="img/qc_logo.jpg" alt="Queens College logo"></a> 
             </div>
-            <div class="header-right">
-                <a class="menu-link" href="/login">Login</a> 
-                <a class="menu-link" href="/studentsignup">Sign Up</a> 
-            </div>
         </header>
+
+        <div class="topnav" id="myTopnav">
+            <a href="javascript:void(0);" class="topnav-hamburger icon"> <!--used to open and close the topnav on small screens-->
+                <i class="fa fa-bars"></i>
+            </a>
+            <div id="myLinks">
+                <a class="nav-link" href="/login">Login</a> 
+                <a class="nav-link" href="/studentsignup">Sign Up - Student</a>
+                <a class="nav-link" href="/teachersignup">Sign Up - Teacher</a>
+            </div>
+        </div>
 
         <%- include ('./partials/messages'); %> 
 
@@ -65,3 +72,4 @@
       ></script>
     </body>
 </html>
+<script src="js/script.js"></script>
