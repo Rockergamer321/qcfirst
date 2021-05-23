@@ -53,7 +53,7 @@
 		</div> <!--End of Page Header-->
 		<h1>Course Search</h1> <!--Page Heading-->
 		<% if (courseError != null) { %>
-			<h2><%= courseError %></h2>
+			<h2 class="course-error"><%= courseError %></h2>
 		<% } %>
 		<!--Area Where User Enters and Submits Search Information (Subject/Course & Term/Semester)-->
 		<div class = "Search-Section"> 
@@ -171,6 +171,7 @@
 			<div class="Class-Selection">
 				<table>
 					<tr>
+						<th></th>
 						<th>Course Name</th>
 						<th>Instructor</th>
 						<th>Course Days</th>
@@ -181,17 +182,21 @@
 					</tr>
 					<% courseresults.forEach(course => { %>
 						<tr>
+							<td><form method="post" id="<%= course.coursename %>|<%= course.instructor %>|<%= course.coursedays %>|<%= course.coursetime %>|<%=course.semester %>"><input type="hidden" name="course" value="<%= course.coursename %>|<%= course.instructor %>|<%= course.coursedays %>|<%= course.coursetime %>|<%=course.semester %>"></form></td>
 							<td><%= course.coursename %></td>
 							<td><%= course.instructor %></td>
 							<td><%= course.coursedays %></td>
 							<td><%= course.coursetime %></td>
 							<% if (course.studentsenrolled >= course.capacity) { %>
 								<td> <img class="availability-icon" src="img/Red_Circle.png" height=40 width=40 alt="This Class is Currently Unavailable" /> </td>
-								<td> <img class="notification-bell" src="img/notification-bell.png" alt="Notification Bell" width=40 height=40 /> </td>
 							<% } else { %>
-								<td> <img class="availability-icon" src="img/Green_Circle.png" height=40 width=40 alt="This Class is Currently Available"/> </td>	
-								<td> <img class="notification-bell" src="img/notification-bell.png" alt="Notification Bell" width=40 height=40 /> </td>
-								<td> <button class="enroll-button">Enroll</a> </button>
+								<td> <img class="availability-icon" src="img/Green_Circle.png" height=40 width=40 alt="This Class is Currently Available"/> </td>
+							<% } %>
+								<td> <input type="image" formaction="/addnotification" form="<%= course.coursename %>|<%= course.instructor %>|<%= course.coursedays %>|<%= course.coursetime %>|<%=course.semester %>" class="notification-bell" src="img/notification-bell.png" alt="Notification Bell" width=40 height=40 /> </td>
+							<% if(todaysDate < course.enrollmentdeadline && course.studentsenrolled < course.capacity) { %>
+								<td> <input type="submit" form="<%= course.coursename %>|<%= course.instructor %>|<%= course.coursedays %>|<%= course.coursetime %>|<%=course.semester %>" formaction="/enrollment" value="Enroll"></td>
+							<% } else { %>
+								<td></td>
 							<% } %>
 						</tr>
 					<% }); %>
@@ -202,10 +207,10 @@
 				<!--Dropdown Menu Containing Course Results-->
 				<form action="/enrollment" method="POST" id = "mobile-enroll">
 					<label for="courses">Select a Course to Enroll In</label>
-					<img src="img/notification-bell.png" alt="Notification Bell" class="mobile-notification" width=40 height=40 />
+					<input type="image" formaction="/addnotification" form="mobile-enroll" class="notification-bell" src="img/notification-bell.png" alt="Notification Bell" width=40 height=40 />
 					<select name="course" id="courses">
 						<% for( let i = 0; i < courseresults.length; i++ ) { %>
-							<option value="<%= courseresults[i].coursename %>|<%= courseresults[i].instructor %>|<%= courseresults[i].coursedays %>|<%= courseresults[i].coursetime %>|<%= courseresults[i].capacity - courseresults[i].studentsenrolled%>"> <%= courseresults[i].coursename %> (<%= courseresults[i].mobiledays %>) - <%= mobileInstructor[i] %> at <%= courseresults[i].coursetime %></option>
+							<option value="<%= courseresults[i].coursename %>|<%= courseresults[i].instructor %>|<%= courseresults[i].coursedays %>|<%= courseresults[i].coursetime %>|<%=courseresults[i].semester %>|<%= courseresults[i].capacity - courseresults[i].studentsenrolled%>|<%= courseresults[i].enrollmentdeadline%>"> <%= courseresults[i].coursename %> (<%= courseresults[i].mobiledays %>) - <%= mobileInstructor[i] %> at <%= courseresults[i].coursetime %></option>
 						<% } %>
 					</select>
 					<br>
@@ -213,9 +218,9 @@
 					<div id="availability">
 						<h3>Availability Status: </h3>
 						<img class="availability-icon" src="img/Green_Circle.png" height=40 width=40 alt="This Class is Currently Available"/>	
-						<!--Submits Given Selection-->
-						<input type="submit" value="Enroll">
 					</div>
+					<!--Submits Given Selection-->
+					<div id="check-submit"></div>
 				</form>
 			</div>
 		<% } %>

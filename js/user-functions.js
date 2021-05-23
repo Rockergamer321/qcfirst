@@ -33,5 +33,25 @@ module.exports = {
     },
     idGenerator: function(){
         return 20000000 + Math.floor(Math.random() * 10000001);
-    }
+    },
+    timeConflict: function(time1, time2){
+        time1 = convertTime(time1);
+        time2 = convertTime(time2);
+        if ( (time1[0][0] >= time2[0][0] && time1[0][1] >= time2[0][1] && time1[0][2] >= time2[0][2] && time1[1][0] >= time2[0][0] && time1[1][1] >= time2[0][1] && time1[1][2] >= time2[0][2]) || (time1[0][0] <= time2[0][0] && time1[0][1] <= time2[0][1] && time1[0][2] <= time2[0][2] && time1[1][0] <= time2[1][0] && time1[1][1] <= time2[1][1] && time1[1][2] <= time2[1][2]) || (time1[0][0] <= time2[0][0] && time1[0][1] <= time2[0][1] && time1[0][2] <= time2[0][2] && time1[1][0] >= time2[1][0] && time1[1][1] >= time2[1][1] && time1[1][2] >= time2[1][2]) || (time1[0][0] >= time2[0][0] && time1[0][1] >= time2[0][1] && time1[0][2] >= time2[0][2] && time1[1][0] <= time2[1][0] && time1[1][1] <= time2[1][1] && time1[1][2] <= time2[1][2]) ) {
+            return true;
+        }
+        else{
+            return false;
+        }
+
+        function convertTime (time){
+            time = time.replace(/ AM/g, ":AM");  
+            time = time.replace(/ PM/g, ":PM");
+            var timeArray = time.split(" - ");
+            for(i = 0; i < timeArray.length; i++) {
+              timeArray[i] = timeArray[i].split(":");
+            }
+            return timeArray;
+        }
+    },
 };

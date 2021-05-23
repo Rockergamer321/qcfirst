@@ -11,6 +11,7 @@ const EnrollmentSchema = new Schema (
 		coursetime: {type: String, required: true},
 		description: {type: String, required: true},
         studentname: {type: String, required: true},
+		studentroster: {type: String},
         studentemail: {type: String, required: true}
 	}
 );

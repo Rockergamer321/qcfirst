@@ -61,11 +61,7 @@ In server.js:
   - Added schemas for both user types in model.js, ensuring that an email can only exist once in the database.
 - Added functionality to createaclass.html form, allowing a class to be added to the database using the given form.
 
-Created qcFirst database in MongoDB Atlas with collections: users and classes.
-
-Administrator Page:
-
-- Created and implemented the administrator homepage, as well as the pages displaying the contents of the course and users database collections.
+Created qcFirst database in MongoDB Atlas with collections: students, teachers, and classes.
 
 ## Purpose
 
@@ -216,7 +212,7 @@ The User Settings page allows a user to access the information that the system c
 
 ## Design Differences (Jonathan Dinh)
 
-- Login / Signup pages: The buttons that direct the user to the login and signup pages were changed to a navbar that extends across the whole page. This change was made for better readability and responsiveness, allowing for a cleaner way of displaying a hamburger menu in mobile devices.
+- Login / Signup pages: The login and sign up buttons remained in the same place as the homepage, rather than on top of the border of the form container. This decision was made to keep the positioning of the buttons throughout the pages consistent, rather than have them change from one page to the next.
 - student-signup.html: A link to a new html file, teacher-signup was created to help with managing the database tables.
 - teacher-signup.html: Created to help with managing the database tables on signup.
 - signup-successful.html: Created as a way to tell users that they have successfully signed up. If the signup was not successful, an error will be thrown.
