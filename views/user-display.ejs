@@ -10,7 +10,7 @@
 <html lang="en">
     <head>
         <meta charset = utf-8 />
-        <title>user-display</title>
+        <title>User Database</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" 
         integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" 
@@ -30,23 +30,29 @@
             </div>
         </header>
 
-        <div class = "admin-menu">
-            <form action="/" method="POST">
-                <table class="table">
-                    <thead class="thead-dark">
-                        <tr>
-                            <th>Name</th>
-                            <th>User ID</th>
-                            <th>Role</th>
-                            <th>Email</th>
-                            <th>Password</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <%- include('table.ejs') %>
-                    </tbody>
-                </table>
-            </form>
+        <div class="user-database">
+            <table>
+                <thead>
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">User ID</th>
+                        <th scope="col">Role</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Password</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% allusers.forEach(user => { %>
+                    <tr>
+                        <td scope="row" data-label="Name"><%= user.name %></td>
+                        <td data-label="User ID"><%= user.userid %></td>
+                        <td data-label="Role"><%= user.role %></td>
+                        <td data-label="Email"><%= user.email %></td>
+                        <td data-label="Password"><%= user.password %></td>
+                    </tr>
+                    <% }); %>
+                </tbody>
+            </table>
         </div>
 
         <script src="/js/index.js"></script>

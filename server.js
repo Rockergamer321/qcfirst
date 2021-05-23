@@ -197,10 +197,35 @@ app.get('/signout', (req, res) => {
   res.redirect('/login');
 });
 
+// =================
+//    Admin Handling
+//==================
 //This loads the Admin page
 app.get('/admincenter', (req, res) => {
   res.render('admin');
 });
+
+//This loads the User Database page
+app.get("/userdisplay", function (req, res) {
+  User.find({}, function (err, allUsers) {
+    if (err) {
+      console.log(err);
+    } else {
+      res.render("user-display", { allusers: allUsers })
+    }
+  })
+})
+
+//This loads the Course Database page
+app.get("/coursedisplay", function (req, res) {
+  Course.find({}, function (err, allCourses) {
+    if (err) {
+      console.log(err);
+    } else {
+      res.render("course-display", { allcourses: allCourses })
+    }
+  })
+})
 
 //This loads up the Student Center page
 app.get('/studentcenter', ensureAuthenticated, (req, res) => {
