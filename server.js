@@ -211,10 +211,10 @@ app.get("/userdisplay", function (req, res) {
     if (err) {
       console.log(err);
     } else {
-      res.render("user-display", { allusers: allUsers })
+      res.render("user-display", { allusers: allUsers });
     }
-  })
-})
+  });
+});
 
 //This loads the Course Database page
 app.get("/coursedisplay", function (req, res) {
@@ -222,10 +222,10 @@ app.get("/coursedisplay", function (req, res) {
     if (err) {
       console.log(err);
     } else {
-      res.render("course-display", { allcourses: allCourses })
+      res.render("course-display", { allcourses: allCourses });
     }
-  })
-})
+  });
+});
 
 //This loads up the Student Center page
 app.get('/studentcenter', ensureAuthenticated, (req, res) => {
