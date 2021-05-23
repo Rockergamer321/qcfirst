@@ -76,6 +76,7 @@
 					<% } else { %>
 						<table class="schedule">
 							<tr>
+								<th></th>
 								<th></th> <!--This is the info button for each class-->
 								<th>Course Name</th>
 								<th>Course Days</th>
@@ -83,6 +84,7 @@
 							</tr>
 							<% courseresults.forEach(course => { %>
 							<tr>
+								<td><form method="post" id="<%= course.coursename %>|<%= course.instructor %>|<%= course.coursedays %>|<%= course.coursetime %>|<%=course.semester %>"><input type="hidden" name="course" value="<%= course.coursename %>|<%= course.instructor %>|<%= course.coursedays %>|<%= course.coursetime %>|<%=course.semester %>"></form></td>
 								<td>
 									<img class="info-button" src="img/info-button.png" height=25 width=25 alt="Button to Display Course Information"/>
 									<div class="modal">
@@ -96,6 +98,31 @@
 											<p>Department: <%= course.department %> </p>
 											<p>Enrollment Total: <%= course.studentsenrolled %>/<%= course.capacity %></p>
 											<button class="delete-button" type="button">Remove Course</button>
+											<button class="roster-button" type="button">Show Roster</button>
+										</div>
+									</div>
+									<div class="roster-modal">
+										<div class="modal-content">
+											<header class="modal-header">
+												<span class="closeroster">&times;</span>
+												<h2>Student Roster:</h2>
+											</header>
+											<% if (course.studentroster !="") { %>
+												<table>
+													<% var studentroster = course.studentroster.split(", "); %>
+													<% for(i = 1; i<studentroster.length+1; i++) { %>
+													<tr>
+														<td><%= i %>)</td>
+														<td><%= studentroster[i-1] %></td>
+													</tr>
+													<% } %>
+												</table>
+											<% } else { %>
+												<table>
+													<td></td>
+													<td>No students have enrolled in this course yet</td>
+												</table>
+											<% } %>
 										</div>
 									</div>
 									<div class="drop-modal">
@@ -104,7 +131,7 @@
 												<span class="closewarning">&times;</span>
 												<h2>Are You Sure You Want to Remove This Course?</h2>
 											</header>
-											<button type="button" class="yes-button">YES</button>
+											<button type="submit" form="<%= course.coursename %>|<%= course.instructor %>|<%= course.coursedays %>|<%= course.coursetime %>|<%=course.semester %>" formaction="/dropfacultycourse" class="yes-button">YES</button>
 											<button type="button" class="no-button">NO</button>
 										</div>
 									</div>
