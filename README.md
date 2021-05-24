@@ -70,7 +70,12 @@ Created and coded
 Styled previously mentioned HTML files with
 
 - css/styles.css
+- Implemented responsiveness with flexbox and media queries
 
+Implemented backend to html files with
+
+- js/script.js
+-
 In server.js:
 
 - installed and saved packages: express, mongoose, and passport.
@@ -78,14 +83,19 @@ In server.js:
 - hosted website on Heroku using app.listen() and a newly created Procfile.
   - This also required the use of the Heroku CLI.
 - added functionality to both student and teacher signup forms, allowing users to be added to the MongoDB database using the given forms.
-  - Added schemas for both user types in model.js, ensuring that an email can only exist once in the database.
+  - Added schemas for both Students and Courses, implemented unique contraints where needed.
 - Added functionality to createaclass.html form, allowing a class to be added to the database using the given form.
+- created get methods to load ejs files for Admin pages.
 
-Created qcFirst database in MongoDB Atlas with collections: users and classes.
+Created and connected to qcFirst database in MongoDB Atlas with collections: users and classes.
 
 Administrator Page:
 
-- Created and implemented the administrator homepage, as well as the pages displaying the contents of the course and users database collections.
+- Created and implemented the administrator homepage
+- Created a page displaying the user database
+- Created a page displaying the course database
+- Added a table displaying the roster of students for each class on the course database display page.
+
 
 ## Purpose
 
