@@ -17,7 +17,7 @@ Created and coded
 - course-search.ejs
 - settings.ejs
 - search-script.js (Provides extra functionality to mobile users in course-search)
-- user-functions.js (This includes all of the functions used by server.js)
+- user-functions.js (This includes all of the functions that server.js uses)
 - settings-script.js (Scrapped functionality for email modal)
 - center-script.js (Allows modals to be opened and closed)
 
