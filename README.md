@@ -63,10 +63,9 @@ Jonathan Dinh
 Created and coded
 
 - index.html
-- student-signup.html
-- teacher-signup.html
-- createaclass.html
-- successful-signup.html
+- student-signup.ejs
+- teacher-signup.ejs
+- createaclass.ejs
 
 Styled previously mentioned HTML files with
 
@@ -94,18 +93,17 @@ QCfirst is a prototype for a college course enrollment website that allows stude
 
 ### Student Features
 
-- Ability to sign up as a student.: <https://qcfirst.herokuapp.com/student-signup.html>
-- Search for courses.: <https://qcfirst.herokuapp.com/course-search.html>
-- Enroll in courses.: <https://qcfirst.herokuapp.com/course-search.html>
-- Drop enrolled courses.: <https://qcfirst.herokuapp.com/student-center.html>
-- Pay for tuition.: <https://qcfirst.herokuapp.com/student-center.html>
-- Ability to look at schedule.: <https://qcfirst.herokuapp.com/student-center.html>
+- Ability to sign up as a student: <https://qcfirst.herokuapp.com/studentsignup>
+- Search for courses: <https://qcfirst.herokuapp.com/coursesearch>
+- Enroll in courses: <https://qcfirst.herokuapp.com/coursesearch>
+- Drop enrolled courses: <https://qcfirst.herokuapp.com/studentcenter>
+- Ability to look at schedule: <https://qcfirst.herokuapp.com/studentcenter>
 
 ### Professor Features
 
-- Ability to sign up and login as a teacher.: <https://qcfirst.herokuapp.com/teacher-signup.html>
-- Ability to create a course.: <https://qcfirst.herokuapp.com/createaclass.html>
-- Ability to look at teaching schedule.: <https://qcfirst.herokuapp.com/faculty-center.html>
+- Ability to sign up and login as a teacher: <https://qcfirst.herokuapp.com/teachersignup>
+- Ability to create a course: <https://qcfirst.herokuapp.com/createaclass.html>
+- Ability to look at teaching schedule: <https://qcfirst.herokuapp.com/facultycenter>
 
 ## Home Page
 
