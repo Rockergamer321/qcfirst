@@ -274,14 +274,15 @@ app.get('/coursesearch', ensureAuthenticated, (req, res) => {
 //Get Course Results from Search
 app.post('/coursesearch', function(req, res) {
   var courseError = null;
-  var course;
-  course = req.body.subject + " " + req.body.course;
+  var course = req.body.subject + " " + req.body.course;
   Course.find({"coursename": {$regex: course}, "semester": req.body.semester}, function(err, allCourses){
     if(err) console.log(err);
     if(allCourses.length < 1){
       courseError = "No results were found.\nPlease try again";
     }
+    //This gets today's date and will soon be compared with Enrollment Deadline
     let today = new Date();
+    //Gets last name of Instructor (This will be shown on Mobile Devices)
     var mobileInstructor = [];
     for(i=0; i<allCourses.length; i++){
       var instructorLast = allCourses[i].instructor;
@@ -409,17 +410,9 @@ app.get('/settings', ensureAuthenticated,(req, res) => {
     home: userRedirect(req.user.role),
     name: req.user.name,
     email: req.user.email,
-    userid: req.user.userid
+    userid: req.user.userid,
+    role: req.user.role
   });
-});
-
-app.post("/settings", function(req, res){
-  var newEmail = req.body.email;
-  User.findOneAndUpdate({"email": req.user.email}, {$set: {"email": newEmail}}, {new: true}, (err, user) => {
-    if(err) console.log("Email did not update properly");
-    console.log(user);
-  });
-  res.redirect("/settings");
 });
 
 //Handles Course Enrollment
@@ -462,7 +455,7 @@ app.post('/enrollment', function(req, res) {
           Enrollment.findOne({"semester": semester, "coursename": coursename, "studentname": name, "studentemail": email}, function(err, course){
             if(err) console.log(err);
             if(course != null){
-              courseError = "You are already enrolled in that type of course";
+              courseError = "You are already enrolled in a " + coursename + " course";
               res.render('course-search', {
                 courseError
               });
@@ -756,6 +749,12 @@ app.post('/removenotification', function(req, res) {
 });
 
 /* Sources
+Jonathan M Dinh:
 https://zellwk.com/blog/crud-express-mongodb/
 https://stackoverflow.com/questions/18088034/how-to-go-up-using-dirname-in-the-folder-hierarchy
+
+Anthony Lombardo:
+https://www.stackoverflow.com/
+https://www.w3schools.com/
+For User Registration - https://www.youtube.com/watch?v=6FOq4cUdH8k
 */

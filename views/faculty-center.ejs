@@ -94,6 +94,8 @@
 												<h2>Course Info:</h2>
 											</header>
 											<p>Course Name: <%= course.coursename %> </p>
+											<p>Course Days: <%= course.coursedays %></p>
+											<p>Course Time: <%= course.coursetime %></p>
 											<p>Semester: <%= course.semester %> </p>
 											<p>Department: <%= course.department %> </p>
 											<p>Enrollment Total: <%= course.studentsenrolled %>/<%= course.capacity %></p>
@@ -119,8 +121,7 @@
 												</table>
 											<% } else { %>
 												<table>
-													<td></td>
-													<td>No students have enrolled in this course yet</td>
+													<h2 class="error">No students have enrolled in this course yet</h2>
 												</table>
 											<% } %>
 										</div>

@@ -26,7 +26,7 @@
 		<!--Page Header-->
 		<div class="topnav">
 			<!--QC Logo-->
-			<a href="/studentcenter" class="logo"> 
+			<a href="<%= home %>" class="logo"> 
 				<img src="/img/qc_logo.jpg" width=120 alt="QC Logo"/> 
 			</a>
 			<!--Dropdown Navigation Menu Stored in User Icon-->
@@ -64,24 +64,23 @@
 		<!--Section Containing Email of User (Left Column) and Button to Change Email of User (Right Column)-->
 		<section class="email-section">
 			<div class="row">
-				<div class="left-side">
 					<h2>Email:</h2>
 					<p class="email-input"><%= email %> </p>
-				</div>
-				<div class="right-side"> 
-					<button class="change-button" type="button">Change Email</button>
-					<div class="modal">
-						<div class="modal-content">
-							<span class="close">&times;</span>
-							<form action="/settings" method="POST">
-								<label for="email">Enter New Email:</label>
-								<input type="email" id="email" name="email">
-								<input type="submit">
-							</form>
-						</div>
-					</div>
+			</div>
+		</section>
+		<% if (role == "Student") { %>
+		<!--Section Where Students Selects If They Would Like to Receive Notifications-->
+		<section class="notifications-section">
+			<h2>Notifications</h2>
+			<!--Div That Holds Both Notification Checkboxes-->
+			<div class="check">
+				<!--Checkbox for Email Notifications-->
+				<div class="checkbox-field">
+					<input type="checkbox" id="email-checkbox" name="email-checkbox"/>
+					<label for="email-checkbox">Send Notifications Through Email</label>
 				</div>
 			</div>
 		</section>
+		<% } %>
 	</body>
 </html>
