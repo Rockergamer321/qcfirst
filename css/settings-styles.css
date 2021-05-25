@@ -4,6 +4,12 @@
     max-width: 700px;
     margin-bottom: 5px;
 }
+.email-section{
+    text-align: center;
+}
+.email-section h2{
+    margin-top: 0px;
+}
 .heading {
     margin-top: 10px;
 }

@@ -37,7 +37,7 @@
         </div>
         <%- include ('./partials/messages'); %> 
 
-        <form action="/studentsignup" method="post">
+        <form action="/studentsignup" method="post" enctype="multipart/form-data">
             <!--Form fields for user to fill out to sign up-->
             <div class="signup-container">
                 <h1>Sign Up - Student</h1>
@@ -53,6 +53,9 @@
                 <label for="password"><b>Password</b></label>
                 <input type="password" id="password" Name="password" placeholder="Password" required="">
                 
+                <label for="image"><b>Upload User Image (Optional - Use jpg/jpeg/png)</b></label>
+                <input type="file" id="image" Name="image">
+
                 <div class = "submitbtn">
                     <input type="submit" class="signupbtn" value="SIGN UP">
                 </div>

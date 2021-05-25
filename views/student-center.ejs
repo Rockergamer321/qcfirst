@@ -33,8 +33,12 @@
 			<!--Dropdown Navigation Menu Stored in User Icon-->
 			<nav class="nav-menu">
 				<div class="dropdown-toggle"> 
-					<!--User Photo: https://stock.adobe.com/290580606?tduid=971268d0957d9995b1e6a74288ca7071&as_channel=affiliate&as_campclass=redirect&as_source=arvato&asset_id=290580351-->
-					<img src="img/default-user.png" width=50 alt="Profile Photo" /> 
+					<!--User Photo-->
+					<% if (avatar.contentType != null) { %>
+						<img src="data:image/<%=avatar.contentType%>;base64,<%=avatar.data.toString('base64')%>" width=50 height=50 id="user-icon" alt="Profile Photo" />
+					<% } else { %>
+						<img src="img/default-user.png"  height=50 width=50 alt="Profile Photo" /> 
+					<% } %>	
 					<!--Links That Direct to Home (Student Center), Settings, and Sign Out (Homepage)-->
 					<nav class="dropdown-list">
 						<a href="/studentcenter" class="dropdown-link">Home</a> <br>
@@ -196,20 +200,11 @@
 				</div> <!--End of Right Column-->
 			</div> <!--End of Row-->
 		</section> <!--End of main-section-->
-		<!--Section That Displays Payments That Are Due (Left Column) and Holds (Right Column)-->
+		<!--Section That Displays  Holds on a Student's Account-->
 		<section class="payment-hold-section">
 			<div class="row">
-				<!--Column That Displays Amount due on Payments-->
-				<div class="left-side">
-					<h2>Payment</h2>
-					<p>Amount Due: $3,765.21</p>
-					<a href="" class="button">Pay Now</a>
-				</div>
-				<!--Column That Displays any Account Holds-->
-				<div class="right-side">
 					<h2>Holds</h2>
 					<p>You Currently Have No Holds</p>
-				</div>
 			</div>
 		</section>
 		<script

@@ -55,3 +55,9 @@ module.exports = {
         }
     },
 };
+
+/*
+* For Time Conflict: 
+* https://codereview.stackexchange.com/questions/240011/js-schedule-conflict-detection-algorithm-logic-length
+* https://stackoverflow.com/questions/35009779/check-time-conflict-on-javascript
+*/
