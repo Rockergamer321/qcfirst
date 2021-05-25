@@ -427,6 +427,57 @@ td {
   border-bottom: 0;
 }
 
+/* Search History Table */
+.search-history {
+  border: 1px solid #ccc;
+  border-collapse: collapse;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  table-layout: fixed;
+}
+
+.search-history thead {
+  border: none;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: 1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+
+.search-history tr {
+  border-bottom: 3px solid #ddd;
+  display: block;
+  margin-bottom: 0.625em;
+}
+
+.search-history td {
+  border-bottom: 1px solid #ddd;
+  display: block;
+  font-size: 0.8em;
+  text-align: right;
+}
+
+.search-history th {
+  font-size: 0.85em;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.search-history td::before {
+  content: attr(data-label);
+  float: left;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.search-history td:last-child {
+  border-bottom: 0;
+}
+
 @media all and (min-width: 786px) {
   .header {
     padding: 100px 0;

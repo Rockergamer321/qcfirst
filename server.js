@@ -250,12 +250,12 @@ app.get('/signout', (req, res) => {
 //    Admin Handling
 //==================
 //This loads the Admin page
-app.get('/admincenter', (req, res) => {
+app.get('/admincenter', ensureAuthenticated, (req, res) => {
   res.render('admin');
 });
 
 //This loads the User Database page
-app.get("/userdisplay", function (req, res) {
+app.get("/userdisplay", ensureAuthenticated, function (req, res) {
   User.find({}, function (err, allUsers) {
     if (err) {
       console.log(err);
@@ -266,12 +266,24 @@ app.get("/userdisplay", function (req, res) {
 });
 
 //This loads the Course Database page
-app.get("/coursedisplay", function (req, res) {
+app.get("/coursedisplay", ensureAuthenticated, function (req, res) {
   Course.find({}, function (err, allCourses) {
     if (err) {
       console.log(err);
     } else {
       res.render("course-display", { allcourses: allCourses });
+    }
+  });
+});
+
+
+//This loads the search history page
+app.get("/searchhistory", ensureAuthenticated, function (req, res) {
+  Search.find({}, function (err, searchResult) {
+    if (err){
+      console.log(err);
+    } else {
+      res.render("searchhistory", { searchResult: searchResult });
     }
   });
 });
@@ -323,6 +335,7 @@ app.get('/coursesearch', ensureAuthenticated, (req, res) => {
 });
 
 //Get Course Results from Search
+var Search = require("./models/search.js");
 app.post('/coursesearch', function(req, res) {
   var courseError = null;
   var course = req.body.subject + " " + req.body.course;
@@ -344,6 +357,21 @@ app.post('/coursesearch', function(req, res) {
 
     res.render("course-search", {courseresults: allCourses, courseError: courseError, avatar: req.user.avatar, courseCount: allCourses.length, mobileInstructor: mobileInstructor, todaysDate: today});
   });
+
+    var name = req.user.name;
+    var email = req.user.email;
+    var searchedsubject = course;
+    var searchedsemester = req.body.semester;
+
+    var data = {
+      "name": name,
+      "email": email,
+      "searchedsubject": searchedsubject,
+      "searchedsemester": searchedsemester
+    };
+  
+    let searchResult = new Search(data);
+    searchResult.save().then().catch(err => console.log(err));
 });
 
 //This loads up the Faculty Center page
