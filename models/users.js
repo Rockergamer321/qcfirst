@@ -8,6 +8,11 @@ const UserSchema = new Schema (
 		role: {type: String, required: true},
 		email: {type: String, required: true, unique: true},
 		password: {type: String, required: true},
+		avatar: {
+			data: Buffer,
+			contentType: String
+		},
+		notifyemail: {type: Boolean}
 	}
 );
 

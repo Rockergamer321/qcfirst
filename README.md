@@ -53,6 +53,7 @@ For server.js:
   * What's great about the search functionality is that a student can use all of the search fields, two of the search fields (Ex: Subject and semester) or one of them (Ex: Semester) and still get a result. This is because the coursename that the database uses to search the database is a regular expression, so this makes searching for courses easier.
 - I included enrollment functionality for desktop and mobile users, which are linked to the same enrollment post function that searches for the selected course inside the course schema. However, before the course and student is saved in the enrollment table, the function checks if the student is already enrolled in the course, is enrolled in a similar course or if the course conflicts with one of the student's enrolled courses. Once those errors have been checked for, the amount of students enrolled in the course (studentsenrolled) gets increased by one and the student roster is updated.
 - I also included notification functionality for desktop and mobile users where the post function is activated when the user clicks on the bell icon. The function searches the selected course inside the course schema before checking if the student is already notified for the course or if the student is already enrolled in the course.
+- Lastly, I included the ability for users to add images to their account through multer.
 
 ### - Jonathan Dinh (jonathanmdinh)
 

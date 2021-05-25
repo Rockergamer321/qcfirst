@@ -26,14 +26,18 @@
 		<!--Page Header-->
 		<div class="topnav">
 			<!--QC Logo-->
-			<a href="/studentcenter" class="logo"> 
+			<a href="<%= home %>" class="logo"> 
 				<img src="/img/qc_logo.jpg" width=120 alt="QC Logo"/> 
 			</a>
 			<!--Dropdown Navigation Menu Stored in User Icon-->
 			<nav class="nav-menu">
 				<div class="dropdown-toggle"> 
-					<!--User Photo: https://stock.adobe.com/290580606?tduid=971268d0957d9995b1e6a74288ca7071&as_channel=affiliate&as_campclass=redirect&as_source=arvato&asset_id=290580351-->
-					<img src="img/default-user.png" width=50 alt="Profile Photo" /> 
+					<!--User Photo-->
+					<% if (avatar.contentType != null) { %>
+						<img src="data:image/<%=avatar.contentType%>;base64,<%=avatar.data.toString('base64')%>" width=50 height=50 id="user-icon" alt="Profile Photo" />
+					<% } else { %>
+						<img src="img/default-user.png"  height=50 width=50 alt="Profile Photo" /> 
+					<% } %>				
 					<!--Links That Direct to Home (Student Center), Settings, and Sign Out (Homepage)-->
 					<nav class="dropdown-list">
 						<a href="<%= home %>"  class="dropdown-link">Home</a> <br>
@@ -45,8 +49,12 @@
 		</div> <!--End of Page Header-->
 		<!--Page Heading Containing User Image and "User Settings" Heading-->
 		<div class="heading">
-			<img src="/img/default-user.png" height=250 width=250 alt="User Photo" class="user-image"/>
-			<h1>User Settings</h1>
+			<% if (avatar.contentType != null) { %>
+				<img src="data:image/<%=avatar.contentType%>;base64,<%=avatar.data.toString('base64')%>" height=250 width=250 id="user-icon" alt="Profile Photo" /> 
+		   <% } else { %>
+				<img src="img/default-user.png" height=250 width=250 alt="Profile Photo" /> 
+		   <% } %>
+		<h1>User Settings</h1>
 		</div>
 		<!--Section Containing Name (Left Column) and ID of User (Right Column)-->
 	   <section class="name-id-section">
@@ -64,23 +72,8 @@
 		<!--Section Containing Email of User (Left Column) and Button to Change Email of User (Right Column)-->
 		<section class="email-section">
 			<div class="row">
-				<div class="left-side">
 					<h2>Email:</h2>
 					<p class="email-input"><%= email %> </p>
-				</div>
-				<div class="right-side"> 
-					<button class="change-button" type="button">Change Email</button>
-					<div class="modal">
-						<div class="modal-content">
-							<span class="close">&times;</span>
-							<form action="/settings" method="POST">
-								<label for="email">Enter New Email:</label>
-								<input type="email" id="email" name="email">
-								<input type="submit">
-							</form>
-						</div>
-					</div>
-				</div>
 			</div>
 		</section>
 	</body>

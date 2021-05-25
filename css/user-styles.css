@@ -2,6 +2,9 @@
     background-color: red;
     overflow: hidden;
 }
+#user-icon{
+    border-radius: 50%;
+}
 .logo {
     float: left;
     border-radius: 50%;
