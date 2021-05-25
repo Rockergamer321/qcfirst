@@ -29,9 +29,13 @@
 			<!--Dropdown Navigation Menu Stored in User Icon-->
 			<nav class="nav-menu">
 				<div class="dropdown-toggle"> 
-					<!--User Photo: https://stock.adobe.com/290580606?tduid=971268d0957d9995b1e6a74288ca7071&as_channel=affiliate&as_campclass=redirect&as_source=arvato&asset_id=290580351-->
-					<img src="img/default-user.png" width=50 alt="Profile Photo" /> 
-					<!--Links That Direct to Home (Student Center), Settings, and Sign Out (Homepage)-->
+					<!--User Photo-->
+					<% if (avatar.contentType != null) { %>
+						<img src="data:image/<%=avatar.contentType%>;base64,<%=avatar.data.toString('base64')%>" width=50 id="user-icon" alt="Profile Photo" />
+					<% } else { %>
+						<img src="img/default-user.png" width=50 alt="Profile Photo" /> 
+					<% } %>			
+				   <!--Links That Direct to Home (Student Center), Settings, and Sign Out (Homepage)-->
 					<nav class="dropdown-list">
 						<a href="/facultycenter" class="dropdown-link">Home</a> <br>
 						<a href="/settings" class="dropdown-link">Settings</a> <br>

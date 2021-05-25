@@ -9,6 +9,7 @@ const bcrypt = require('bcryptjs');
 const passport = require('passport');
 const flash = require('connect-flash');
 const session = require('express-session');
+const fs = require('fs');
 const { userRedirect, ensureAuthenticated, timeString, idGenerator, timeConflict } = require('./js/user-functions');
 
 //Connect to MongoDB Atlas
@@ -82,6 +83,20 @@ app.use(function(req, res, next) {
   next();
 });
 
+//File Middleware (Multer) - Stores Uploaded Files
+var multer = require('multer');
+ 
+var storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, 'uploads');
+    },
+    filename: (req, file, cb) => {
+        cb(null, file.fieldname + '-' + Date.now());
+    }
+});
+ 
+var upload = multer({ storage: storage });
+
 //This loads up the Student Signup page
 app.get('/studentsignup', (req, res) => {
   res.render('student-signup');
@@ -89,12 +104,28 @@ app.get('/studentsignup', (req, res) => {
 
 //Student Sign Up
 var User = require("./models/users.js");
-app.post('/studentsignup', function(req, res) {
-  var name= req.body.firstname + " " + req.body.lastname;
+app.post('/studentsignup', upload.single('image'), function(req, res) {
+  var name = req.body.firstname + " " + req.body.lastname;
   var id = idGenerator();
   var role = "Student";
   var email = req.body.email;
   var password = req.body.password;
+  var image;
+  if(req.file != undefined){
+    if(req.file.mimetype == 'image/png'){
+      image = {
+        data: fs.readFileSync(path.join(__dirname + '/uploads/' + req.file.filename)),
+        contentType: 'image/png'
+      };
+    }
+    else{
+      image = {
+        data: fs.readFileSync(path.join(__dirname + '/uploads/' + req.file.filename)),
+        contentType: 'image/jpeg'
+      };
+    }
+  }
+  var notifyemail = false;
 
   let errors = [];
 
@@ -106,13 +137,15 @@ app.post('/studentsignup', function(req, res) {
       });
     }
   });
-
+  
   var data = {
-    "name": name,
-    "userid": id,
-    "role": role,
-    "email": email,
-    "password": password
+      "name": name,
+      "userid": id,
+      "role": role,
+      "email": email,
+      "password": password,
+      "avatar": image,
+      "notifyemail": notifyemail
   };
 
   let newStudent = new User(data);
@@ -135,13 +168,28 @@ app.get('/teachersignup', (req, res) => {
 });
 
 //Teacher Sign Up
-app.post('/teachersignup', function(req, res) {
+app.post('/teachersignup', upload.single('image'), function(req, res) {
   var name = req.body.firstname + " " + req.body.lastname;
   var id = idGenerator();
   var role = "Faculty";
   var email = req.body.email;
   var password = req.body.password;
-
+  var image;
+  if(req.file != undefined){
+    if(req.file.mimetype == 'image/png'){
+      image = {
+        data: fs.readFileSync(path.join(__dirname + '/uploads/' + req.file.filename)),
+        contentType: 'image/png'
+      };
+    }
+    else{
+      image = {
+        data: fs.readFileSync(path.join(__dirname + '/uploads/' + req.file.filename)),
+        contentType: 'image/jpeg'
+      };
+    }
+  }
+  
   let errors = [];
 
   User.findOne({ "email": email }).then(user => {
@@ -154,12 +202,13 @@ app.post('/teachersignup', function(req, res) {
   });
 
   var data = {
-    "name": name,
-    "userid": id,
-    "role": role,
-    "email": email,
-    "password": password
-  };
+      "name": name,
+      "userid": id,
+      "role": role,
+      "email": email,
+      "password": password,
+      "avatar": image
+    };
 
   let newTeacher = new User(data);
 
@@ -231,6 +280,7 @@ app.get("/coursedisplay", function (req, res) {
 app.get('/studentcenter', ensureAuthenticated, (req, res) => {
   res.render('student-center', {
     name: req.user.name,
+    avatar: req.user.avatar,
     tableError: ""
   });
 });
@@ -246,8 +296,8 @@ app.post("/studentcenter", function(req, res){
         if(allCourses.length < 1){
           tableError = "You have no notifications";
         }
-        res.render("student-center", {name: req.user.name, courseresults: allCourses, tableError: tableError, semester: semester, todaysDate: today});
-      }
+        res.render("student-center", {name: req.user.name, courseresults: allCourses, tableError: tableError, avatar: req.user.avatar, semester: semester, todaysDate: today});
+      } 
     });
   }
   else{
@@ -258,7 +308,7 @@ app.post("/studentcenter", function(req, res){
         if(allCourses.length < 1){
           tableError = "You have not enrolled in any courses this semester";
         }
-        res.render("student-center", {name: req.user.name, courseresults: allCourses, tableError: tableError, semester: semester});
+        res.render("student-center", {name: req.user.name, courseresults: allCourses, tableError: tableError, avatar: req.user.avatar, semester: semester});
       }
     });
   }
@@ -267,7 +317,8 @@ app.post("/studentcenter", function(req, res){
 //This loads up the Course Search page
 app.get('/coursesearch', ensureAuthenticated, (req, res) => {
   res.render('course-search', {
-    courseError: ""
+    courseError: "",
+    avatar: req.user.avatar
   });
 });
 
@@ -291,7 +342,7 @@ app.post('/coursesearch', function(req, res) {
       mobileInstructor[i] = instructorLast;
     }
 
-    res.render("course-search", {courseresults: allCourses, courseError: courseError, courseCount: allCourses.length, mobileInstructor: mobileInstructor, todaysDate: today});
+    res.render("course-search", {courseresults: allCourses, courseError: courseError, avatar: req.user.avatar, courseCount: allCourses.length, mobileInstructor: mobileInstructor, todaysDate: today});
   });
 });
 
@@ -299,7 +350,8 @@ app.post('/coursesearch', function(req, res) {
 app.get('/facultycenter', ensureAuthenticated,(req, res) => {
   res.render('faculty-center', {
     name: req.user.name,
-    tableError: ""
+    tableError: "",
+    avatar: req.user.avatar
   });
 });
 
@@ -312,7 +364,7 @@ app.post("/facultycenter", function(req, res){
       if(allCourses.length < 1){
         tableError = "You did not create courses for this semester";
       }
-      res.render("faculty-center", {name: req.user.name, courseresults: allCourses, tableError: tableError});
+      res.render("faculty-center", {name: req.user.name, courseresults: allCourses, avatar: req.user.avatar, tableError: tableError});
     }
   });
 });
@@ -326,19 +378,22 @@ app.post("/dropfacultycourse", function(req, res){
   var coursetime = course[3];
   var semester = course[4];
   
+  //Course is removed from Courses table
   Course.findOneAndRemove({"coursename": coursename, "instructor": instructor, "coursedays": coursedays, "coursetime": coursetime, "semester": semester}, function(err, allCourses){
     if(err) console.log(err);
     console.log("Course Removed Successfully");
   });
+  //This drops every student enrolled in the course
   Enrollment.remove({"semester": semester, "coursename": coursename, "instructor": instructor, "coursedays": coursedays, "coursetime": coursetime}, function(err, allCourses){
     if(err) console.log(err);
     console.log("Drops Every Student Enrolled in Course");
   });
+  //This drops every student that is notified for the course
   Notification.remove({"semester": semester, "coursename": coursename, "instructor": instructor, "coursedays": coursedays, "coursetime": coursetime}, function(err, allCourses){
     if(err) console.log(err);
     console.log("Drops Every Student who is Notified");
   });
-  res.render("faculty-center", {name: req.user.name, tableError: "Removed Course Successfully"});
+  res.render("faculty-center", {name: req.user.name, avatar: req.user.avatar, tableError: "Removed Course Successfully"});
 });
 
 //This loads up the Create a Course page
@@ -411,7 +466,8 @@ app.get('/settings', ensureAuthenticated,(req, res) => {
     name: req.user.name,
     email: req.user.email,
     userid: req.user.userid,
-    role: req.user.role
+    role: req.user.role,
+    avatar: req.user.avatar
   });
 });
 
@@ -448,7 +504,8 @@ app.post('/enrollment', function(req, res) {
         if (enroll) {
           courseError = "You are already enrolled in that course";
           res.render('course-search', {
-            courseError
+            courseError,
+            avatar: req.user.avatar
           });
         }
         else{
@@ -457,7 +514,8 @@ app.post('/enrollment', function(req, res) {
             if(course != null){
               courseError = "You are already enrolled in a " + coursename + " course";
               res.render('course-search', {
-                courseError
+                courseError,
+                avatar: req.user.avatar
               });
             }
             else{
@@ -473,7 +531,8 @@ app.post('/enrollment', function(req, res) {
                 if(conflict){
                   courseError = "This course conflicts with an enrolled course";
                   res.render('course-search', {
-                      courseError
+                      courseError,
+                      avatar: req.user.avatar
                   });
                 }
                 else{
@@ -504,7 +563,7 @@ app.post('/enrollment', function(req, res) {
                   let enrollment = Enrollment(data);
                   enrollment.save().then(Enrollment => { 
                     courseError = "Enrolled Successfully";
-                    res.render("course-search", {courseError: courseError}); 
+                    res.render("course-search", {courseError: courseError, avatar: req.user.avatar}); 
                   }).catch(err => console.log(err));
                 }
               });
@@ -548,7 +607,8 @@ app.post('/notifiedenrollment', function(req, res) {
           tableError = "You are already enrolled in that course";
           res.render('student-center', {
             tableError: tableError,
-            name: req.user.name
+            name: req.user.name,
+            avatar: req.user.avatar
           });
         }
         else{
@@ -558,7 +618,8 @@ app.post('/notifiedenrollment', function(req, res) {
               tableError = "You are already enrolled in that type of course";
               res.render('student-center', {
                 tableError: tableError,
-                name: req.user.name
+                name: req.user.name,
+                avatar: req.user.avatar
               });
             }
             else{
@@ -575,7 +636,8 @@ app.post('/notifiedenrollment', function(req, res) {
                   tableError = "This course conflicts with an enrolled course";
                   res.render('student-center', {
                       tableError: tableError,
-                      name: req.user.name
+                      name: req.user.name,
+                      avatar: req.user.avatar
                   });
                 }
                 else{
@@ -609,7 +671,7 @@ app.post('/notifiedenrollment', function(req, res) {
                   let enrollment = Enrollment(data);
                   enrollment.save().then(Enrollment => { 
                     tableError = "Enrolled Successfully";
-                    res.render("student-center", {tableError: tableError, name: req.user.name}); 
+                    res.render("student-center", {tableError: tableError, avatar: req.user.avatar, name: req.user.name}); 
                   }).catch(err => console.log(err));
                 }
               });
@@ -654,7 +716,7 @@ app.post('/dropcourse', function(req, res) {
   Enrollment.findOneAndRemove({"semester": semester, "coursename": coursename, "instructor": instructor, "coursedays": coursedays, "coursetime": coursetime, "studentname": req.user.name, "studentemail": req.user.email}, function(err, allCourses){
     if(err) console.log(err);
       console.log("Course Removed Successfully");
-      res.render("student-center", {name: req.user.name, tableError: "Removed Enrolled Course Successfully"});
+      res.render("student-center", {name: req.user.name, avatar: req.user.avatar, tableError: "Removed Enrolled Course Successfully"});
     });
 });
 
@@ -692,7 +754,8 @@ app.post('/addnotification', function(req, res) {
           courseError = "You are already notified for that course";
           console.log("You are already notified for that course");
           res.render('course-search', {
-            courseError: courseError
+            courseError: courseError,
+            avatar: req.user.avatar
           });
         }
         else{
@@ -700,7 +763,8 @@ app.post('/addnotification', function(req, res) {
               if(enroll != undefined){
                 courseError = "Why do you want notifications in a course you're enrolled in?";
                 res.render('course-search', {
-                  courseError: courseError
+                  courseError: courseError,
+                  avatar: req.user.avatar
                 });
               }
               else{
@@ -721,7 +785,7 @@ app.post('/addnotification', function(req, res) {
                 let notification = Notification(data);
                 notification.save().then(notified => { 
                   courseError = "We\'ll\ Remind You";
-                  res.render("course-search", {courseError: courseError});
+                  res.render("course-search", {avatar: req.user.avatar, courseError: courseError});
                 }).catch(err => console.log(err));
               }
             });
@@ -745,7 +809,7 @@ app.post('/removenotification', function(req, res) {
     if(err) console.log(err);
     console.log("Course Removed Successfully");
   });
-  res.render("student-center", {name: req.user.name, tableError: "Removed Notified Course Successfully"});
+  res.render("student-center", {name: req.user.name, avatar: req.user.avatar, tableError: "Removed Notified Course Successfully"});
 });
 
 /* Sources
@@ -757,4 +821,5 @@ Anthony Lombardo:
 https://www.stackoverflow.com/
 https://www.w3schools.com/
 For User Registration - https://www.youtube.com/watch?v=6FOq4cUdH8k
+For Image Upload - https://www.geeksforgeeks.org/upload-and-retrieve-image-on-mongodb-using-mongoose/
 */
