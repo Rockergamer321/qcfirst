@@ -34,9 +34,9 @@
 				<div class="dropdown-toggle"> 
 					<!--User Photo-->
 					<% if (avatar.contentType != null) { %>
-						<img src="data:image/<%=avatar.contentType%>;base64,<%=avatar.data.toString('base64')%>" width=50 id="user-icon" alt="Profile Photo" />
+						<img src="data:image/<%=avatar.contentType%>;base64,<%=avatar.data.toString('base64')%>" width=50 height=50 id="user-icon" alt="Profile Photo" />
 					<% } else { %>
-						<img src="img/default-user.png" width=50 alt="Profile Photo" /> 
+						<img src="img/default-user.png"  height=50 width=50 alt="Profile Photo" /> 
 					<% } %>				
 					<!--Links That Direct to Home (Student Center), Settings, and Sign Out (Homepage)-->
 					<nav class="dropdown-list">
